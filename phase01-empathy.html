@@ -5,171 +5,520 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <meta name="description" content="Smart DT Project — Phase 01: Empathy">
   <title>Phase 01: Empathy — Smart DT Project</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 
+
   <style>
-    body { background-color:var(--color-bg); overflow-x:hidden; }
-
-    /* ── Phase hero band ─────────────────────────────── */
-    .phase-header {
-      position:relative;
-      padding:calc(var(--header-height) + 20px) 20px 24px;
-      /* Soft tinted background band behind hero area */
-      background:linear-gradient(160deg,#EDF9F7 0%,#F8FFFE 55%,var(--color-bg) 100%);
-      overflow:hidden;
-      min-height:260px;
+    /* =========================================================
+       Empathy Phase Intro — matched to Empathy Templates style
+       Page-specific only. Shared design stays in css/style.css.
+       ========================================================= */
+    body {
+      background: var(--color-bg, #F5F8FC);
+      overflow-x: hidden;
     }
 
-    /* Hero image — larger, right-aligned, blended */
-    .hero-wrap {
-      position:absolute;
-      top:calc(var(--header-height) - 4px);
-      right:-8px;
-      width:240px;
-      z-index:1;
-      pointer-events:none;
-    }
-    .hero-img { width:100%; height:auto; display:block; }
-
-    /* Left text block — enough right padding to clear hero */
-    .page-header-text {
-      position:relative; z-index:2;
-      padding-right:190px;
-      padding-top:4px;
+    .app-container {
+      background: linear-gradient(180deg, #F7FAFE 0%, #EEF5FB 100%);
     }
 
-    /* Phase title lines — slightly smaller for mobile fit */
-    .phase-title-line { font-size:32px; font-weight:700; line-height:1.1; display:block; }
-    .phase-title-line .word-accent { color:var(--color-orange); font-style:italic; }
-    .phase-title-line .word-phase  { color:var(--color-navy); }
-
-    /* ── Back link ───────────────────────────────────── */
-    .back-link {
-      display:inline-flex; align-items:center; gap:5px;
-      font-size:12px; font-weight:600; color:var(--color-text-mid);
-      text-decoration:none; margin-bottom:10px;
-      background:rgba(255,255,255,0.8); border:1px solid var(--color-border);
-      border-radius:99px; padding:4px 10px;
-      position:relative; z-index:2;
-    }
-    .back-link:hover { color:var(--color-navy); background:#fff; }
-    .back-link svg { width:14px; height:14px; stroke:currentColor; fill:none; stroke-width:2.5; stroke-linecap:round; }
-
-    /* ── PILL TAB BAR ────────────────────────────────── */
-    .phase-tab-wrap {
-      padding:12px 20px 0;
-      background:var(--color-bg);
-      position:sticky; top:var(--header-height); z-index:50;
-    }
-    .phase-tabs {
-      display:flex;
-      background:var(--color-border);
-      border-radius:99px;
-      padding:3px;
-      gap:2px;
-    }
-    .phase-tab-btn {
-      flex:1; display:flex; align-items:center; justify-content:center;
-      gap:5px; padding:8px 6px;
-      font-family:var(--font-main); font-size:12px; font-weight:600;
-      border-radius:99px; border:none; cursor:pointer;
-      transition:background var(--transition-fast), color var(--transition-fast);
-      color:var(--color-text-mid); background:transparent;
-      white-space:nowrap; text-decoration:none;
-    }
-    .phase-tab-btn.active {
-      background:var(--color-navy); color:#FFFFFF;
-      box-shadow:0 2px 8px rgba(7,27,61,0.25);
-    }
-    .phase-tab-btn.quiz-tab { color:var(--color-text-dark); }
-    .phase-tab-btn.quiz-tab.active { background:var(--color-navy); color:#fff; }
-    .phase-tab-btn.locked {
-      color:var(--color-text-light); cursor:not-allowed;
-    }
-    .quiz-badge {
-      display:inline-flex; align-items:center; justify-content:center;
-      background:var(--color-orange); color:#fff;
-      font-size:9px; font-weight:700;
-      padding:1px 5px; border-radius:99px; line-height:1.4;
-    }
-    .active .quiz-badge { background:rgba(255,255,255,0.3); }
-    .phase-tab-divider {
-      display:block; height:1px; background:var(--color-border);
-      margin:0 20px;
-    }
-
-    /* ── Scrollable content area ─────────────────────── */
-    .phase-content {
-      padding:16px 20px calc(var(--nav-height) + 24px);
-      position:relative; z-index:2;
-    }
-
-    /* ── Carousel slide: larger illustration on top ── */
-    .carousel-slide {
-      display:flex; flex-direction:column; align-items:center;
-      text-align:center; padding:20px 16px 16px;
-    }
-    .carousel-slide-illustration {
-      width:110px; height:110px;
-      margin-bottom:14px;
-    }
-    .carousel-slide-illustration img {
-      width:110px; height:110px;
-      object-fit:contain; border-radius:16px;
-    }
-    .carousel-slide-content { width:100%; }
-    .carousel-slide-title {
-      font-size:16px; font-weight:700;
-      color:var(--color-navy); margin-bottom:6px; line-height:1.3;
-    }
-    .carousel-slide-text {
-      font-size:13px; color:var(--color-text-mid); line-height:1.55;
-    }
-
-    /* ── Feature list — stacked vertically on mobile ── */
-    .phase-content-grid {
-      display:grid; grid-template-columns:1fr;
-      gap:12px; margin-top:16px; margin-bottom:14px;
-    }
-
-    /* ── CTA — single button only ─────────────────────
-       No duplicate arrow button. Only one action.      */
-    .phase-cta { margin:16px 0 10px; }
-    .phase-cta .btn-primary {
-      display:flex; align-items:center; justify-content:center;
-      gap:10px; width:100%; padding:16px 24px;
-      background:var(--color-navy); color:#fff;
-      font-family:var(--font-main); font-size:16px; font-weight:600;
-      border:none; border-radius:99px; cursor:pointer;
-    }
-
-    /* ── Hamburger ───────────────────────────────────── */
     .hamburger-btn {
-      width:36px; height:36px; display:flex; align-items:center;
-      justify-content:center; border-radius:var(--radius-sm);
-      background:var(--color-bg); border:1px solid var(--color-border);
-      cursor:pointer; flex-shrink:0;
-    }
-    .hamburger-btn svg {
-      width:20px; height:20px; stroke:var(--color-navy);
-      fill:none; stroke-width:2; stroke-linecap:round;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background-color: #FFFFFF;
+      border: 1px solid var(--color-border, #E5EDF6);
+      cursor: pointer;
+      flex-shrink: 0;
+      box-shadow: 0 8px 18px rgba(7, 27, 61, 0.06);
     }
 
-    /* ── Nav SVG ──────────────────────────────────────── */
+    .hamburger-btn svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--color-navy, #071B3D);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+    }
+
+    /* Template-style phase header */
+    .phase-header.template-match {
+      position: relative;
+      min-height: 430px;
+      padding: calc(var(--header-height, 72px) + 18px) 24px 28px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(255,255,255,0.86), rgba(244,249,253,0.18));
+    }
+
+    .phase-header.template-match::before {
+      content: "";
+      position: absolute;
+      top: 56px;
+      left: -54px;
+      width: 116px;
+      height: 116px;
+      border-radius: 50%;
+      background: rgba(255, 106, 61, 0.16);
+      z-index: 0;
+    }
+
+    .phase-header.template-match::after {
+      content: "";
+      position: absolute;
+      top: 94px;
+      right: 26px;
+      width: 88px;
+      height: 88px;
+      background-image: radial-gradient(rgba(7,27,61,0.16) 1.55px, transparent 1.55px);
+      background-size: 12px 12px;
+      opacity: 0.42;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .phase-back-pill {
+      position: relative;
+      z-index: 3;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 34px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.92);
+      color: var(--color-navy, #071B3D);
+      font-size: 12px;
+      font-weight: 700;
+      box-shadow: 0 8px 18px rgba(7, 27, 61, 0.08);
+      border: 1px solid rgba(229, 237, 246, 0.92);
+      margin-bottom: 18px;
+    }
+
+    .phase-intro-toprow {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .phase-logo-card {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .phase-logo-orb {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: var(--color-navy, #071B3D);
+      display: grid;
+      place-items: center;
+      box-shadow: 0 12px 26px rgba(7, 27, 61, 0.18);
+    }
+
+    .phase-logo-orb img {
+      width: 34px;
+      height: 34px;
+      object-fit: contain;
+    }
+
+    .phase-logo-copy {
+      font-size: 13px;
+      line-height: 1.08;
+      font-weight: 800;
+      color: var(--color-navy, #071B3D);
+    }
+
+    .phase-counter.template-counter {
+      background: #FFFFFF;
+      border-radius: 999px;
+      padding: 9px 14px;
+      box-shadow: 0 10px 24px rgba(7,27,61,0.08);
+    }
+
+    .phase-intro-hero {
+      position: absolute;
+      right: -4px;
+      top: 112px;
+      width: 226px;
+      max-height: 260px;
+      object-fit: contain;
+      z-index: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .phase-intro-text {
+      position: relative;
+      z-index: 3;
+      max-width: 292px;
+      padding-right: 118px;
+    }
+
+    .phase-badge.template-badge-large {
+      width: 54px;
+      height: 54px;
+      border-radius: 15px;
+      margin-bottom: 10px;
+      font-size: 22px;
+      box-shadow: 0 12px 24px rgba(20,184,166,0.28);
+    }
+
+    .template-title-stack {
+      margin-bottom: 10px;
+    }
+
+    .template-title-stack .phase-title-line {
+      font-size: 36px;
+      line-height: 0.98;
+      letter-spacing: -1px;
+    }
+
+    .phase-intro-copy {
+      max-width: 290px;
+      font-size: 12.5px;
+      line-height: 1.58;
+      color: var(--color-text-mid, #6B7280);
+      margin-top: 10px;
+    }
+
+    .phase-mini-steps {
+      position: relative;
+      z-index: 3;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin: 22px 0 0;
+    }
+
+    .phase-mini-step {
+      min-height: 76px;
+      border-radius: 14px;
+      border: 1px solid var(--color-border, #E5EDF6);
+      background: rgba(255,255,255,0.92);
+      box-shadow: 0 10px 22px rgba(7,27,61,0.07);
+      padding: 10px 6px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .phase-mini-num {
+      width: 25px;
+      height: 25px;
+      border-radius: 999px;
+      background: var(--color-navy, #071B3D);
+      color: #FFFFFF;
+      display: grid;
+      place-items: center;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .phase-mini-label {
+      color: var(--color-navy, #071B3D);
+      font-size: 9.5px;
+      font-weight: 800;
+      line-height: 1.12;
+    }
+
+    /* Tabs upgraded to template-style chips */
+    .phase-content {
+      position: relative;
+      z-index: 4;
+      padding: 0 16px calc(var(--nav-height, 76px) + 28px);
+      margin-top: -18px;
+    }
+
+    .tab-bar.template-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1.15fr;
+      gap: 8px;
+      margin: 0 0 12px;
+      padding: 0;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+    }
+
+    .tab-bar.template-tabs .tab-btn {
+      min-height: 42px;
+      border-radius: 999px;
+      border: 0;
+      background: #E9EEF5;
+      color: #64748B;
+      font-size: 11px;
+      font-weight: 800;
+      box-shadow: none;
+    }
+
+    .tab-bar.template-tabs .tab-btn.active {
+      background: var(--color-navy, #071B3D);
+      color: #FFFFFF;
+      box-shadow: 0 10px 22px rgba(7,27,61,0.16);
+    }
+
+    .tab-bar.template-tabs .tab-btn.locked {
+      opacity: 0.68;
+    }
+
+    /* Overview card */
+    .phase-overview-card {
+      background: #FFFFFF;
+      border: 1px solid var(--color-border, #E5EDF6);
+      border-radius: 22px;
+      box-shadow: 0 16px 36px rgba(7, 27, 61, 0.10);
+      padding: 16px;
+      overflow: hidden;
+    }
+
+    .phase-overview-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .phase-overview-title {
+      font-size: 18px;
+      line-height: 1.2;
+      font-weight: 800;
+      color: var(--color-navy, #071B3D);
+      margin-bottom: 3px;
+    }
+
+    .phase-overview-subtitle {
+      font-size: 12px;
+      color: var(--color-text-mid, #6B7280);
+      line-height: 1.4;
+    }
+
+    .status-chip {
+      flex-shrink: 0;
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: #FFF7D6;
+      color: #8A5B00;
+      border: 1px solid rgba(245,166,35,0.35);
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .overview-highlight {
+      border-radius: 18px;
+      background: #F8FAFC;
+      border: 1px solid var(--color-border, #E5EDF6);
+      padding: 14px;
+      margin: 12px 0;
+    }
+
+    .overview-highlight-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 9px;
+    }
+
+    .overview-activity-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: var(--color-teal, #14B8A6);
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .overview-highlight-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--color-navy, #071B3D);
+    }
+
+    .overview-list {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+
+    .overview-list li {
+      position: relative;
+      padding-left: 16px;
+      font-size: 12px;
+      line-height: 1.45;
+      color: #405070;
+    }
+
+    .overview-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 7px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--color-orange, #FF6A3D);
+    }
+
+    .overview-list strong {
+      color: var(--color-navy, #071B3D);
+      font-weight: 800;
+    }
+
+    .overview-tools-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .overview-tool {
+      border-radius: 16px;
+      background: #FFFFFF;
+      border: 1px solid var(--color-border, #E5EDF6);
+      padding: 12px;
+      min-height: 92px;
+    }
+
+    .overview-tool-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 8px;
+      color: #FFFFFF;
+      font-weight: 800;
+    }
+
+    .overview-tool-icon.teal { background: var(--color-teal, #14B8A6); }
+    .overview-tool-icon.orange { background: var(--color-orange, #FF6A3D); }
+
+    .overview-tool-title {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--color-navy, #071B3D);
+      margin-bottom: 3px;
+    }
+
+    .overview-tool-text {
+      font-size: 10.5px;
+      line-height: 1.35;
+      color: var(--color-text-mid, #6B7280);
+    }
+
+    .overview-actions {
+      display: grid;
+      grid-template-columns: 1fr 0.88fr;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .overview-actions .btn-primary,
+    .overview-actions .btn-outline {
+      min-height: 48px;
+      font-size: 13px;
+    }
+
+    .btn-outline.template-outline {
+      border-radius: 999px;
+      background: #F3F6FA;
+      color: var(--color-navy, #071B3D);
+      border: 0;
+      box-shadow: none;
+      width: 100%;
+    }
+
+    .phase-progress-line.template-progress {
+      margin-top: 12px;
+      grid-template-columns: repeat(5, 1fr);
+    }
+
+    .phase-progress-line.template-progress .line-segment {
+      height: 4px;
+    }
+
+    /* Keep quiz/template tabs aligned after JS switches */
+    #tab-quiz,
+    #tab-templates {
+      margin-top: 12px;
+    }
+
     .nav-icon svg {
-      width:24px; height:24px; fill:none; stroke:currentColor;
-      stroke-width:2; stroke-linecap:round; stroke-linejoin:round;
+      width: 24px;
+      height: 24px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    @media (max-width: 390px) {
+      .phase-header.template-match {
+        min-height: 418px;
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .phase-intro-hero {
+        width: 205px;
+        right: -20px;
+        top: 124px;
+      }
+
+      .phase-intro-text {
+        padding-right: 104px;
+      }
+
+      .template-title-stack .phase-title-line {
+        font-size: 32px;
+      }
+
+      .phase-mini-steps {
+        gap: 6px;
+      }
+
+      .phase-mini-step {
+        min-height: 72px;
+        padding: 8px 4px;
+      }
+
+      .phase-mini-label {
+        font-size: 8.6px;
+      }
+
+      .overview-actions {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
+
 </head>
 
 <body data-dots="true">
 <div class="app-container">
 
-  <img src="https://res.cloudinary.com/dmj9fqkrl/image/upload/v1779027549/pink-blob_jakcn5.png" class="pink-blob" alt="" aria-hidden="true"
+  <img src="https://res.cloudinary.com/dmj9fqkrl/image/upload/v1779027549/pink-blob_jakcn5.png"
+       class="pink-blob" alt="" aria-hidden="true"
        onerror="this.style.display='none'">
 
   <!-- HEADER -->
@@ -197,263 +546,359 @@
     </div>
   </header>
 
-  <!-- PHASE HEADER — tinted background band -->
-  <section class="phase-header" aria-label="Empathy phase introduction">
-    <div class="hero-wrap" aria-hidden="true">
-      <img src="https://res.cloudinary.com/dmj9fqkrl/image/upload/v1779027465/empathy-hero_x0oyec.png" class="hero-img"
-           alt="Empathy phase illustration" onerror="this.style.display='none'">
+  <!-- PHASE HEADER — matched to Empathy Templates visual system -->
+  <section class="phase-header template-match" aria-label="Empathy phase overview">
+
+    <a href="dashboard.html" class="phase-back-pill" aria-label="Back to dashboard">
+      ← Dashboard
+    </a>
+
+    <div class="phase-intro-toprow">
+      <div class="phase-logo-card" aria-label="Smart DT Project">
+        <div class="phase-logo-orb" aria-hidden="true">
+          <img src="assets/brand/logo-icon.png" alt="" onerror="this.style.display='none'">
+        </div>
+        <div class="phase-logo-copy">Smart DT<br>Project</div>
+      </div>
+
+      <div class="phase-counter template-counter" aria-label="Phase 1 of 5">
+        <span class="phase-counter-current">01</span>
+        <span class="phase-counter-sep"> / </span>
+        <span class="phase-counter-total">05</span>
+      </div>
     </div>
-    <div class="page-header-text">
-      <a href="dashboard.html" class="back-link" aria-label="Back to dashboard">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <polyline points="15 18 9 12 15 6"/>
-        </svg>
-        Dashboard
-      </a>
-      <div class="phase-badge" aria-hidden="true">01</div>
-      <div class="phase-title-area">
+
+    <img
+      src="assets/heroes/empathy-hero.png"
+      class="phase-intro-hero"
+      alt="Student pointing at empathy activity board"
+      onerror="this.style.display='none'"
+    >
+
+    <div class="phase-intro-text">
+      <div class="phase-badge template-badge-large" aria-hidden="true">01</div>
+
+      <div class="template-title-stack">
         <p class="phase-title-line"><span class="word-accent">Empathy</span></p>
-        <p class="phase-title-line"><span class="word-phase">Phase</span></p>
-        <p class="phase-description">Understand your users before designing solutions. Start by observing, interviewing, and identifying real needs.</p>
-        <div class="orange-underline" aria-hidden="true"></div>
-        <p class="phase-tagline">Smarter Learning.<br>Better Solutions.</p>
+        <p class="phase-title-line"><span class="word-phase">Overview</span></p>
+      </div>
+
+      <div class="orange-underline" aria-hidden="true"></div>
+
+      <p class="phase-intro-copy">
+        Start Phase 01 by understanding your users deeply. Explore their experiences,
+        behaviours and needs before designing any solution.
+      </p>
+    </div>
+
+    <div class="phase-mini-steps" aria-label="Empathy overview steps">
+      <div class="phase-mini-step">
+        <span class="phase-mini-num">1</span>
+        <span class="phase-mini-label">Understand<br>Users</span>
+      </div>
+      <div class="phase-mini-step">
+        <span class="phase-mini-num">2</span>
+        <span class="phase-mini-label">Observe<br>Context</span>
+      </div>
+      <div class="phase-mini-step">
+        <span class="phase-mini-num">3</span>
+        <span class="phase-mini-label">Map<br>Insights</span>
+      </div>
+      <div class="phase-mini-step">
+        <span class="phase-mini-num">4</span>
+        <span class="phase-mini-label">Summarise<br>Needs</span>
       </div>
     </div>
   </section>
 
-  <!-- PILL TAB BAR -->
-  <div class="phase-tab-wrap">
-    <div class="phase-tabs" role="tablist" aria-label="Phase sections">
-      <button class="phase-tab-btn active" data-tab="info"
-              id="tab-btn-info" role="tab" aria-selected="true" aria-controls="tab-info">
-        Overview
-      </button>
-      <button class="phase-tab-btn quiz-tab" data-tab="quiz"
-              id="tab-btn-quiz" role="tab" aria-selected="false" aria-controls="tab-quiz">
-        Quiz <span class="quiz-badge">5</span>
-      </button>
-      <a class="phase-tab-btn locked" id="tab-btn-templates"
-         href="phase01-templates.html"
-         aria-label="Open Phase 01 Templates">
-        Templates 🔒
-      </a>
-    </div>
-  </div>
-  <span class="phase-tab-divider" aria-hidden="true"></span>
-
   <!-- MAIN CONTENT -->
   <main class="phase-content" role="main">
+
+    <!-- TEMPLATE-STYLE TAB BAR -->
+    <div class="tab-bar template-tabs" role="tablist" aria-label="Phase navigation">
+      <button class="tab-btn active" data-tab="info"
+              id="tab-btn-info" role="tab"
+              aria-selected="true" aria-controls="tab-info">
+        Overview
+      </button>
+      <button class="tab-btn" data-tab="quiz"
+              id="tab-btn-quiz" role="tab"
+              aria-selected="false" aria-controls="tab-quiz">
+        Quick Check
+      </button>
+      <button class="tab-btn locked" data-tab="templates"
+              id="tab-btn-templates" role="tab"
+              aria-selected="false" aria-controls="tab-templates">
+        Templates 🔒
+      </button>
+    </div>
 
     <!-- TAB 1: OVERVIEW -->
     <div class="tab-panel" id="tab-info"
          role="tabpanel" aria-labelledby="tab-btn-info">
 
-      <!-- Carousel — vertical layout on mobile -->
-      <div class="carousel-wrap" id="phase-carousel"
-           aria-label="Empathy phase information slides">
-        <div class="carousel-track" id="carousel-track">
-          
-            <div class="carousel-slide"
-                 role="group" aria-roledescription="slide"
-                 aria-label="Slide 1 of 4: Empathy is the first step">
-              <div class="carousel-slide-illustration" aria-hidden="true">
-                <img src="https://res.cloudinary.com/dmj9fqkrl/image/upload/v1779027538/empathy-card_morfcp.png" alt="" style="width:90px;height:90px;object-fit:contain;border-radius:12px;">
-              </div>
-              <div class="carousel-slide-content">
-                <p class="carousel-slide-title">Empathy is the first step</p>
-                <p class="carousel-slide-text">Listen, observe and understand your users' world before thinking about solutions.</p>
-              </div>
-            </div>
-            <div class="carousel-slide"
-                 role="group" aria-roledescription="slide"
-                 aria-label="Slide 2 of 4: Why empathy matters"
-                 aria-hidden="true">
-              <div class="carousel-slide-illustration" aria-hidden="true">
-                <img src="https://res.cloudinary.com/dmj9fqkrl/image/upload/v1779027538/empathy-card_morfcp.png" alt="" style="width:90px;height:90px;object-fit:contain;border-radius:12px;">
-              </div>
-              <div class="carousel-slide-content">
-                <p class="carousel-slide-title">Why empathy matters</p>
-                <p class="carousel-slide-text">Without understanding real user feelings, you risk building solutions nobody needs.</p>
-              </div>
-            </div>
-            <div class="carousel-slide"
-                 role="group" aria-roledescription="slide"
-                 aria-label="Slide 3 of 4: Your empathy tools"
-                 aria-hidden="true">
-              <div class="carousel-slide-illustration" aria-hidden="true">
-                <img src="https://res.cloudinary.com/dmj9fqkrl/image/upload/v1779027538/empathy-card_morfcp.png" alt="" style="width:90px;height:90px;object-fit:contain;border-radius:12px;">
-              </div>
-              <div class="carousel-slide-content">
-                <p class="carousel-slide-title">Your empathy tools</p>
-                <p class="carousel-slide-text">Use the Empathy Map to capture what users Say, Think, Do and Feel.</p>
-              </div>
-            </div>
-            <div class="carousel-slide"
-                 role="group" aria-roledescription="slide"
-                 aria-label="Slide 4 of 4: Your goal this phase"
-                 aria-hidden="true">
-              <div class="carousel-slide-illustration" aria-hidden="true">
-                <img src="https://res.cloudinary.com/dmj9fqkrl/image/upload/v1779027538/empathy-card_morfcp.png" alt="" style="width:90px;height:90px;object-fit:contain;border-radius:12px;">
-              </div>
-              <div class="carousel-slide-content">
-                <p class="carousel-slide-title">Your goal this phase</p>
-                <p class="carousel-slide-text">Interview at least 3 real users and complete all 4 Empathy templates.</p>
-              </div>
-            </div>
+      <section class="phase-overview-card" aria-label="Empathy Phase Overview">
+        <div class="phase-overview-card-header">
+          <div>
+            <h2 class="phase-overview-title">Empathy Phase Overview</h2>
+            <p class="phase-overview-subtitle">
+              Your goal is to discover real user needs before moving into Define.
+            </p>
+          </div>
+          <span class="status-chip">Not Started</span>
         </div>
-      </div>
-      <div class="dot-row" id="carousel-dots" role="tablist" aria-label="Slide navigation">
-        <div class="dot active" role="tab" aria-selected="true"  aria-label="Slide 1"></div>
-        <div class="dot"        role="tab" aria-selected="false" aria-label="Slide 2"></div>
-        <div class="dot"        role="tab" aria-selected="false" aria-label="Slide 3"></div>
-        <div class="dot"        role="tab" aria-selected="false" aria-label="Slide 4"></div>
-      </div>
 
-      <!-- Feature rows — full width stacked -->
-      <div class="phase-content-grid">
-        <div class="feature-list" aria-label="Empathy phase key skills">
-          
-        <div class="feature-row">
-          <div class="feature-icon-box teal" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF"
-                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M6 8a6 6 0 1 1 12 0c0 3-2 4-3 6H9c-1-2-3-3-3-6z"/><path d="M9 20a3 3 0 0 0 6 0"/><line x1="12" y1="14" x2="12" y2="20"/>
-            </svg>
+        <div class="overview-highlight">
+          <div class="overview-highlight-head">
+            <span class="overview-activity-badge">A1</span>
+            <p class="overview-highlight-title">Guided Learning Activity</p>
           </div>
-          <div class="feature-text">
-            <p class="feature-text-title">Listen actively</p>
-            <p class="feature-text-desc">Hear what users say.</p>
-          </div>
-        </div>
-        <div class="feature-row">
-          <div class="feature-icon-box pink-red" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF"
-                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
-            </svg>
-          </div>
-          <div class="feature-text">
-            <p class="feature-text-title">Observe closely</p>
-            <p class="feature-text-desc">See what users do.</p>
-          </div>
-        </div>
-        <div class="feature-row">
-          <div class="feature-icon-box yellow" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF"
-                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-            </svg>
-          </div>
-          <div class="feature-text">
-            <p class="feature-text-title">Understand deeply</p>
-            <p class="feature-text-desc">Feel what users feel.</p>
-          </div>
-        </div>
-        </div>
-      </div>
 
-      <!-- SINGLE CTA — no duplicate arrow button -->
-      <div class="phase-cta">
-        <button class="btn-primary" id="cta-btn"
-                aria-label="Start Quick Check — Phase 01 Empathy">
-          Start Quick Check
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="2.5"
-               stroke-linecap="round" stroke-linejoin="round"
-               aria-hidden="true" style="flex-shrink:0">
-            <line x1="5" y1="12" x2="19" y2="12"/>
-            <polyline points="12 5 19 12 12 19"/>
-          </svg>
-        </button>
-      </div>
+          <ul class="overview-list">
+            <li><strong>LISTEN:</strong> prepare interview questions and capture user quotes.</li>
+            <li><strong>OBSERVE:</strong> notice what users do, not only what they say.</li>
+            <li><strong>MAP:</strong> organise findings into Says, Thinks, Does and Feels.</li>
+            <li><strong>SUMMARISE:</strong> turn insights into clear user needs.</li>
+          </ul>
+        </div>
 
-      <!-- Progress line -->
-      <div class="phase-progress-line" aria-label="Phase progress indicator">
-        
-      <div class="line-segment done" aria-label="Phase 1"></div>
-      <div class="line-segment" aria-label="Phase 2"></div>
-      <div class="line-segment" aria-label="Phase 3"></div>
-      <div class="line-segment" aria-label="Phase 4"></div>
-      <div class="line-segment" aria-label="Phase 5"></div>
-      </div>
+        <div class="overview-tools-row">
+          <div class="overview-tool">
+            <div class="overview-tool-icon teal" aria-hidden="true">Q</div>
+            <p class="overview-tool-title">Quick Check</p>
+            <p class="overview-tool-text">Answer 5 questions to unlock the Empathy templates.</p>
+          </div>
+          <div class="overview-tool">
+            <div class="overview-tool-icon orange" aria-hidden="true">T</div>
+            <p class="overview-tool-title">Templates</p>
+            <p class="overview-tool-text">Complete T01 to T04 to prepare your project evidence.</p>
+          </div>
+        </div>
+
+        <div class="overview-actions">
+          <button type="button" class="btn-primary" id="cta-btn"
+                  aria-label="Start Quick Check for Phase 01 Empathy">
+            Start Quick Check →
+          </button>
+          <button type="button" class="btn-outline template-outline" id="open-template-btn"
+                  aria-label="Open templates after quick check">
+            View Templates
+          </button>
+        </div>
+
+        <div class="phase-progress-line template-progress" aria-label="Phase progress indicator">
+          <div class="line-segment done" aria-label="Phase 1"></div>
+          <div class="line-segment" aria-label="Phase 2"></div>
+          <div class="line-segment" aria-label="Phase 3"></div>
+          <div class="line-segment" aria-label="Phase 4"></div>
+          <div class="line-segment" aria-label="Phase 5"></div>
+        </div>
+      </section>
 
     </div><!-- /#tab-info -->
+
 
     <!-- TAB 2: QUIZ -->
     <div class="tab-panel hidden" id="tab-quiz"
          role="tabpanel" aria-labelledby="tab-btn-quiz">
+      <!--
+        phase-engine.js renders the quiz here.
+        initQuiz(01) builds one question at a time inside this div.
+      -->
       <div id="quiz-container"></div>
-    </div>
+    </div><!-- /#tab-quiz -->
 
-    <!-- TAB 3: TEMPLATES (inline fallback — real templates are in phaseXX-templates.html) -->
+
+    <!-- TAB 3: TEMPLATES -->
     <div class="tab-panel hidden" id="tab-templates"
          role="tabpanel" aria-labelledby="tab-btn-templates">
+      <!--
+        Auto-saved every 500ms by phase-engine.js initTemplateForm().
+        namespace = "df_p01_" — all localStorage keys prefixed here.
+      -->
       <form id="template-form" novalidate>
-        <div style="text-align:center;padding:32px 20px">
-          <p style="font-size:14px;font-weight:600;color:var(--color-navy);margin-bottom:6px">
-            Templates ready!
-          </p>
-          <p style="font-size:13px;color:var(--color-text-mid);margin-bottom:20px">
-            Pass the quiz to unlock the full template pack for this phase.
-          </p>
-          <a href="phase01-templates.html" class="btn-primary"
-             style="display:inline-flex;align-items:center;justify-content:center;
-                    gap:8px;text-decoration:none;width:100%;max-width:320px;
-                    padding:14px 24px;background:var(--color-teal);color:#fff;
-                    font-family:var(--font-main);font-size:15px;font-weight:600;
-                    border-radius:99px;">
-            Open Templates
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                 stroke-linejoin="round" aria-hidden="true">
+        
+          <section class="template-section" aria-label="T01 Interview Guide">
+            <div class="template-section-header">
+              <span class="template-badge">T01</span>
+              <h3 class="template-section-title">Interview Guide</h3>
+            </div>
+            
+            <label class="form-label" for="t01_date">Interview Date</label>
+            <input id="t01_date" name="t01_date" type="date" class="form-input">
+            <label class="form-label" for="t01_location">Location / Method</label>
+            <input id="t01_location" name="t01_location" type="text" class="form-input"
+                   placeholder="e.g. Canteen, Google Meet">
+            <label class="form-label" for="t01_participant">Participant Name / Code</label>
+            <input id="t01_participant" name="t01_participant" type="text" class="form-input"
+                   placeholder="e.g. User A">
+            <label class="form-label" for="t01_q1">Q1 — Describe your typical experience with this problem.</label>
+            <textarea id="t01_q1" name="t01_q1" class="form-input"
+                      rows="3" placeholder=""></textarea>
+            <label class="form-label" for="t01_q2">Q2 — How does it make you feel when this happens?</label>
+            <textarea id="t01_q2" name="t01_q2" class="form-input"
+                      rows="3" placeholder=""></textarea>
+            <label class="form-label" for="t01_q3">Q3 — What have you tried to solve it?</label>
+            <textarea id="t01_q3" name="t01_q3" class="form-input"
+                      rows="3" placeholder=""></textarea>
+            <label class="form-label" for="t01_notes">Additional Notes</label>
+            <textarea id="t01_notes" name="t01_notes" class="form-input"
+                      rows="3" placeholder=""></textarea>
+          </section>
+          <section class="template-section" aria-label="T02 Empathy Map">
+            <div class="template-section-header">
+              <span class="template-badge">T02</span>
+              <h3 class="template-section-title">Empathy Map</h3>
+            </div>
+            
+            <label class="form-label" for="t02_says">SAYS — Quotes and key phrases from the user</label>
+            <textarea id="t02_says" name="t02_says" class="form-input"
+                      rows="3" placeholder=""></textarea>
+            <label class="form-label" for="t02_thinks">THINKS — What they might be thinking but not saying</label>
+            <textarea id="t02_thinks" name="t02_thinks" class="form-input"
+                      rows="3" placeholder=""></textarea>
+            <label class="form-label" for="t02_does">DOES — Actions and behaviours observed</label>
+            <textarea id="t02_does" name="t02_does" class="form-input"
+                      rows="3" placeholder=""></textarea>
+            <label class="form-label" for="t02_feels">FEELS — Emotions and feelings expressed or implied</label>
+            <textarea id="t02_feels" name="t02_feels" class="form-input"
+                      rows="3" placeholder=""></textarea>
+          </section>
+          <section class="template-section" aria-label="T03 User Persona">
+            <div class="template-section-header">
+              <span class="template-badge">T03</span>
+              <h3 class="template-section-title">User Persona</h3>
+            </div>
+            
+            <label class="form-label" for="t03_name">Persona Name</label>
+            <input id="t03_name" name="t03_name" type="text" class="form-input"
+                   placeholder="e.g. Aina the Busy Student">
+            <label class="form-label" for="t03_age">Age / Background</label>
+            <input id="t03_age" name="t03_age" type="text" class="form-input"
+                   placeholder="e.g. 20, Diploma Semester 3">
+            <label class="form-label" for="t03_goals">Goals — What does this person want to achieve?</label>
+            <textarea id="t03_goals" name="t03_goals" class="form-input"
+                      rows="3" placeholder=""></textarea>
+            <label class="form-label" for="t03_pains">Pain Points — What frustrates or blocks them?</label>
+            <textarea id="t03_pains" name="t03_pains" class="form-input"
+                      rows="3" placeholder=""></textarea>
+            <label class="form-label" for="t03_quote">Key Quote — One sentence that captures their situation</label>
+            <textarea id="t03_quote" name="t03_quote" class="form-input"
+                      rows="3" placeholder=""></textarea>
+          </section>
+          <section class="template-section" aria-label="T04 User Needs Summary">
+            <div class="template-section-header">
+              <span class="template-badge">T04</span>
+              <h3 class="template-section-title">User Needs Summary</h3>
+            </div>
+            
+            <label class="form-label" for="t04_needs">Core User Needs — List 3–5 real needs discovered</label>
+            <textarea id="t04_needs" name="t04_needs" class="form-input"
+                      rows="3" placeholder=""></textarea>
+            <label class="form-label" for="t04_insights">Key Insights — What surprised you most?</label>
+            <textarea id="t04_insights" name="t04_insights" class="form-input"
+                      rows="3" placeholder=""></textarea>
+            <label class="form-label" for="t04_hmw">First How Might We… Question</label>
+            <textarea id="t04_hmw" name="t04_hmw" class="form-input"
+                      rows="3" placeholder="How might we help [user] to…"></textarea>
+          </section>
+
+        <!-- Submit phase button -->
+        <div style="margin-top:24px">
+          <button type="button" class="btn-primary"
+                  onclick="PhaseEngine.submitPhase(1, '', ['df_p01_'])"
+                  aria-label="Submit Phase 01 Empathy">
+            Submit Phase 01
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.5"
+                 stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true" style="flex-shrink:0">
               <line x1="5" y1="12" x2="19" y2="12"/>
               <polyline points="12 5 19 12 12 19"/>
             </svg>
-          </a>
+          </button>
         </div>
-      </form>
-      
-    </div>
 
-  </main>
+      </form><!-- /#template-form -->
+
+      
+
+    </div><!-- /#tab-templates -->
+
+  </main><!-- /.phase-content -->
+
 
   <!-- BOTTOM NAV -->
   <nav class="bottom-nav" role="navigation" aria-label="Main navigation">
-    <a href="dashboard.html" class="nav-item" data-page="dashboard.html" aria-label="Dashboard">
+    <a href="dashboard.html" class="nav-item"
+       data-page="dashboard.html" aria-label="Dashboard">
       <span class="nav-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-      </span><span class="nav-label">Dashboard</span>
+        <svg viewBox="0 0 24 24">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </span>
+      <span class="nav-label">Dashboard</span>
     </a>
-    <a href="dashboard.html" class="nav-item" data-page="learn" aria-label="Learn">
+    <a href="dashboard.html" class="nav-item"
+       data-page="learn" aria-label="Learn">
       <span class="nav-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><path d="M9 18h6M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
-      </span><span class="nav-label">Learn</span>
+        <svg viewBox="0 0 24 24">
+          <path d="M9 18h6M10 22h4"/>
+          <path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/>
+        </svg>
+      </span>
+      <span class="nav-label">Learn</span>
     </a>
-    <a href="phase01-empathy.html" class="nav-item" data-page="projects" aria-label="Projects">
+    <a href="phase01-empathy.html" class="nav-item"
+       data-page="projects" aria-label="Projects">
       <span class="nav-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-      </span><span class="nav-label">Projects</span>
+        <svg viewBox="0 0 24 24">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+        </svg>
+      </span>
+      <span class="nav-label">Projects</span>
     </a>
-    <a href="progress.html" class="nav-item" data-page="progress.html" aria-label="Progress">
+    <a href="progress.html" class="nav-item"
+       data-page="progress.html" aria-label="Progress">
       <span class="nav-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><polyline points="14 11 17 14 22 9"/><path d="M22 12v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>
-      </span><span class="nav-label">Progress</span>
+        <svg viewBox="0 0 24 24">
+          <polyline points="14 11 17 14 22 9"/>
+          <path d="M22 12v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/>
+        </svg>
+      </span>
+      <span class="nav-label">Progress</span>
     </a>
-    <a href="profile.html" class="nav-item" data-page="profile.html" aria-label="Profile">
+    <a href="profile.html" class="nav-item"
+       data-page="profile.html" aria-label="Profile">
       <span class="nav-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-      </span><span class="nav-label">Profile</span>
+        <svg viewBox="0 0 24 24">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+      </span>
+      <span class="nav-label">Profile</span>
     </a>
   </nav>
 
-</div>
+</div><!-- /.app-container -->
 
+
+<!-- SCRIPTS — app.js → data.js → ui.js → phase-engine.js → inline -->
+<script src="js/app.js"></script>
 <script src="js/data.js"></script>
 <script src="js/ui.js"></script>
 <script src="js/phase-engine.js"></script>
 
 <script>
   'use strict';
+
+  /* PhaseEngine.init() queues its own DOMContentLoaded internally.
+     Calling it here (synchronously) is correct — it registers the
+     handler before the DOM fires, so nothing is missed.            */
   PhaseEngine.init({
     phaseNum:  1,
       hasGate:   false,
@@ -462,32 +907,37 @@
   });
 
   document.addEventListener('DOMContentLoaded', function () {
+
     /* CTA → switch to Quiz tab */
-    var cta = document.getElementById('cta-btn');
-    if (cta) cta.addEventListener('click', function () {
-      var quizTab = document.querySelector('[data-tab="quiz"]');
+    var cta   = document.getElementById('cta-btn');
+    var openTemplateBtn = document.getElementById('open-template-btn');
+    function goToQuiz() {
+      var quizTab = document.querySelector('.tab-btn[data-tab="quiz"]');
       if (quizTab) quizTab.click();
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+    }
+    if (cta) cta.addEventListener('click', goToQuiz);
+
+    if (openTemplateBtn) {
+      openTemplateBtn.addEventListener('click', function () {
+        var templateTab = document.querySelector('.tab-btn[data-tab="templates"]');
+        if (templateTab && !templateTab.classList.contains('locked')) {
+          templateTab.click();
+        } else {
+          goToQuiz();
+        }
+      });
+    }
 
     /* Hamburger */
     var hbtn = document.getElementById('hamburger-btn');
-    if (hbtn) hbtn.addEventListener('click', function () {
-      var exp = this.getAttribute('aria-expanded') === 'true';
-      this.setAttribute('aria-expanded', String(!exp));
-    });
-
-    /* Update templates tab — unlock after quiz pass */
-    function checkTemplatesLock() {
-      var passed = window.DT && window.DT.isQuizPassed && window.DT.isQuizPassed(1);
-      var tBtn = document.getElementById('tab-btn-templates');
-      if (tBtn && passed) {
-        tBtn.classList.remove('locked');
-        tBtn.textContent = '📋 Templates';
-      }
+    if (hbtn) {
+      hbtn.addEventListener('click', function () {
+        var exp = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', String(!exp));
+      });
     }
-    checkTemplatesLock();
-    document.addEventListener('quizPassed', checkTemplatesLock);
+
   });
 </script>
 
