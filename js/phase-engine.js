@@ -332,10 +332,12 @@ const QUIZ_DATA = {
  * @param {string} containerSelector  Default: '.tab-bar'
  */
 function initTabs(containerSelector = '.tab-bar') {
-  const bar = document.querySelector(containerSelector);
+  /* Support both old .tab-bar/.tab-btn and new .phase-tabs/.phase-tab-btn */
+  const bar = document.querySelector('.phase-tabs') || document.querySelector(containerSelector);
   if (!bar) return;
 
-  bar.querySelectorAll('.tab-btn').forEach(btn => {
+  const btnClass = bar.classList.contains('phase-tabs') ? '.phase-tab-btn' : '.tab-btn';
+  bar.querySelectorAll(btnClass).forEach(btn => {
     btn.addEventListener('click', () => {
       const target = btn.getAttribute('data-tab');
 
@@ -346,7 +348,7 @@ function initTabs(containerSelector = '.tab-bar') {
       }
 
       /* Update button active states */
-      bar.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      bar.querySelectorAll(btnClass).forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
       /* Show matching panel, hide others */
