@@ -539,6 +539,19 @@ function _renderQuizResult(container, score, alreadyPassed) {
  * Called by the result card button.
  */
 function switchToTemplates() {
+  /* Templates tab is now an <a> link — navigate directly */
+  const link = document.getElementById('tab-btn-templates');
+  if (link && link.tagName === 'A') {
+    window.location.href = link.getAttribute('href');
+    return;
+  }
+  /* Fallback: derive template page from current filename */
+  const page  = window.location.pathname.split('/').pop();
+  const match = page.match(/^(phase0[1-5])/);
+  if (match) {
+    window.location.href = match[1] + '-templates.html';
+    return;
+  }
   document.querySelector('.tab-btn[data-tab="templates"]')?.click();
 }
 
@@ -703,7 +716,6 @@ async function submitGate(gateNum, phaseNum, sheetUrl) {
         status:  'Pending Supervisor Approval',
       });
     }
-    if (window.DT && typeof window.DT.setGateStatus === 'function') window.DT.setGateStatus(gateNum, 'Pending Supervisor Approval');
     UI.showToast(`Gate ${gateNum} submitted! Awaiting supervisor approval.`, 'success', 4000);
   } catch {
     UI.showToast('Submission failed. Please try again.', 'error');
@@ -817,8 +829,8 @@ function init(config) {
       initGateCard('#gate-container', gateNum, phaseNum, sheetUrl || '');
     }
 
-    /* AI Coach — disabled until M10 milestone */
-    if (UI && typeof UI.initAICoach === 'function') UI.initAICoach(phaseNum);
+    /* AI Coach */
+    if (window.UI && window.UI.initAICoach) window.UI.initAICoach(phaseNum);
   });
 }
 

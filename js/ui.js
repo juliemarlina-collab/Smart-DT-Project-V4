@@ -808,6 +808,7 @@ async function sendCoachMessage(text) {
 
   if (input) input.value = '';
 
+  /* Hide chips after first message */
   const chips = document.getElementById('coach-chips');
   if (chips) chips.style.display = 'none';
 
@@ -815,56 +816,31 @@ async function sendCoachMessage(text) {
   _coachHistory.push({ role: 'user', content: message });
 
   const loadId = _showLoading();
-  setTimeout(() => {
+
+  try {
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model:      'claude-sonnet-4-20250514',
+        max_tokens: 800,
+        system:     _COACH_PROMPTS[_coachPhase] || _COACH_PROMPTS[1],
+        messages:   _coachHistory,
+      }),
+    });
+
+    const data  = await resp.json();
+    const reply = data?.content?.[0]?.text
+      || 'I could not get a response right now. Please try again.';
+
     _removeLoading(loadId);
-    const reply = _getRuleBasedCoachReply(_coachPhase, message);
     _coachHistory.push({ role: 'assistant', content: reply });
     _appendMsg(reply, 'bot');
-  }, 450);
-}
 
-function _getRuleBasedCoachReply(phaseNum, message) {
-  const msg = String(message || '').toLowerCase();
-  const phaseNames = {
-    1: 'Empathy', 2: 'Define', 3: 'Ideation', 4: 'Prototype', 5: 'Test'
-  };
-  const phase = phaseNames[phaseNum] || 'Design Thinking';
-
-  const banks = {
-    1: {
-      purpose: 'In Empathy, your goal is to understand real users before deciding any solution. Focus on interview notes, empathy map, persona, pain points and real evidence.',
-      templates: 'For Phase 01, complete the interview guide, empathy map and persona. Write what users said, thought, did and felt. Do not jump to solutions yet.',
-      next: 'Next step: interview or observe real users, record key quotes, then summarise the strongest patterns in your empathy templates.'
-    },
-    2: {
-      purpose: 'In Define, your goal is to frame the right problem. Convert empathy findings into a clear POV statement and How Might We questions.',
-      templates: 'For Phase 02, complete POV and HMW templates. Make sure the problem is user-centred, specific and based on evidence.',
-      next: 'Next step: choose your strongest user need, write a POV statement, then create 3 to 5 HMW questions before Gate 1.'
-    },
-    3: {
-      purpose: 'In Ideation, your goal is to generate many possible ideas before selecting one. Quantity first, judgement later.',
-      templates: 'For Phase 03, complete brainstorm, idea selection and concept canvas. Choose ideas based on impact, feasibility and user fit.',
-      next: 'Next step: generate at least 20 ideas, shortlist the best, then prepare your concept for Gate 2.'
-    },
-    4: {
-      purpose: 'In Prototype, your goal is to make the idea visible and testable. It does not need to be perfect; it needs to be understandable.',
-      templates: 'For Phase 04, complete prototype plan, build log and evidence. Include photos, links or screenshots of what your team built.',
-      next: 'Next step: build a simple version, document each iteration, then prepare it for real user testing.'
-    },
-    5: {
-      purpose: 'In Test, your goal is to collect feedback, learn what works, identify problems and improve the solution.',
-      templates: 'For Phase 05, complete T14 User Feedback Form, T15 Improvement Plan and T16 Final Reflection. Use real feedback, not assumptions.',
-      next: 'Next step: test with at least 3 users, record feedback, list improvements and submit Gate 3 final review.'
-    }
-  };
-
-  const b = banks[phaseNum] || banks[1];
-  if (msg.includes('template') || msg.includes('fill') || msg.includes('form')) return b.templates;
-  if (msg.includes('next') || msg.includes('do now') || msg.includes('continue')) return b.next;
-  if (msg.includes('example') || msg.includes('sample')) return 'Use this simple structure: user/context → problem/need → evidence from users → decision or next action. Keep it specific and based on your own project data.';
-  if (msg.includes('gate') || msg.includes('supervisor')) return 'Before supervisor gate submission, make sure your quiz is passed, templates are complete, evidence links are added, and your team has reviewed the work. Then submit the gate request.';
-  if (msg.includes('help') || msg.includes('stuck')) return `You are in the ${phase} phase. Start with the template instructions, fill the easiest fields first, then use real evidence or user quotes to complete the deeper reflection fields.`;
-  return `${phase} Coach: ${b.purpose}\n\n${b.next}`;
+  } catch {
+    _removeLoading(loadId);
+    _appendMsg('DT Coach is unavailable right now. Please check your connection.', 'bot');
+  }
 }
 
 function _appendMsg(text, role) {

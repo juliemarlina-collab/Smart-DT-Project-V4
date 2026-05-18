@@ -294,17 +294,6 @@ function isGateApproved(gateNum) {
  */
 function approveGate(gateNum) {
   localStorage.setItem(`df_gate${gateNum}_approved`, 'true');
-  localStorage.setItem(`df_gate${gateNum}_status`, 'Approved');
-}
-
-function setGateStatus(gateNum, status) {
-  localStorage.setItem(`df_gate${gateNum}_status`, status);
-  if (status === 'Approved') localStorage.setItem(`df_gate${gateNum}_approved`, 'true');
-}
-
-function getGateStatus(gateNum) {
-  if (isGateApproved(gateNum)) return 'Approved';
-  return localStorage.getItem(`df_gate${gateNum}_status`) || 'Not Submitted';
 }
 
 
@@ -428,23 +417,10 @@ function loadField(namespace, fieldName, defaultValue = '') {
  * @param {HTMLFormElement} formEl
  * @param {string}          namespace  e.g. 'df_t01_'
  */
-function _storageKey(namespace, fieldName) {
-  const n = String(fieldName || '');
-  const ns = String(namespace || '');
-  return ns && n.startsWith(ns) ? n : ns + n;
-}
-
 function saveFormToStorage(formEl, namespace) {
   if (!formEl) return;
   formEl.querySelectorAll('[name]').forEach(field => {
-    const key = _storageKey(namespace, field.name);
-    if (field.type === 'checkbox') {
-      localStorage.setItem(key, field.checked ? 'true' : 'false');
-    } else if (field.type === 'radio') {
-      if (field.checked) localStorage.setItem(key, field.value);
-    } else {
-      localStorage.setItem(key, field.value);
-    }
+    localStorage.setItem(namespace + field.name, field.value);
   });
 }
 
@@ -459,16 +435,8 @@ function saveFormToStorage(formEl, namespace) {
 function loadFormFromStorage(formEl, namespace) {
   if (!formEl) return;
   formEl.querySelectorAll('[name]').forEach(field => {
-    const stored = localStorage.getItem(_storageKey(namespace, field.name));
-    if (stored !== null) {
-      if (field.type === 'checkbox') {
-        field.checked = stored === 'true';
-      } else if (field.type === 'radio') {
-        field.checked = field.value === stored;
-      } else {
-        field.value = stored;
-      }
-    }
+    const stored = localStorage.getItem(namespace + field.name);
+    if (stored !== null) field.value = stored;
   });
 }
 
@@ -575,8 +543,6 @@ Object.assign(window.DT, {
   /* Gates */
   isGateApproved,
   approveGate,
-  setGateStatus,
-  getGateStatus,
 
   /* Badges */
   hasBadge,

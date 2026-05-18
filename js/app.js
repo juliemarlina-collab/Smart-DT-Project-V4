@@ -13,11 +13,6 @@
   window.SmartDTApp.version = '3.0';
   window.SmartDTApp.name = 'Smart DT Project';
 
-  /* Shared configuration */
-  window.SmartDTApp.sheetUrl = 'https://script.google.com/macros/s/AKfycbyM-5GQKEQCZlYUHeN46I0BaYIPeMo9mHpSPQTbd5VZqT6uu3oXraHKHgHZPKa8A8Y/exec';
-  window.SmartDTApp.assetMode = 'cloudinary';
-
-
   window.SmartDTApp.paths = {
     index: 'index.html',
     welcome: 'welcome.html',

@@ -2390,650 +2390,181 @@ ol {
 
 
 /* =====================================================
-   31. TAB BAR — Phase page Quick Info / Quiz / Templates
-   Missing from original build — added Patch 01 fix
+   SECTIONS 31-35 — Added to complete the design system
+   Tab Bar / Quiz / Gates / Templates / Coach / Bug Fixes
    ===================================================== */
 
+/* 31. TAB BAR ---------------------------------------- */
 .tab-bar {
-  display:          flex;
-  align-items:      stretch;
-  background:       var(--color-card);
-  border-bottom:    1.5px solid var(--color-border);
-  padding:          0 16px;
-  gap:              4px;
-  position:         sticky;
-  top:              var(--header-height);
-  z-index:          50;
-  box-shadow:       var(--shadow-header);
+  display:flex; flex-direction:row; align-items:center;
+  background-color:var(--color-card);
+  border-bottom:2px solid var(--color-border);
+  position:sticky; top:var(--header-height); z-index:50;
+  padding:0 20px; width:100%;
 }
-
 .tab-btn {
-  flex:             1;
-  padding:          13px 6px 11px;
-  font-family:      var(--font-main);
-  font-size:        13px;
-  font-weight:      600;
-  color:            var(--color-text-mid);
-  background:       none;
-  border:           none;
-  border-bottom:    2.5px solid transparent;
-  cursor:           pointer;
-  white-space:      nowrap;
-  text-align:       center;
-  transition:       color var(--transition-fast),
-                    border-color var(--transition-fast);
+  flex:1; display:flex; align-items:center; justify-content:center;
+  gap:5px; padding:12px 4px;
+  font-family:var(--font-main); font-size:13px; font-weight:600;
+  color:var(--color-text-mid); background:none; border:none;
+  border-bottom:2.5px solid transparent; cursor:pointer;
+  transition:color var(--transition-fast),border-color var(--transition-fast);
+  white-space:nowrap; margin-bottom:-2px; text-decoration:none;
 }
+.tab-btn:hover:not(.locked) { color:var(--color-navy); }
+.tab-btn.active { color:var(--color-teal); border-bottom-color:var(--color-teal); }
+.tab-btn.locked { color:var(--color-text-light); cursor:not-allowed; }
+a.tab-btn { text-decoration:none; }
+.tab-panel { min-height:calc(100vh - var(--header-height) - 48px - var(--nav-height)); }
+.tab-panel.hidden { display:none !important; }
+.tab-lock-hint { font-size:11px; color:var(--color-text-light); text-align:center; padding:4px 0 0; margin:0; }
 
-.tab-btn.active {
-  color:              var(--color-navy);
-  border-bottom-color: var(--color-teal);
-  font-weight:        700;
-}
-
-.tab-btn.locked {
-  color:   var(--color-text-light);
-  cursor:  not-allowed;
-  opacity: 0.6;
-}
-
-.tab-btn:hover:not(.locked):not(.active) {
-  color: var(--color-navy);
-}
-
-
-/* =====================================================
-   32. QUIZ — Question cards, options, result
-   Missing from original build — added Patch 01 fix
-   ===================================================== */
-
-/* Container padding */
-#quiz-container {
-  padding: 16px 0 8px;
-}
-
-/* Question card wrapper */
+/* 32. QUIZ ------------------------------------------- */
 .quiz-card {
-  background:    var(--color-card);
-  border:        1.5px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding:       20px 16px 16px;
-  box-shadow:    var(--shadow-card);
+  background-color:var(--color-card); border:1px solid var(--color-border);
+  border-radius:var(--radius-lg); padding:20px; box-shadow:var(--shadow-card);
 }
-
-/* "1 of 5" label */
-.quiz-progress-text {
-  font-size:   12px;
-  font-weight: 600;
-  color:       var(--color-text-mid);
-  margin-bottom: 8px;
-}
-
-/* Progress bar track */
-.quiz-progress-bar-wrap {
-  width:         100%;
-  height:        4px;
-  background:    var(--color-border);
-  border-radius: var(--radius-pill);
-  margin-bottom: 18px;
-  overflow:      hidden;
-}
-
-/* Progress bar fill */
-.quiz-progress-bar-fill {
-  height:        100%;
-  background:    var(--color-teal);
-  border-radius: var(--radius-pill);
-  transition:    width var(--transition-mid);
-}
-
-/* Question text */
-.quiz-question {
-  font-size:     15px;
-  font-weight:   600;
-  color:         var(--color-navy);
-  line-height:   1.55;
-  margin-bottom: 16px;
-}
-
-/* Options list */
-.quiz-options {
-  display:        flex;
-  flex-direction: column;
-  gap:            10px;
-}
-
-/* Individual option button */
+.quiz-progress-text { font-size:12px; font-weight:600; color:var(--color-text-mid); text-align:right; margin-bottom:8px; }
+.quiz-progress-bar-wrap { width:100%; height:4px; background-color:var(--color-border); border-radius:var(--radius-pill); overflow:hidden; margin-bottom:16px; }
+.quiz-progress-bar-fill { height:100%; background-color:var(--color-teal); border-radius:var(--radius-pill); transition:width .35s ease; }
+.quiz-question { font-size:16px; font-weight:600; color:var(--color-navy); line-height:1.5; margin-bottom:16px; }
+.quiz-options { display:flex; flex-direction:column; gap:10px; }
 .quiz-option {
-  display:       flex;
-  align-items:   center;
-  gap:           12px;
-  width:         100%;
-  padding:       13px 14px;
-  background:    var(--color-card);
-  border:        1.5px solid var(--color-border);
-  border-radius: var(--radius-md);
-  cursor:        pointer;
-  text-align:    left;
-  transition:    border-color var(--transition-fast),
-                 background   var(--transition-fast);
-  font-family:   var(--font-main);
+  display:flex; align-items:flex-start; gap:12px; width:100%;
+  padding:12px 14px; background-color:var(--color-bg);
+  border:1.5px solid var(--color-border); border-radius:var(--radius-md);
+  font-family:var(--font-main); font-size:14px; color:var(--color-text-dark);
+  text-align:left; cursor:pointer; line-height:1.45;
+  transition:border-color var(--transition-fast),background-color var(--transition-fast);
 }
-
-.quiz-option:hover:not(:disabled) {
-  border-color: var(--color-teal);
-  background:   #F0FDFB;
-}
-
-.quiz-option:disabled {
-  cursor: default;
-}
-
-/* Correct answer highlight */
-.quiz-option.correct {
-  border-color: var(--color-teal);
-  background:   var(--color-success-bg);
-}
-
-/* Wrong answer highlight */
-.quiz-option.wrong {
-  border-color: var(--color-error);
-  background:   #FEF2F2;
-}
-
-/* A / B / C / D letter circle */
+.quiz-option:hover:not(:disabled) { border-color:var(--color-teal); background-color:rgba(20,184,166,.04); }
+.quiz-option:disabled { cursor:default; }
 .quiz-option-letter {
-  width:            28px;
-  height:           28px;
-  min-width:        28px;
-  border-radius:    var(--radius-circle);
-  background:       var(--color-bg);
-  border:           1.5px solid var(--color-border);
-  font-size:        12px;
-  font-weight:      700;
-  color:            var(--color-navy);
-  display:          flex;
-  align-items:      center;
-  justify-content:  center;
-  flex-shrink:      0;
-  transition:       background var(--transition-fast),
-                    border-color var(--transition-fast),
-                    color var(--transition-fast);
+  display:inline-flex; align-items:center; justify-content:center;
+  width:24px; height:24px; min-width:24px;
+  border-radius:var(--radius-circle); background-color:var(--color-border);
+  font-size:12px; font-weight:700; color:var(--color-text-mid); flex-shrink:0; margin-top:1px;
 }
-
-.quiz-option.correct .quiz-option-letter {
-  background:   var(--color-teal);
-  border-color: var(--color-teal);
-  color:        #FFFFFF;
-}
-
-.quiz-option.wrong .quiz-option-letter {
-  background:   var(--color-error);
-  border-color: var(--color-error);
-  color:        #FFFFFF;
-}
-
-/* Option label text */
-.quiz-option-text {
-  font-size:   13px;
-  font-weight: 500;
-  color:       var(--color-text-dark);
-  line-height: 1.45;
-}
-
-/* Next question / See score button */
-.quiz-next-btn {
-  margin-top: 16px;
-  width:      100%;
-}
-
-/* Result card */
+.quiz-option-text { flex:1; }
+.quiz-option.correct { border-color:#10B981; background-color:#D1FAE5; }
+.quiz-option.correct .quiz-option-letter { background-color:#10B981; color:#fff; }
+.quiz-option.wrong { border-color:var(--color-error); background-color:#FEE2E2; }
+.quiz-option.wrong .quiz-option-letter { background-color:var(--color-error); color:#fff; }
+.quiz-next-btn { margin-top:16px; width:100%; }
 .quiz-result {
-  background:     var(--color-card);
-  border:         1.5px solid var(--color-border);
-  border-radius:  var(--radius-lg);
-  padding:        28px 20px 24px;
-  text-align:     center;
-  display:        flex;
-  flex-direction: column;
-  align-items:    center;
-  gap:            8px;
-  box-shadow:     var(--shadow-card);
+  background-color:var(--color-card); border:1px solid var(--color-border);
+  border-radius:var(--radius-lg); padding:28px 20px 24px; box-shadow:var(--shadow-card);
+  display:flex; flex-direction:column; align-items:center; text-align:center; gap:8px;
 }
+.quiz-result--pass { border-color:#10B981; }
+.quiz-result--fail { border-color:var(--color-orange); }
+.quiz-result-icon { font-size:48px; line-height:1; margin-bottom:4px; }
+.quiz-result-score { font-size:32px; font-weight:700; color:var(--color-navy); line-height:1; }
+.quiz-result-pct { font-size:14px; font-weight:500; color:var(--color-text-mid); }
+.quiz-result-headline { font-size:18px; font-weight:700; color:var(--color-navy); margin-top:4px; }
+.quiz-result-sub { font-size:14px; color:var(--color-text-mid); line-height:1.55; margin-bottom:8px; }
 
-.quiz-result--pass {
-  border-color: var(--color-teal);
-  background:   #F0FDFB;
+/* 33. SUPERVISOR GATE -------------------------------- */
+.gate-card {
+  background-color:var(--color-card); border:2px solid var(--color-border);
+  border-radius:var(--radius-lg); padding:24px 20px;
+  box-shadow:var(--shadow-card); display:flex; flex-direction:column;
+  align-items:center; text-align:center; gap:10px; margin-top:8px;
 }
-
-.quiz-result--fail {
-  border-color: var(--color-border);
+.gate--locked { border-color:var(--color-orange); }
+.gate--approved { border-color:#10B981; background-color:#F0FDF4; }
+.gate-icon { font-size:40px; line-height:1; }
+.gate-title { font-size:18px; font-weight:700; color:var(--color-navy); }
+.gate-status { font-size:14px; font-weight:500; color:var(--color-text-mid); }
+.gate--approved .gate-status { color:#065F46; font-weight:600; }
+.gate-checklist {
+  width:100%; text-align:left; background:var(--color-bg);
+  border:1px solid var(--color-border); border-radius:var(--radius-md); padding:14px; margin:4px 0;
 }
-
-.quiz-result-icon {
-  font-size:     40px;
-  line-height:   1;
-  margin-bottom: 4px;
+.gate-checklist-title { font-size:13px; font-weight:600; color:var(--color-navy); margin-bottom:10px; }
+.gate-check-item {
+  display:flex; align-items:flex-start; gap:10px; font-size:13px;
+  color:var(--color-text-dark); cursor:pointer; padding:4px 0; line-height:1.5;
 }
-
-.quiz-result-score {
-  font-size:   36px;
-  font-weight: 700;
-  color:       var(--color-navy);
-  line-height: 1;
+.gate-check-item input[type="checkbox"] {
+  width:16px; height:16px; min-width:16px; margin-top:2px;
+  accent-color:var(--color-teal); cursor:pointer;
 }
+.gate-card .btn-primary { margin-top:4px; }
 
-.quiz-result-pct {
-  font-size:   14px;
-  font-weight: 600;
-  color:       var(--color-text-mid);
-}
-
-.quiz-result-headline {
-  font-size:   17px;
-  font-weight: 700;
-  color:       var(--color-navy);
-  margin-top:  4px;
-}
-
-.quiz-result-sub {
-  font-size:   13px;
-  color:       var(--color-text-mid);
-  line-height: 1.55;
-  max-width:   280px;
-}
-
-
-/* =====================================================
-   33. TEMPLATE BADGE — T01 / T02 etc. pill in section header
-   Missing from original build — added Patch 02 fix
-   ===================================================== */
-
+/* 34. TEMPLATE BADGE + FORM STYLES ------------------- */
 .template-badge {
-  display:         inline-flex;
-  align-items:     center;
-  justify-content: center;
-  min-width:       38px;
-  height:          26px;
-  padding:         0 10px;
-  background:      var(--color-navy);
-  color:           #FFFFFF;
-  font-size:       11px;
-  font-weight:     700;
-  border-radius:   var(--radius-sm);
-  flex-shrink:     0;
-  letter-spacing:  0.3px;
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:3px 10px; background-color:var(--color-teal); color:#fff;
+  font-size:11px; font-weight:700; border-radius:var(--radius-pill);
+  white-space:nowrap; flex-shrink:0;
 }
-
-
-
-/* =====================================================
-   34. PHASE HEADER & BACK LINK
-   Phase pages — header area above tab bar
-   ===================================================== */
-
-.phase-header {
-  position:   relative;
-  padding:    calc(var(--header-height) + 16px) 20px 0;
-  overflow:   hidden;
-  min-height: 240px;
+.template-section-title { font-size:15px; font-weight:700; color:var(--color-navy); line-height:1.3; }
+.template-section-header {
+  display:flex; align-items:center; gap:10px;
+  margin-bottom:14px; padding-bottom:12px; border-bottom:1px solid var(--color-border);
 }
+.template-section { background-color:var(--color-card); border:1px solid var(--color-border); border-radius:var(--radius-lg); padding:18px; margin-bottom:16px; box-shadow:var(--shadow-card); }
+.template-section .form-label { display:block; font-size:13px; font-weight:600; color:var(--color-navy); margin-bottom:5px; margin-top:12px; }
+.template-section .form-input { width:100%; padding:10px 14px; background-color:var(--color-bg); border:1.5px solid var(--color-border); border-radius:var(--radius-md); font-family:var(--font-main); font-size:14px; color:var(--color-text-dark); display:block; }
+.template-section textarea.form-input { min-height:80px; resize:vertical; line-height:1.55; }
+.template-section .form-input:focus { outline:none; border-color:var(--color-teal); }
 
-.back-link {
-  display:         inline-flex;
-  align-items:     center;
-  gap:             6px;
-  font-size:       13px;
-  font-weight:     500;
-  color:           var(--color-text-mid);
-  text-decoration: none;
-  margin-bottom:   8px;
-  position:        relative;
-  z-index:         2;
-  transition:      color var(--transition-fast);
+/* 35. BUG FIXES (visual audit) ---------------------- */
+/* Accordion chevron size */
+.accordion-chevron { width:20px !important; height:20px !important; min-width:20px !important; flex-shrink:0 !important; transition:transform var(--transition-mid); }
+.accordion-chevron.open { transform:rotate(180deg); }
+/* Accordion body show/hide */
+.accordion-body { display:none; }
+.accordion-body.open { display:block; }
+/* Accordion icon circle */
+.accordion-icon-circle { width:42px !important; height:42px !important; min-width:42px !important; border-radius:50% !important; display:flex !important; align-items:center !important; justify-content:center !important; flex-shrink:0 !important; overflow:hidden; }
+.accordion-icon-circle svg { width:20px !important; height:20px !important; }
+/* Badge hex shape */
+.badge-hex { width:90px !important; height:90px !important; background-color:var(--color-teal) !important; clip-path:polygon(50% 0%,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%) !important; display:flex !important; align-items:center !important; justify-content:center !important; }
+.badge-hex-icon { width:44px !important; height:44px !important; color:#fff !important; stroke:#fff !important; }
+.badge-card.locked .badge-hex { background-color:var(--color-border) !important; filter:grayscale(1); }
+/* Profile menu row icons — colour on light bg */
+.menu-row-icon-circle.teal-bg   svg { color:var(--color-teal)   !important; stroke:var(--color-teal)   !important; }
+.menu-row-icon-circle.orange-bg svg { color:var(--color-orange) !important; stroke:var(--color-orange) !important; }
+.menu-row-icon-circle.yellow-bg svg { color:#D97706            !important; stroke:#D97706            !important; }
+.menu-row-icon-circle.red-bg    svg { color:var(--color-error)  !important; stroke:var(--color-error)  !important; }
+/* Phase content grid responsive */
+@media (max-width:420px) { .phase-content-grid { grid-template-columns:1fr; } }
+
+/* quiz-progress-bar (alias for quiz-progress-bar-wrap) */
+.quiz-progress-bar { height:4px; background-color:var(--color-border); border-radius:var(--radius-pill); overflow:hidden; margin-bottom:16px; }
+
+/* AI Coach panel — static CSS (ui.js also injects dynamically) */
+.coach-panel {
+  position:fixed; bottom:0; left:50%; transform:translateX(-50%) translateY(100%);
+  width:100%; max-width:480px; height:72vh; background:#fff;
+  border-radius:24px 24px 0 0; display:flex; flex-direction:column;
+  z-index:210; transition:transform .35s cubic-bezier(.32,.72,0,1);
+  box-shadow:0 -8px 32px rgba(7,27,61,.18);
 }
-
-.back-link:hover { color: var(--color-navy); }
-
-.back-link svg {
-  width:        16px;
-  height:       16px;
-  stroke:       currentColor;
-  fill:         none;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+.coach-panel.open { transform:translateX(-50%) translateY(0); }
+.coach-fab {
+  position:fixed; bottom:calc(var(--nav-height) + 80px); right:20px;
+  width:52px; height:52px; border-radius:50%;
+  background:linear-gradient(135deg,var(--color-teal),#0EA5E9);
+  color:#fff; border:none; display:flex; align-items:center; justify-content:center;
+  box-shadow:0 4px 18px rgba(20,184,166,.45); cursor:pointer; z-index:91;
+  transition:transform var(--transition-fast);
 }
-
-
-/* =====================================================
-   35. TAB PANEL, TAB BADGE, TAB LOCK ICON
-   ===================================================== */
-
-.tab-panel {
-  display: block;
-}
-
-.tab-panel.hidden {
-  display: none !important;
-}
-
-/* Small pill badge inside the Quiz tab button — "5 Qs" */
-.tab-badge {
-  display:          inline-flex;
-  align-items:      center;
-  justify-content:  center;
-  padding:          1px 6px;
-  background:       var(--color-border);
-  color:            var(--color-text-mid);
-  font-size:        10px;
-  font-weight:      600;
-  border-radius:    var(--radius-pill);
-  margin-left:      4px;
-}
-
-.tab-btn.active .tab-badge {
-  background: rgba(20, 184, 166, 0.18);
-  color:      var(--color-teal);
-}
-
-/* Lock emoji inside the locked Templates tab */
-.tab-lock-icon {
-  margin-left: 4px;
-  font-size:   12px;
-}
-
-
-/* =====================================================
-   36. QUIZ INTRO SECTION
-   Text block above the quiz-container
-   ===================================================== */
-
-.quiz-intro {
-  padding:       16px 0 12px;
-}
-
-.quiz-intro-title {
-  font-size:     16px;
-  font-weight:   700;
-  color:         var(--color-navy);
-  margin-bottom: 4px;
-}
-
-.quiz-intro-sub {
-  font-size:   13px;
-  color:       var(--color-text-mid);
-  line-height: 1.55;
-}
-
-
-/* =====================================================
-   37. TEMPLATE TITLE (inside template-section)
-   ===================================================== */
-
-.template-title {
-  font-size:   15px;
-  font-weight: 700;
-  color:       var(--color-navy);
-  line-height: 1.4;
-}
-
-
-/* =====================================================
-   38. FORM GROUP — wrapper for label + input pairs
-   ===================================================== */
-
-.form-group {
-  margin-bottom: 16px;
-}
-
-.form-group:last-child {
-  margin-bottom: 0;
-}
-
-/* Small grey hint below a label */
-.form-label-hint {
-  display:     block;
-  font-size:   11px;
-  color:       var(--color-text-light);
-  margin-top:  2px;
-  line-height: 1.4;
-}
-
-
-/* =====================================================
-   39. FORM TEXTAREA & SELECT
-   Alternative class names used in newer phase pages
-   ===================================================== */
-
-.form-textarea {
-  width:         100%;
-  border:        1.5px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding:       11px 13px;
-  font-family:   var(--font-main);
-  font-size:     14px;
-  color:         var(--color-text-dark);
-  background:    var(--color-card);
-  resize:        vertical;
-  min-height:    88px;
-  line-height:   1.55;
-  transition:    border-color var(--transition-fast);
-}
-
-.form-textarea:focus {
-  outline:       none;
-  border-color:  var(--color-teal);
-  box-shadow:    0 0 0 3px rgba(20, 184, 166, 0.12);
-}
-
-.form-select {
-  width:          100%;
-  border:         1.5px solid var(--color-border);
-  border-radius:  var(--radius-md);
-  padding:        11px 13px;
-  font-family:    var(--font-main);
-  font-size:      14px;
-  color:          var(--color-text-dark);
-  background:     var(--color-card);
-  cursor:         pointer;
-  appearance:     none;
-  -webkit-appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 9l6 6 6-6' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  background-repeat:   no-repeat;
-  background-position: right 12px center;
-  padding-right:  38px;
-  transition:     border-color var(--transition-fast);
-}
-
-.form-select:focus {
-  outline:      none;
-  border-color: var(--color-teal);
-  box-shadow:   0 0 0 3px rgba(20, 184, 166, 0.12);
-}
-
-
-/* =====================================================
-   40. NUMBERED LIST — numbered interview questions etc.
-   ===================================================== */
-
-.form-numbered-list {
-  display:        flex;
-  flex-direction: column;
-  gap:            10px;
-}
-
-.form-numbered-item {
-  display:     flex;
-  align-items: flex-start;
-  gap:         10px;
-}
-
-/* Circle number badge: 1, 2, 3 ... */
-.form-number-badge {
-  width:            24px;
-  height:           24px;
-  min-width:        24px;
-  border-radius:    var(--radius-circle);
-  background:       var(--color-navy);
-  color:            #FFFFFF;
-  font-size:        11px;
-  font-weight:      700;
-  display:          flex;
-  align-items:      center;
-  justify-content:  center;
-  flex-shrink:      0;
-  margin-top:       10px;
-}
-
-.form-numbered-item .form-textarea {
-  flex: 1;
-}
-
-
-/* =====================================================
-   41. PAIRED GROUP — label + two stacked inputs (need + evidence)
-   ===================================================== */
-
-.form-paired-group {
-  background:    var(--color-bg);
-  border:        1.5px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding:       12px;
-  margin-bottom: 10px;
-}
-
-.form-paired-group:last-child {
-  margin-bottom: 0;
-}
-
-.form-paired-label {
-  font-size:     12px;
-  font-weight:   600;
-  color:         var(--color-text-mid);
-  margin-bottom: 4px;
-  text-transform: uppercase;
-  letter-spacing: 0.4px;
-}
-
-
-/* =====================================================
-   42. CHECKLIST — completion checklist at end of templates
-   ===================================================== */
-
-.form-checklist {
-  background:    var(--color-bg);
-  border:        1.5px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding:       14px;
-  margin-top:    8px;
-}
-
-.form-check-item {
-  display:     flex;
-  align-items: flex-start;
-  gap:         10px;
-  font-size:   13px;
-  color:       var(--color-text-mid);
-  line-height: 1.5;
-  padding:     6px 0;
-  cursor:      pointer;
-}
-
-.form-check-item + .form-check-item {
-  border-top: 1px solid var(--color-border);
-}
-
-.form-check-item input[type="checkbox"] {
-  width:          16px;
-  height:         16px;
-  min-width:      16px;
-  accent-color:   var(--color-teal);
-  margin-top:     3px;
-  cursor:         pointer;
-}
-
-
-/* =====================================================
-   43. EMPATHY MAP GRID — 2x2 quadrant layout
-   ===================================================== */
-
-.empathy-map-grid {
-  display:               grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows:    auto auto;
-  gap:                   8px;
-  margin-top:            4px;
-}
-
-.empathy-map-cell {
-  border:        1.5px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding:       12px;
-  background:    var(--color-card);
-}
-
-/* Colour accent per quadrant */
-.empathy-map-cell.says   { border-top: 3px solid var(--color-teal);    }
-.empathy-map-cell.thinks { border-top: 3px solid var(--color-orange);  }
-.empathy-map-cell.does   { border-top: 3px solid var(--color-yellow);  }
-.empathy-map-cell.feels  { border-top: 3px solid var(--color-pink-red);}
-
-.empathy-map-cell-header {
-  display:       flex;
-  align-items:   center;
-  gap:           6px;
-  margin-bottom: 8px;
-}
-
-.empathy-map-cell-header .word-accent {
-  font-size:   12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.4px;
-}
-
-/* Quadrant accent colours for header label */
-.empathy-map-cell.says   .word-accent { color: var(--color-teal);     }
-.empathy-map-cell.thinks .word-accent { color: var(--color-orange);   }
-.empathy-map-cell.does   .word-accent { color: var(--color-yellow);   }
-.empathy-map-cell.feels  .word-accent { color: var(--color-pink-red); }
-
-.empathy-map-cell .form-textarea {
-  min-height: 72px;
-}
-
-/* Full-width on mobile */
-@media (max-width: 380px) {
-  .empathy-map-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-
-/* =====================================================
-   44. PHASE SUBMIT SECTION — bottom of templates tab
-   ===================================================== */
-
-.phase-submit-section {
-  background:    var(--color-card);
-  border:        1.5px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding:       20px;
-  margin-top:    24px;
-  text-align:    center;
-}
-
-.phase-submit-title {
-  font-size:     16px;
-  font-weight:   700;
-  color:         var(--color-navy);
-  margin-bottom: 6px;
-}
-
-.phase-submit-sub {
-  font-size:   13px;
-  color:       var(--color-text-mid);
-  line-height: 1.55;
-  margin-bottom: 16px;
-}
-
+.coach-fab:hover { transform:scale(1.1); }
+.coach-header { display:flex; align-items:center; justify-content:space-between; padding:16px 20px 12px; border-bottom:1px solid #E8EDF2; flex-shrink:0; }
+.coach-title { display:flex; align-items:center; gap:8px; font:700 16px 'Poppins',sans-serif; color:#071B3D; }
+.coach-close { width:32px; height:32px; border-radius:50%; background:#F5F5F5; border:none; display:flex; align-items:center; justify-content:center; cursor:pointer; color:#6B7280; }
+.coach-chat { flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:12px; }
+.coach-msg { display:flex; align-items:flex-end; gap:8px; }
+.coach-msg--user { flex-direction:row-reverse; }
+.coach-bubble { background:#F0FAFA; border:1px solid #E8EDF2; border-radius:16px 16px 16px 4px; padding:10px 14px; font:400 14px/1.55 'Poppins',sans-serif; color:#1A1A2E; max-width:82%; }
+.coach-bubble--user { background:#071B3D; color:#fff; border:none; border-radius:16px 16px 4px 16px; }
+.coach-chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.coach-chip { background:#fff; border:1.5px solid var(--color-teal); color:var(--color-teal); border-radius:50px; padding:6px 14px; font:500 12px 'Poppins',sans-serif; cursor:pointer; transition:background .15s,color .15s; }
+.coach-chip:hover { background:var(--color-teal); color:#fff; }
+.coach-footer { display:flex; align-items:center; gap:10px; padding:12px 16px 20px; border-top:1px solid #E8EDF2; flex-shrink:0; }
+.coach-input { flex:1; border:1.5px solid #E8EDF2; border-radius:50px; padding:10px 16px; font:400 14px 'Poppins',sans-serif; color:#1A1A2E; outline:none; background:#FAFBFC; }
+.coach-input:focus { border-color:var(--color-teal); }
+.coach-send { width:40px; height:40px; min-width:40px; border-radius:50%; background:var(--color-teal); border:none; display:flex; align-items:center; justify-content:center; cursor:pointer; color:#fff; }
