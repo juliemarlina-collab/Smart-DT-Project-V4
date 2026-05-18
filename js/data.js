@@ -567,3 +567,22 @@ Object.assign(window.DT, {
 });
 
 }()); /* end IIFE — window.DT is now available globally */
+
+
+/* ═══════════════════════════════════════════════════════════════
+   IMPORTANT — KEY COUPLING NOTE
+   ═══════════════════════════════════════════════════════════════
+
+   index.html is a router-only page and cannot load data.js.
+   It reads one localStorage key directly using a raw string:
+
+     localStorage.getItem('df_registered')
+
+   This raw string MUST always match KEYS.REGISTERED above.
+
+   If you ever rename KEYS.REGISTERED, you MUST also update
+   the matching string inside the routing script in index.html.
+
+   Search for:  'df_registered'  in index.html to find it.
+
+   ═══════════════════════════════════════════════════════════════ */
