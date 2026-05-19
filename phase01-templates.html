@@ -1,247 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <meta name="description" content="Smart DT Project — Phase 01 Empathy Templates">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Empathy Templates — Smart DT Project</title>
-  <link rel="stylesheet" href="css/empathy-phase.css">
+  <link rel="stylesheet" href="css/empathy-phase.css" />
 </head>
 <body>
-  <main class="app">
-    
-<header class="app-header">
-  <a class="brand" href="dashboard.html" aria-label="Smart DT Project dashboard">
-    <img src="assets/brand/logo-icon.svg" alt="Smart DT Project logo" class="brand-logo">
-    <span class="brand-name">Smart DT<br>Project</span>
-  </a>
-  <div class="header-actions">
-    <div class="phase-chip" aria-label="Phase 01 of 05"><span class="now">01</span>/<span class="total">05</span></div>
-    <button class="menu-btn" aria-label="Open menu"><span></span></button>
-  </div>
-</header>
-
-    <img class="blob" src="assets/shared/pink-blob.svg" alt="" aria-hidden="true">
-    <div class="dot-grid" aria-hidden="true"></div>
-
-    <section class="content">
-      <a class="back-pill" href="phase01-empathy.html"><span>←</span>Empathy Phase</a>
-
-      <section class="phase-hero" aria-labelledby="phase-title">
-        <div class="phase-copy">
-          <div class="phase-number">01</div>
-          <h1 class="phase-title" id="phase-title">
-            <span class="accent">Empathy</span>
-            <span class="navy">Templates</span>
-          </h1>
-          <div class="title-rule"></div>
-          <p class="phase-desc">Each template includes clearer activity prompts, sample views, and app-friendly interaction.</p>
-        </div>
-        <img class="phase-hero-img" src="assets/heroes/empathy-template-hero.svg" alt="Empathy templates hero illustration">
-      </section>
-
-      
-<div class="step-grid" aria-label="Empathy template steps">
-  <div class="step-card"><span class="step-num">1</span><span class="step-label">Prepare<br>Interview</span></div>
-  <div class="step-card"><span class="step-num">2</span><span class="step-label">Map User<br>Experience</span></div>
-  <div class="step-card"><span class="step-num">3</span><span class="step-label">Build<br>Persona</span></div>
-  <div class="step-card"><span class="step-num">4</span><span class="step-label">Summarise<br>Needs</span></div>
-</div>
-
-
-      <div class="template-tabs" role="tablist" aria-label="Empathy templates">
-        <button class="template-pill active" type="button" data-template="t01">T01 Interview</button>
-        <button class="template-pill" type="button" data-template="t02">T02 Empathy Map</button>
-        <button class="template-pill" type="button" data-template="t03">T03 Persona</button>
-        <button class="template-pill" type="button" data-template="t04">T04 Needs</button>
+  <main class="app-shell">
+    <header class="app-header">
+      <a class="brand" href="dashboard.html" aria-label="Smart DT Project dashboard">
+        <img src="assets/brand/logo-icon.svg" alt="Smart DT Project logo" />
+        <strong>Smart DT<br>Project</strong>
+      </a>
+      <div class="header-actions">
+        <div class="phase-count"><span class="now">01</span>/<span class="total">05</span></div>
+        <button class="menu-btn" type="button" aria-label="Menu"><img src="assets/icons/menu.svg" alt="" /></button>
       </div>
+    </header>
 
-      <section class="template-panel active" data-template="t01">
-        <div class="panel">
-          <div class="panel-header">
-            <div>
-              <h2 class="panel-title">T01 Interview Guide</h2>
-              <p class="panel-sub">Prepare and conduct interviews with at least 3 real target users.</p>
-            </div>
-            <span class="status-pill">Not Started</span>
-          </div>
+    <section class="page">
+      <img class="pink-blob" src="assets/shared/pink-blob.svg" alt="" aria-hidden="true" />
 
-          <div class="activity-card">
-            <div class="activity-head">
-              <span class="badge-a">A1</span>
-              <span class="activity-title">Interactive Activity</span>
-            </div>
-            <ul class="bullet-list">
-              <li><strong>Before:</strong> decide the user group, location, and 5 open-ended questions.</li>
-              <li><strong>During:</strong> listen actively, ask follow-up questions, and avoid suggesting answers.</li>
-              <li><strong>After:</strong> record 3 key insights while the discussion is fresh.</li>
-            </ul>
-          </div>
-
-          <div class="cta-row">
-            <button class="btn-light" type="button">View Sample</button>
-            <button class="btn-light" type="button">Fill Template</button>
-          </div>
-
-          <div class="sample-box">
-            <p class="sample-title">Sample Interview Context</p>
-            <p class="sample-text">
-              <strong>Target user:</strong> Student who often buys lunch at the canteen.<br>
-              <strong>Good question:</strong> “Tell me about your experience during peak lunch time.”<br>
-              Avoid yes/no questions. Use prompts such as “Why?”, “Can you explain more?”, and “What happened next?”
-            </p>
-          </div>
-
-          <div class="form-block">
-            <label class="form-label">Target user group
-              <input data-save name="df_p01_t01_user_group" placeholder="Example: Polytechnic students using the canteen">
-            </label>
-            <label class="form-label">Interview questions
-              <textarea data-save name="df_p01_t01_questions" placeholder="Write 5 open-ended questions here..."></textarea>
-            </label>
-            <label class="form-label">Key interview insights
-              <textarea data-save name="df_p01_t01_insights" placeholder="Record quotes, repeated problems, or surprising findings..."></textarea>
-            </label>
-          </div>
+      <section class="phase-hero template">
+        <a class="back-pill" href="phase01-empathy.html">← Empathy Phase</a>
+        <div class="hero-copy">
+          <h1 class="hero-title"><span class="accent">Empathy</span><span class="dark">Templates</span></h1>
+          <div class="title-line"></div>
+          <p class="hero-desc">Each template includes clearer activity prompts, sample views, and app-friendly interaction.</p>
         </div>
+        <img class="hero-img" src="assets/heroes/empathy-template-hero.svg" alt="Empathy template illustration" />
       </section>
 
-      <section class="template-panel" data-template="t02">
-        <div class="panel">
-          <div class="panel-header">
-            <div>
-              <h2 class="panel-title">T02 Empathy Map</h2>
-              <p class="panel-sub">Organise findings into Says, Thinks, Does and Feels.</p>
-            </div>
-            <span class="status-pill">Not Started</span>
-          </div>
-          <div class="activity-card">
-            <div class="activity-head">
-              <span class="badge-a">A2</span>
-              <span class="activity-title">4-Quadrant Mapping</span>
-            </div>
-            <ul class="bullet-list">
-              <li><strong>SAYS:</strong> write direct quotes from interviews.</li>
-              <li><strong>THINKS:</strong> infer thoughts based on behaviour and responses.</li>
-              <li><strong>DOES & FEELS:</strong> capture actions and emotions to reveal pains and gains.</li>
-            </ul>
-          </div>
-          <div class="form-block">
-            <label class="form-label">Says
-              <textarea data-save name="df_p01_t02_says" placeholder="Direct user quotes..."></textarea>
-            </label>
-            <label class="form-label">Thinks
-              <textarea data-save name="df_p01_t02_thinks" placeholder="What might the user be thinking?"></textarea>
-            </label>
-            <label class="form-label">Does
-              <textarea data-save name="df_p01_t02_does" placeholder="Actions and behaviours observed..."></textarea>
-            </label>
-            <label class="form-label">Feels
-              <textarea data-save name="df_p01_t02_feels" placeholder="Emotions, frustrations, hopes..."></textarea>
-            </label>
-          </div>
-        </div>
+      <section class="steps" aria-label="Empathy template steps">
+        <div class="step-card"><span class="step-num">1</span><span>Prepare<br>Interview</span></div>
+        <div class="step-card"><span class="step-num">2</span><span>Map User<br>Experience</span></div>
+        <div class="step-card"><span class="step-num">3</span><span>Build<br>Persona</span></div>
+        <div class="step-card"><span class="step-num">4</span><span>Summarise<br>Needs</span></div>
       </section>
 
-      <section class="template-panel" data-template="t03">
-        <div class="panel">
-          <div class="panel-header">
-            <div>
-              <h2 class="panel-title">T03 Persona</h2>
-              <p class="panel-sub">Build a simple user persona based on real empathy findings.</p>
-            </div>
-            <span class="status-pill">Not Started</span>
-          </div>
-          <div class="activity-card">
-            <div class="activity-head">
-              <span class="badge-a">A3</span>
-              <span class="activity-title">Build Persona</span>
-            </div>
-            <ul class="bullet-list">
-              <li><strong>Profile:</strong> describe the user background.</li>
-              <li><strong>Goals:</strong> explain what the user wants to achieve.</li>
-              <li><strong>Pains:</strong> identify barriers, frustrations, or difficulties.</li>
-            </ul>
-          </div>
-          <div class="form-block">
-            <label class="form-label">Persona name
-              <input data-save name="df_p01_t03_name" placeholder="Example: Aisyah, Semester 4 student">
-            </label>
-            <label class="form-label">User goals
-              <textarea data-save name="df_p01_t03_goals" placeholder="What does this user want to achieve?"></textarea>
-            </label>
-            <label class="form-label">Pain points
-              <textarea data-save name="df_p01_t03_pains" placeholder="What problems does this user face?"></textarea>
-            </label>
-          </div>
-        </div>
+      <nav class="template-tabs" aria-label="Empathy template navigation">
+        <button class="template-tab active" type="button" data-template-tab="t01">T01 Interview</button>
+        <button class="template-tab" type="button" data-template-tab="t02">T02 Empathy Map</button>
+        <button class="template-tab" type="button" data-template-tab="t03">T03 Persona</button>
+        <button class="template-tab" type="button" data-template-tab="t04">T04 Needs</button>
+      </nav>
+
+      <section class="template-panel active" data-template-panel="t01">
+        <article class="content-card">
+          <span class="status-pill">Not Started</span><h2 class="template-card-title">T01 Interview Guide</h2><p class="sub">Prepare and conduct interviews with at least 3 real target users.</p>
+          <div class="activity-box"><div class="activity-head"><span class="activity-badge">A1</span><span>Interactive Activity</span></div><ul class="bullet-list"><li><strong>Before:</strong> decide the user group, location, and 5 open-ended questions.</li><li><strong>During:</strong> listen actively, ask follow-up questions, and avoid suggesting answers.</li><li><strong>After:</strong> record 3 key insights while the discussion is fresh.</li></ul></div>
+          <div class="template-actions"><button class="secondary-btn" type="button">View Sample</button><button class="secondary-btn" type="button">Fill Template</button></div>
+          <div class="sample-box"><h3>Sample Interview Context</h3><p><strong>Target user:</strong> Student who often buys lunch at the canteen.<br><strong>Good question:</strong> “Tell me about your experience during peak lunch time.”<br>Avoid yes/no questions. Use prompts such as “Why?”, “Can you explain more?”, and “What happened next?”</p></div>
+          <div class="form-group"><label>Target user group</label><input data-save name="t01_user_group" placeholder="Example: Polytechnic students using the canteen"></div>
+          <div class="form-group"><label>Interview questions</label><textarea data-save name="t01_questions" placeholder="Write 5 open-ended questions here..."></textarea></div>
+          <div class="form-group"><label>Key interview insights</label><textarea data-save name="t01_insights" placeholder="Record quotes, repeated problems, or surprising findings..."></textarea></div>
+          <div class="form-save-note">Autosaved on this device.</div>
+        </article>
       </section>
 
-      <section class="template-panel" data-template="t04">
-        <div class="panel">
-          <div class="panel-header">
-            <div>
-              <h2 class="panel-title">T04 Needs Summary</h2>
-              <p class="panel-sub">Summarise the main user needs before moving to Define.</p>
-            </div>
-            <span class="status-pill">Not Started</span>
-          </div>
-          <div class="activity-card">
-            <div class="activity-head">
-              <span class="badge-a">A4</span>
-              <span class="activity-title">Summarise Needs</span>
-            </div>
-            <ul class="bullet-list">
-              <li><strong>Problem:</strong> what issue appears repeatedly?</li>
-              <li><strong>Need:</strong> what does the user truly need?</li>
-              <li><strong>Evidence:</strong> which quotes or observations support this?</li>
-            </ul>
-          </div>
-          <div class="form-block">
-            <label class="form-label">Main user problem
-              <textarea data-save name="df_p01_t04_problem" placeholder="Write the main problem clearly..."></textarea>
-            </label>
-            <label class="form-label">User need statement
-              <textarea data-save name="df_p01_t04_need" placeholder="The user needs a way to... because..."></textarea>
-            </label>
-            <label class="form-label">Evidence
-              <textarea data-save name="df_p01_t04_evidence" placeholder="Add quotes, observations, or repeated findings..."></textarea>
-            </label>
-            <button class="btn-primary" type="button" onclick="alert('Phase 01 templates saved on this device.');">Save Phase 01 Evidence →</button>
-          </div>
-        </div>
+      <section class="template-panel" data-template-panel="t02">
+        <article class="content-card"><span class="status-pill">Not Started</span><h2 class="template-card-title">T02 Empathy Map</h2><p class="sub">Organise findings into Says, Thinks, Does and Feels.</p><div class="activity-box"><div class="activity-head"><span class="activity-badge">A2</span><span>Build Empathy Map</span></div><ul class="bullet-list"><li><strong>SAYS:</strong> write direct quotes from users.</li><li><strong>THINKS:</strong> infer thoughts based on behaviour and responses.</li><li><strong>DOES:</strong> capture actions, routines and repeated behaviour.</li><li><strong>FEELS:</strong> identify emotions, frustrations and motivations.</li></ul></div><div class="form-group"><label>Says</label><textarea data-save name="t02_says" placeholder="What did the user say?"></textarea></div><div class="form-group"><label>Thinks</label><textarea data-save name="t02_thinks" placeholder="What might the user think?"></textarea></div><div class="form-group"><label>Does</label><textarea data-save name="t02_does" placeholder="What did the user do?"></textarea></div><div class="form-group"><label>Feels</label><textarea data-save name="t02_feels" placeholder="How might the user feel?"></textarea></div><div class="form-save-note">Autosaved on this device.</div></article>
       </section>
 
-      <div class="coach-bar" aria-label="DT Coach">
-        <input class="coach-input" type="text" placeholder="Ask DT Coach anything..." aria-label="Ask DT Coach anything">
-        <img class="coach-bot" src="assets/shared/dt-coach.svg" alt="DT Coach">
-      </div>
+      <section class="template-panel" data-template-panel="t03">
+        <article class="content-card"><span class="status-pill">Not Started</span><h2 class="template-card-title">T03 Persona</h2><p class="sub">Build a simple user persona based on real empathy findings.</p><div class="activity-box"><div class="activity-head"><span class="activity-badge">A3</span><span>Build Persona</span></div><ul class="bullet-list"><li><strong>Profile:</strong> describe the user background.</li><li><strong>Goals:</strong> explain what the user wants to achieve.</li><li><strong>Pains:</strong> identify barriers, frustrations, or difficulties.</li></ul></div><div class="form-group"><label>Persona name</label><input data-save name="t03_name" placeholder="Example: Aisyah, Semester 4 student"></div><div class="form-group"><label>User goals</label><textarea data-save name="t03_goals" placeholder="What does this user want?"></textarea></div><div class="form-group"><label>User pains</label><textarea data-save name="t03_pains" placeholder="What difficulties does this user face?"></textarea></div><div class="form-save-note">Autosaved on this device.</div></article>
+      </section>
+
+      <section class="template-panel" data-template-panel="t04">
+        <article class="content-card"><span class="status-pill">Not Started</span><h2 class="template-card-title">T04 User Needs</h2><p class="sub">Summarise findings into clear needs before moving into Define.</p><div class="activity-box"><div class="activity-head"><span class="activity-badge">A4</span><span>Summarise Needs</span></div><ul class="bullet-list"><li><strong>Problem:</strong> write the repeated issue clearly.</li><li><strong>Need:</strong> explain what the user really needs.</li><li><strong>Evidence:</strong> connect your need to interview or observation findings.</li></ul></div><div class="form-group"><label>Main user need</label><textarea data-save name="t04_need" placeholder="The user needs..."></textarea></div><div class="form-group"><label>Evidence from empathy work</label><textarea data-save name="t04_evidence" placeholder="Use quotes or observation notes as evidence..."></textarea></div><div class="cta-row"><a class="primary-btn" href="phase02-define.html">Submit Empathy Phase →</a><a class="secondary-btn" href="progress.html">View Progress →</a></div><div class="form-save-note">Autosaved on this device.</div></article>
+      </section>
     </section>
 
-    
-<nav class="bottom-nav" aria-label="Main navigation">
-  <a class="nav-item" href="dashboard.html">
-    <svg viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10.5V20h14v-9.5"/><path d="M9 20v-6h6v6"/></svg>
-    <span>Dashboard</span>
-  </a>
-  <a class="nav-item" href="dashboard.html#learn">
-    <svg viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M8 14a6 6 0 1 1 8 0c-.8.7-1 1.6-1 3h-6c0-1.4-.2-2.3-1-3z"/></svg>
-    <span>Learn</span>
-  </a>
-  <a class="nav-item active" href="phase01-empathy.html">
-    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h6"/></svg>
-    <span>Projects</span>
-  </a>
-  <a class="nav-item" href="progress.html">
-    <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-    <span>Progress</span>
-  </a>
-  <a class="nav-item" href="profile.html">
-    <svg viewBox="0 0 24 24"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg>
-    <span>Profile</span>
-  </a>
-</nav>
-
+    <div class="coach-bar" aria-label="DT Coach input"><div class="coach-input">Ask DT Coach anything...</div><img class="coach-icon" src="assets/shared/dt-coach.svg" alt="DT Coach" /></div>
+    <nav class="bottom-nav" aria-label="Bottom navigation"><a class="nav-item" href="dashboard.html"><span class="nav-ico">⌂</span><span>Dashboard</span></a><a class="nav-item" href="#"><span class="nav-ico">♕</span><span>Learn</span></a><a class="nav-item active" href="phase01-empathy.html"><span class="nav-ico">▤</span><span>Projects</span></a><a class="nav-item" href="progress.html"><span class="nav-ico">☑</span><span>Progress</span></a><a class="nav-item" href="profile.html"><span class="nav-ico">♡</span><span>Profile</span></a></nav>
   </main>
   <script src="js/empathy-phase.js"></script>
 </body>

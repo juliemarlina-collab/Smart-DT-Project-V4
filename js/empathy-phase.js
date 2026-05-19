@@ -1,201 +1,27 @@
-/* Smart DT Phase 01 Empathy — page interactions */
-(function () {
-  const $ = (selector, root = document) => root.querySelector(selector);
-  const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
-
-  const QUIZ = [
-    {
-      q: "What is the main purpose of the Empathy phase?",
-      options: [
-        "To understand users and their real needs",
-        "To immediately build the final product",
-        "To choose colours and app icons",
-        "To present the final pitch"
-      ],
-      answer: 0
-    },
-    {
-      q: "Which activity helps you collect direct user quotes?",
-      options: ["Interview", "Final testing", "Logo design", "Coding"],
-      answer: 0
-    },
-    {
-      q: "In an empathy map, 'Says' means...",
-      options: [
-        "What users directly say or quote",
-        "What the team wants to sell",
-        "Only what the teacher says",
-        "The final project title"
-      ],
-      answer: 0
-    },
-    {
-      q: "Why should we observe users?",
-      options: [
-        "To notice what users do, not only what they say",
-        "To skip the interview",
-        "To copy another project",
-        "To avoid collecting evidence"
-      ],
-      answer: 0
-    },
-    {
-      q: "What should the team produce after empathy activities?",
-      options: [
-        "Clear user needs and insights",
-        "A final certificate",
-        "A random product",
-        "A completed marketing poster only"
-      ],
-      answer: 0
-    }
+(function(){
+  const $=(s,r=document)=>r.querySelector(s); const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+  const KEY='smartdt_emp_phase01_';
+  const questions=[
+    {q:'What is the main purpose of the Empathy phase?',a:0,o:['To understand users and their real needs','To immediately build the final product','To choose colours and app icons','To present the final pitch']},
+    {q:'Which action best shows empathy during an interview?',a:1,o:['Giving solutions quickly','Listening actively and asking follow-up questions','Interrupting users to save time','Asking only yes/no questions']},
+    {q:'What should students record after an interview?',a:2,o:['Only the user name','Only the final solution','Quotes, repeated problems and surprising findings','The lecturer’s comments only']},
+    {q:'An empathy map usually helps students organise...',a:0,o:['What users say, think, do and feel','App colours and logo choices','Budget and purchasing records','Final presentation slides']},
+    {q:'Why should we understand users before designing?',a:3,o:['So the project looks more expensive','So we can skip testing','So students can avoid teamwork','So the solution is based on real needs']}
   ];
+  let current=0, answers=Array(questions.length).fill(null);
 
-  let current = 0;
-  let selected = null;
-  let score = 0;
-
-  function showView(view) {
-    const overview = $('#overview-section');
-    const quiz = $('#quick-check-section');
-    const tabs = $$('.segmented-tabs .tab-pill');
-
-    if (!overview || !quiz) return;
-
-    if (view === 'quiz') {
-      overview.classList.add('hidden');
-      quiz.classList.add('active');
-      tabs.forEach(t => t.classList.toggle('active', t.dataset.view === 'quiz'));
-      renderQuiz();
-      quiz.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    } else {
-      quiz.classList.remove('active');
-      overview.classList.remove('hidden');
-      tabs.forEach(t => t.classList.toggle('active', t.dataset.view === 'overview'));
-      overview.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }
-
-  function renderQuiz() {
-    const mount = $('#quiz-mount');
-    if (!mount) return;
-
-    if (current >= QUIZ.length) {
-      const passed = score >= 3;
-      if (passed) {
-        localStorage.setItem('df_p01_quiz_passed', 'true');
-      }
-      mount.innerHTML = `
-        <div class="quiz-card">
-          <div class="quiz-title">${passed ? 'Great work!' : 'Try again'}</div>
-          <p class="panel-sub" style="font-size:13px;margin-top:8px;">
-            You scored <strong>${score}/${QUIZ.length}</strong>. ${passed ? 'Templates are now unlocked.' : 'Score at least 3/5 to unlock templates.'}
-          </p>
-          <div class="quiz-result show"><strong>${passed ? 'Unlocked:' : 'Reminder:'}</strong> ${passed ? 'You can now continue to the Empathy Templates page.' : 'Review the overview and try the quick check again.'}</div>
-          <div class="quiz-actions">
-            <button class="btn-primary" id="quiz-retry">${passed ? 'Retake Quiz' : 'Try Again'}</button>
-            <a class="btn-secondary" href="phase01-templates.html">View Templates →</a>
-          </div>
-        </div>
-      `;
-      $('#quiz-retry')?.addEventListener('click', () => {
-        current = 0; selected = null; score = 0; renderQuiz();
-      });
-      return;
-    }
-
-    const item = QUIZ[current];
-    selected = null;
-
-    mount.innerHTML = `
-      <div class="quiz-card">
-        <div class="quiz-top">
-          <div>
-            <p class="quiz-title">Quick Check</p>
-            <p class="panel-sub">Answer 5 questions to unlock Empathy Templates.</p>
-          </div>
-          <div class="quiz-count">${current + 1} / ${QUIZ.length}</div>
-        </div>
-        <div class="quiz-question">${item.q}</div>
-        <div class="quiz-options">
-          ${item.options.map((opt, idx) => `
-            <button class="quiz-option" data-index="${idx}">
-              ${String.fromCharCode(65 + idx)}. ${opt}
-            </button>
-          `).join('')}
-        </div>
-        <div class="quiz-actions">
-          <button class="btn-secondary" id="quiz-back">Back</button>
-          <button class="btn-primary" id="quiz-next">Next →</button>
-        </div>
-      </div>
-    `;
-
-    $$('.quiz-option', mount).forEach(btn => {
-      btn.addEventListener('click', () => {
-        selected = Number(btn.dataset.index);
-        $$('.quiz-option', mount).forEach(b => b.classList.remove('selected'));
-        btn.classList.add('selected');
-      });
-    });
-
-    $('#quiz-back')?.addEventListener('click', () => showView('overview'));
-    $('#quiz-next')?.addEventListener('click', () => {
-      if (selected === null) {
-        alert('Please choose one answer first.');
-        return;
-      }
-      if (selected === item.answer) score++;
-      current++;
-      renderQuiz();
-    });
-  }
-
-  function initOverviewTabs() {
-    $$('.segmented-tabs .tab-pill[data-view]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const view = btn.dataset.view;
-        if (view === 'templates') {
-          window.location.href = 'phase01-templates.html';
-        } else {
-          showView(view);
-        }
-      });
-    });
-
-    $$('[data-go-quiz]').forEach(btn => {
-      btn.addEventListener('click', () => showView('quiz'));
-    });
-  }
-
-  function initTemplateTabs() {
-    const pills = $$('.template-pill[data-template]');
-    const panels = $$('.template-panel[data-template]');
-    if (!pills.length) return;
-
-    pills.forEach(pill => {
-      pill.addEventListener('click', () => {
-        const key = pill.dataset.template;
-        pills.forEach(p => p.classList.toggle('active', p === pill));
-        panels.forEach(panel => panel.classList.toggle('active', panel.dataset.template === key));
-      });
-    });
-  }
-
-  function initAutosave() {
-    $$('[data-save]').forEach(field => {
-      const key = field.name || field.id || field.dataset.save;
-      if (!key) return;
-      const saved = localStorage.getItem(key);
-      if (saved !== null) field.value = saved;
-      field.addEventListener('input', () => localStorage.setItem(key, field.value));
-      field.addEventListener('change', () => localStorage.setItem(key, field.value));
-    });
-  }
-
-  document.addEventListener('DOMContentLoaded', () => {
-    initOverviewTabs();
-    initTemplateTabs();
-    initAutosave();
+  function showPanel(name){$$('.panel').forEach(p=>p.classList.toggle('active',p.dataset.panel===name));$$('[data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===name)); if(name==='quiz') renderQuiz();}
+  function renderQuiz(){const box=$('#quizMount'); if(!box)return; const item=questions[current]; box.innerHTML=`<div class="quiz-card"><div class="quiz-head"><div><h2>Quick Check</h2><p>Answer 5 questions to unlock Empathy Templates.</p></div><div class="quiz-pill">${current+1} / ${questions.length}</div></div><div class="question">${item.q}</div><div class="options">${item.o.map((x,i)=>`<button type="button" class="option ${answers[current]===i?'selected':''}" data-answer="${i}">${String.fromCharCode(65+i)}. ${x}</button>`).join('')}</div><div class="quiz-nav"><button type="button" class="small-btn" data-prev ${current===0?'disabled':''}>Back</button><button type="button" class="small-btn dark" data-next>${current===questions.length-1?'Finish':'Next →'}</button></div></div>`;}
+  function finishQuiz(){let score=answers.reduce((s,a,i)=>s+(a===questions[i].a?1:0),0); localStorage.setItem(KEY+'quiz_score',score); localStorage.setItem(KEY+'quiz_done',score>=3?'yes':'no'); const box=$('#quizMount'); box.innerHTML=`<div class="quiz-card result"><h2>${score>=3?'Templates Unlocked 🎉':'Try Again'}</h2><p>You scored ${score}/5. ${score>=3?'You may now continue to the Empathy Templates.':'Review the overview and attempt the quiz again.'}</p>${score>=3?'<a class="primary-btn" href="phase01-templates.html">Go to Templates →</a>':'<button class="primary-btn" type="button" data-retry>Retry Quiz</button>'}</div>`;}
+  document.addEventListener('click',e=>{
+    const t=e.target.closest('[data-tab]'); if(t){ e.preventDefault(); if(t.dataset.tab==='templates') location.href='phase01-templates.html'; else showPanel(t.dataset.tab); }
+    const start=e.target.closest('[data-start-quiz]'); if(start){e.preventDefault();showPanel('quiz'); window.scrollTo({top:260,behavior:'smooth'});}
+    const opt=e.target.closest('[data-answer]'); if(opt){answers[current]=Number(opt.dataset.answer); renderQuiz();}
+    if(e.target.closest('[data-prev]')){if(current>0){current--;renderQuiz();}}
+    if(e.target.closest('[data-next]')){if(answers[current]===null){alert('Please choose an answer first.');return;} if(current<questions.length-1){current++;renderQuiz();} else finishQuiz();}
+    if(e.target.closest('[data-retry]')){current=0;answers=Array(questions.length).fill(null);renderQuiz();}
+    const tt=e.target.closest('[data-template-tab]'); if(tt){const name=tt.dataset.templateTab; $$('.template-tab').forEach(b=>b.classList.toggle('active',b.dataset.templateTab===name)); $$('.template-panel').forEach(p=>p.classList.toggle('active',p.dataset.templatePanel===name));}
   });
-}());
+  function autosave(){ $$('[data-save]').forEach(el=>{ const id=KEY+el.name; el.value=localStorage.getItem(id)||''; el.addEventListener('input',()=>localStorage.setItem(id,el.value)); }); }
+  document.addEventListener('DOMContentLoaded',()=>{autosave(); renderQuiz();});
+})();

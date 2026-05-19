@@ -1,75 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <meta name="description" content="Smart DT Project — Phase 01 Empathy Overview">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Empathy Overview — Smart DT Project</title>
-  <link rel="stylesheet" href="css/empathy-phase.css">
+  <link rel="stylesheet" href="css/empathy-phase.css" />
 </head>
 <body>
-  <main class="app">
-    
-<header class="app-header">
-  <a class="brand" href="dashboard.html" aria-label="Smart DT Project dashboard">
-    <img src="assets/brand/logo-icon.svg" alt="Smart DT Project logo" class="brand-logo">
-    <span class="brand-name">Smart DT<br>Project</span>
-  </a>
-  <div class="header-actions">
-    <div class="phase-chip" aria-label="Phase 01 of 05"><span class="now">01</span>/<span class="total">05</span></div>
-    <button class="menu-btn" aria-label="Open menu"><span></span></button>
-  </div>
-</header>
+  <main class="app-shell">
+    <header class="app-header">
+      <a class="brand" href="dashboard.html" aria-label="Smart DT Project dashboard">
+        <img src="assets/brand/logo-icon.svg" alt="Smart DT Project logo" />
+        <strong>Smart DT<br>Project</strong>
+      </a>
+      <div class="header-actions">
+        <div class="phase-count"><span class="now">01</span>/<span class="total">05</span></div>
+        <button class="menu-btn" type="button" aria-label="Menu"><img src="assets/icons/menu.svg" alt="" /></button>
+      </div>
+    </header>
 
-    <img class="blob" src="assets/shared/pink-blob.svg" alt="" aria-hidden="true">
-    <div class="dot-grid" aria-hidden="true"></div>
+    <section class="page">
+      <img class="pink-blob" src="assets/shared/pink-blob.svg" alt="" aria-hidden="true" />
 
-    <section class="content">
-      <a class="back-pill" href="dashboard.html"><span>←</span>Dashboard</a>
-
-      <section class="phase-hero" aria-labelledby="phase-title">
-        <div class="phase-copy">
-          <div class="phase-number">01</div>
-          <h1 class="phase-title" id="phase-title">
-            <span class="accent">Empathy</span>
-            <span class="navy">Overview</span>
-          </h1>
-          <div class="title-rule"></div>
-          <p class="phase-desc">Understand your users deeply. Explore their experiences, behaviours and needs before designing any solution.</p>
+      <section class="phase-hero overview">
+        <a class="back-pill" href="dashboard.html">← Dashboard</a>
+        <div class="hero-copy">
+          <h1 class="hero-title"><span class="accent">Empathy</span><span class="dark">Overview</span></h1>
+          <div class="title-line"></div>
+          <p class="hero-desc">Understand your users deeply. Explore their experiences, behaviours and needs before designing any solution.</p>
         </div>
-        <img class="phase-hero-img" src="assets/heroes/empathy-overview-hero.svg" alt="Empathy phase hero illustration">
+        <img class="hero-img" src="assets/heroes/empathy-overview-hero.svg" alt="Empathy phase illustration" />
       </section>
 
-      
-<div class="step-grid" aria-label="Empathy phase steps">
-  <div class="step-card"><span class="step-num">1</span><span class="step-label">Understand<br>Users</span></div>
-  <div class="step-card"><span class="step-num">2</span><span class="step-label">Observe<br>Context</span></div>
-  <div class="step-card"><span class="step-num">3</span><span class="step-label">Map<br>Insights</span></div>
-  <div class="step-card"><span class="step-num">4</span><span class="step-label">Summarise<br>Needs</span></div>
-</div>
+      <section class="steps" aria-label="Empathy overview steps">
+        <div class="step-card"><span class="step-num">1</span><span>Understand<br>Users</span></div>
+        <div class="step-card"><span class="step-num">2</span><span>Observe<br>Context</span></div>
+        <div class="step-card"><span class="step-num">3</span><span>Map<br>Insights</span></div>
+        <div class="step-card"><span class="step-num">4</span><span>Summarise<br>Needs</span></div>
+      </section>
 
+      <nav class="segment-tabs" aria-label="Phase navigation">
+        <button class="seg-tab active" type="button" data-tab="overview">Overview</button>
+        <button class="seg-tab" type="button" data-tab="quiz">Quick Check</button>
+        <button class="seg-tab" type="button" data-tab="templates">Templates 🔒</button>
+      </nav>
 
-      <div class="segmented-tabs" role="tablist" aria-label="Phase navigation">
-        <button class="tab-pill active" data-view="overview" type="button">Overview</button>
-        <button class="tab-pill" data-view="quiz" type="button">Quick Check</button>
-        <button class="tab-pill" data-view="templates" type="button">Templates 🔒</button>
-      </div>
+      <section class="panel active" data-panel="overview">
+        <article class="content-card">
+          <span class="accent-line"></span>
+          <h2>Empathy Phase Overview</h2>
+          <p class="sub">Your goal is to discover real user needs before moving into Define.</p>
 
-      <section id="overview-section">
-        <div class="panel">
-          <div class="panel-header">
-            <div>
-              <h2 class="panel-title">Empathy Phase Overview</h2>
-              <p class="panel-sub">Your goal is to discover real user needs before moving into Define.</p>
-            </div>
-            <div class="mini-rule" aria-hidden="true"></div>
-          </div>
-
-          <div class="activity-card">
-            <div class="activity-head">
-              <span class="badge-a">A1</span>
-              <span class="activity-title">Guided Learning Activity</span>
-            </div>
+          <div class="activity-box">
+            <div class="activity-head"><span class="activity-badge">A1</span><span>Guided Learning Activity</span></div>
             <ul class="bullet-list">
               <li><strong>LISTEN:</strong> prepare interview questions and capture user quotes.</li>
               <li><strong>OBSERVE:</strong> notice what users do, not only what they say.</li>
@@ -78,64 +61,36 @@
             </ul>
           </div>
 
-          <div class="quick-template-row">
-            <div class="mini-card">
-              <div class="mini-icon teal">Q</div>
-              <p class="mini-card-title">Quick Check</p>
-              <p class="mini-card-text">Answer 5 questions to unlock the Empathy templates.</p>
-            </div>
-            <div class="mini-card">
-              <div class="mini-icon orange">T</div>
-              <p class="mini-card-title">Templates</p>
-              <p class="mini-card-text">Complete T01 to T04 to prepare your project evidence.</p>
-            </div>
+          <div class="two-actions">
+            <div class="mini-card"><div class="mini-badge">Q</div><h3>Quick Check</h3><p>Answer 5 questions to unlock the Empathy templates.</p></div>
+            <div class="mini-card"><div class="mini-badge orange">T</div><h3>Templates</h3><p>Complete T01 to T04 to prepare your project evidence.</p></div>
           </div>
 
           <div class="cta-row">
-            <button class="btn-primary" type="button" data-go-quiz>Start Quick Check →</button>
-            <a class="btn-secondary" href="phase01-templates.html">View Templates →</a>
+            <button class="primary-btn" type="button" data-start-quiz>Start Quick Check →</button>
+            <a class="secondary-btn" href="phase01-templates.html">View Templates →</a>
           </div>
-
-          <div class="progress-steps" aria-label="Phase progress">
-            <span class="active"></span><span></span><span></span><span></span><span></span>
-          </div>
-        </div>
+          <div class="progress-strip"><span class="active"></span><span></span><span></span><span></span><span></span></div>
+        </article>
       </section>
 
-      <section id="quick-check-section" class="quiz-section">
-        <div id="quiz-mount"></div>
+      <section class="panel" data-panel="quiz">
+        <div id="quizMount"></div>
       </section>
-
-      <div class="coach-bar" aria-label="DT Coach">
-        <input class="coach-input" type="text" placeholder="Ask DT Coach anything..." aria-label="Ask DT Coach anything">
-        <img class="coach-bot" src="assets/shared/dt-coach.svg" alt="DT Coach">
-      </div>
     </section>
 
-    
-<nav class="bottom-nav" aria-label="Main navigation">
-  <a class="nav-item" href="dashboard.html">
-    <svg viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10.5V20h14v-9.5"/><path d="M9 20v-6h6v6"/></svg>
-    <span>Dashboard</span>
-  </a>
-  <a class="nav-item" href="dashboard.html#learn">
-    <svg viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M8 14a6 6 0 1 1 8 0c-.8.7-1 1.6-1 3h-6c0-1.4-.2-2.3-1-3z"/></svg>
-    <span>Learn</span>
-  </a>
-  <a class="nav-item active" href="phase01-empathy.html">
-    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h6"/></svg>
-    <span>Projects</span>
-  </a>
-  <a class="nav-item" href="progress.html">
-    <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-    <span>Progress</span>
-  </a>
-  <a class="nav-item" href="profile.html">
-    <svg viewBox="0 0 24 24"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg>
-    <span>Profile</span>
-  </a>
-</nav>
+    <div class="coach-bar" aria-label="DT Coach input">
+      <div class="coach-input">Ask DT Coach anything...</div>
+      <img class="coach-icon" src="assets/shared/dt-coach.svg" alt="DT Coach" />
+    </div>
 
+    <nav class="bottom-nav" aria-label="Bottom navigation">
+      <a class="nav-item" href="dashboard.html"><span class="nav-ico">⌂</span><span>Dashboard</span></a>
+      <a class="nav-item" href="#"><span class="nav-ico">♕</span><span>Learn</span></a>
+      <a class="nav-item active" href="phase01-empathy.html"><span class="nav-ico">▤</span><span>Projects</span></a>
+      <a class="nav-item" href="progress.html"><span class="nav-ico">☑</span><span>Progress</span></a>
+      <a class="nav-item" href="profile.html"><span class="nav-ico">♡</span><span>Profile</span></a>
+    </nav>
   </main>
   <script src="js/empathy-phase.js"></script>
 </body>
