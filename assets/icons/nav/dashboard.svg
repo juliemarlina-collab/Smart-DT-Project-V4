@@ -1,0 +1,14 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Home / Dashboard icon">
+  <title>Home / Dashboard icon</title>
+  <rect x="8" y="8" width="112" height="112" rx="32" fill="#F8FAFC"/>
+  <rect x="8" y="8" width="112" height="112" rx="32" stroke="#081B44" stroke-width="4"/>
+  <circle cx="102" cy="28" r="9" fill="#F5A623" opacity="0.95"/>
+  <circle cx="28" cy="102" r="7" fill="#14B8A6" opacity="0.25"/>
+  
+  <path d="M33 62L64 36L95 62" stroke="#081B44" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M42 58V91C42 95.4183 45.5817 99 50 99H78C82.4183 99 86 95.4183 86 91V58" fill="#14B8A6"/>
+  <path d="M42 58V91C42 95.4183 45.5817 99 50 99H78C82.4183 99 86 95.4183 86 91V58" stroke="#081B44" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="57" y="75" width="14" height="24" rx="4" fill="#081B44"/>
+  <circle cx="84" cy="47" r="9" fill="#FF6A3D"/>
+
+</svg>

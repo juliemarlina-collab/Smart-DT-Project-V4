@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="description" content="Smart DT Project dashboard" />
+  <title>Dashboard — Smart DT Project</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy:#081B44;
+      --navy-2:#0B2458;
+      --teal:#14B8A6;
+      --orange:#FF6A3D;
+      --yellow:#F5B942;
+      --bg:#F7FAFC;
+      --card:#FFFFFF;
+      --line:#E6EDF5;
+      --text:#27364A;
+      --muted:#6B7A90;
+      --light:#9AA8B8;
+      --success-bg:#DDF8F2;
+      --success-text:#087E72;
+      --warning-bg:#FFF4D6;
+      --warning-text:#9A6500;
+      --radius-lg:24px;
+      --radius-md:18px;
+      --radius-sm:12px;
+      --shadow:0 14px 38px rgba(8,27,68,.08);
+      --header-h:72px;
+      --nav-h:76px;
+      --font:'Poppins', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:var(--font); background:#EAF0F7; color:var(--text); min-height:100vh; }
+    button, input { font-family:inherit; }
+    a { color:inherit; text-decoration:none; }
+
+    .app {
+      max-width:430px;
+      margin:0 auto;
+      min-height:100vh;
+      background:var(--bg);
+      position:relative;
+      overflow:hidden;
+      box-shadow:0 0 0 1px rgba(8,27,68,.06);
+    }
+
+    .header {
+      height:var(--header-h);
+      padding:14px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      background:rgba(247,250,252,.95);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(230,237,245,.75);
+      position:sticky;
+      top:0;
+      z-index:20;
+    }
+    .brand { display:flex; align-items:center; gap:9px; min-width:0; }
+    .brand img { width:38px; height:38px; object-fit:contain; }
+    .brand-text { font-size:13px; font-weight:800; color:var(--navy); line-height:1.05; letter-spacing:-.02em; }
+
+    .header-actions { display:flex; align-items:center; gap:8px; }
+    .icon-btn, .lang-btn {
+      height:36px;
+      border:1px solid var(--line);
+      background:#fff;
+      border-radius:999px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      box-shadow:0 6px 14px rgba(8,27,68,.04);
+    }
+    .icon-btn { width:36px; }
+    .icon-btn img { width:18px; height:18px; }
+    .lang-btn { padding:0 10px; gap:5px; font-size:12px; font-weight:700; color:var(--navy); }
+    .lang-btn img { width:15px; height:15px; }
+    .avatar {
+      width:36px; height:36px; border-radius:50%; background:var(--teal); color:#fff;
+      display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:800;
+      box-shadow:0 10px 22px rgba(20,184,166,.25);
+    }
+
+    .hero-shell {
+      padding:12px 18px 0;
+      position:relative;
+      z-index:1;
+    }
+    .hero-card {
+      min-height:205px;
+      border-radius:28px;
+      background:#fff;
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      position:relative;
+    }
+    .hero-card::after {
+      content:"";
+      position:absolute;
+      inset:auto -45px -70px auto;
+      width:190px; height:190px; border-radius:50%;
+      background:rgba(20,184,166,.08);
+    }
+    .hero-card img {
+      width:100%;
+      max-height:210px;
+      object-fit:contain;
+      display:block;
+      position:relative;
+      z-index:1;
+    }
+
+    .content {
+      padding:16px 18px calc(var(--nav-h) + 28px);
+      position:relative;
+      z-index:2;
+    }
+
+    .greeting-card {
+      background:linear-gradient(135deg, var(--navy), var(--navy-2));
+      color:#fff;
+      border-radius:var(--radius-lg);
+      padding:18px;
+      box-shadow:0 18px 36px rgba(8,27,68,.18);
+      margin-bottom:14px;
+      position:relative;
+      overflow:hidden;
+    }
+    .greeting-card::after {
+      content:""; position:absolute; top:-35px; right:-25px; width:120px; height:120px;
+      border-radius:50%; background:rgba(20,184,166,.22);
+    }
+    .eyebrow { font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.08em; color:rgba(255,255,255,.7); margin-bottom:6px; }
+    .greeting-title { font-size:20px; font-weight:800; line-height:1.25; position:relative; z-index:1; }
+    .greeting-title span { color:#67E5D8; }
+    .greeting-desc { font-size:12px; color:rgba(255,255,255,.78); line-height:1.55; margin-top:7px; max-width:275px; position:relative; z-index:1; }
+
+    .card {
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius-lg);
+      padding:16px;
+      box-shadow:var(--shadow);
+      margin-bottom:14px;
+    }
+    .card-head { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:12px; }
+    .label { display:flex; align-items:center; gap:8px; font-size:12px; font-weight:800; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; }
+    .label img { width:18px; height:18px; }
+    .progress-pct { font-size:23px; font-weight:900; color:var(--teal); line-height:1; }
+    .project-title { font-size:17px; font-weight:800; color:var(--navy); margin-bottom:4px; }
+    .project-meta { font-size:12px; color:var(--muted); line-height:1.5; }
+
+    .progress-bar { height:10px; border-radius:999px; background:#E9F0F6; overflow:hidden; margin:13px 0 10px; }
+    .progress-fill { height:100%; border-radius:999px; background:linear-gradient(90deg, var(--teal), #58D7CA); width:0%; transition:width .35s ease; }
+    .project-foot { display:flex; align-items:center; gap:8px; justify-content:space-between; flex-wrap:wrap; }
+    .pill { border-radius:999px; padding:4px 10px; font-size:10px; font-weight:800; }
+    .pill.green { background:var(--success-bg); color:var(--success-text); }
+    .pill.yellow { background:var(--warning-bg); color:var(--warning-text); }
+    .timestamp { font-size:11px; color:var(--light); display:flex; align-items:center; gap:5px; }
+    .timestamp img { width:13px; height:13px; opacity:.7; }
+
+    .stepper-card { padding:17px 14px 15px; }
+    .stepper { display:grid; grid-template-columns:32px 1fr 32px 1fr 32px 1fr 32px 1fr 32px; align-items:start; }
+    .step-wrap { display:flex; flex-direction:column; align-items:center; min-width:0; }
+    .step-circle {
+      width:30px; height:30px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      border:2px solid #D8E2EC; background:#fff;
+      color:#fff; font-size:11px; font-weight:900;
+    }
+    .step-circle.done { border-color:var(--teal); background:var(--teal); }
+    .step-circle.current { border-color:var(--teal); background:#fff; color:var(--teal); box-shadow:0 0 0 5px rgba(20,184,166,.13); }
+    .step-circle.locked { background:#EFF4F8; }
+    .step-circle img { width:14px; height:14px; filter:brightness(0) invert(1); }
+    .step-line { height:3px; background:#DDE6EF; border-radius:999px; margin-top:14px; }
+    .step-line.done { background:var(--teal); }
+    .step-name { margin-top:6px; font-size:9px; font-weight:800; color:var(--light); text-align:center; width:52px; margin-left:-10px; margin-right:-10px; line-height:1.15; }
+    .step-name.active { color:var(--navy); }
+
+    .continue-btn {
+      width:100%; border:none; border-radius:999px; background:var(--navy); color:#fff;
+      padding:14px 16px; margin-top:18px; font-weight:800; font-size:14px;
+      display:flex; align-items:center; justify-content:center; gap:9px; cursor:pointer;
+      box-shadow:0 14px 28px rgba(8,27,68,.18);
+    }
+    .continue-btn img { width:17px; height:17px; filter:brightness(0) invert(1); }
+    .current-phase-text { text-align:center; font-size:12px; color:var(--muted); margin-top:10px; }
+    .current-phase-text strong { color:var(--teal); }
+
+    .accordion-list { display:flex; flex-direction:column; gap:10px; }
+    .accordion-item { background:#fff; border:1px solid var(--line); border-radius:18px; overflow:hidden; box-shadow:0 10px 24px rgba(8,27,68,.05); }
+    .accordion-trigger { width:100%; border:none; background:#fff; padding:14px; display:flex; align-items:center; gap:12px; cursor:pointer; text-align:left; }
+    .acc-icon { width:38px; height:38px; border-radius:14px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .acc-icon img { width:21px; height:21px; }
+    .acc-icon.orange { background:rgba(255,106,61,.12); }
+    .acc-icon.teal { background:rgba(20,184,166,.12); }
+    .acc-icon.yellow { background:rgba(245,185,66,.17); }
+    .acc-main { flex:1; min-width:0; }
+    .acc-title { font-size:13px; font-weight:800; color:var(--navy); }
+    .acc-sub { font-size:11px; color:var(--muted); margin-top:2px; }
+    .acc-chevron { width:15px; height:15px; transition:transform .2s ease; opacity:.65; }
+    .accordion-item.open .acc-chevron { transform:rotate(180deg); }
+    .accordion-body { display:none; border-top:1px solid var(--line); padding:12px 14px 14px 64px; }
+    .accordion-item.open .accordion-body { display:block; }
+    .mini-list { list-style:none; display:flex; flex-direction:column; gap:8px; }
+    .mini-list li { font-size:12px; color:var(--text); line-height:1.45; display:flex; align-items:flex-start; gap:8px; }
+    .dot { width:7px; height:7px; min-width:7px; border-radius:50%; background:var(--teal); margin-top:5px; }
+    .body-note { font-size:11px; color:var(--muted); line-height:1.55; margin-top:10px; }
+    .member { display:flex; align-items:center; gap:9px; margin-bottom:8px; }
+    .member:last-child { margin-bottom:0; }
+    .member-avatar { width:30px; height:30px; border-radius:50%; background:var(--teal); color:#fff; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:800; }
+    .member-avatar.sup { background:var(--orange); }
+    .member-name { font-size:12px; font-weight:800; color:var(--navy); }
+    .member-role { font-size:10px; color:var(--muted); }
+
+    .fab {
+      position:fixed;
+      left:calc(50% + 142px);
+      bottom:92px;
+      width:56px; height:56px; border-radius:50%; border:none;
+      background:var(--orange); color:#fff;
+      display:flex; align-items:center; justify-content:center;
+      box-shadow:0 16px 30px rgba(255,106,61,.28);
+      cursor:pointer; z-index:30;
+    }
+    .fab img { width:24px; height:24px; filter:brightness(0) invert(1); }
+    @media (max-width:430px){ .fab{ right:18px; left:auto; } }
+
+    .bottom-nav {
+      position:fixed;
+      left:50%; transform:translateX(-50%);
+      bottom:0;
+      width:100%; max-width:430px;
+      height:var(--nav-h);
+      background:rgba(255,255,255,.96);
+      backdrop-filter:blur(12px);
+      border-top:1px solid var(--line);
+      display:grid; grid-template-columns:repeat(5,1fr);
+      z-index:25;
+      padding:8px 6px 10px;
+      box-shadow:0 -10px 30px rgba(8,27,68,.08);
+    }
+    .nav-item { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; color:var(--light); font-size:10px; font-weight:800; }
+    .nav-icon { width:23px; height:23px; display:flex; align-items:center; justify-content:center; }
+    .nav-icon svg, .nav-icon img { width:23px; height:23px; display:block; }
+    .nav-icon svg { fill:none; stroke:currentColor; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; }
+    .nav-icon img { filter: grayscale(1) opacity(.72); }
+    .nav-item.active .nav-icon img { filter:none; }
+    .nav-item.active { color:var(--teal); }
+
+    .toast {
+      position:fixed; left:50%; transform:translateX(-50%); bottom:170px;
+      width:calc(100% - 38px); max-width:390px;
+      background:var(--navy); color:#fff; border-radius:16px; padding:12px 14px;
+      font-size:12px; font-weight:600; text-align:center; z-index:40; display:none;
+      box-shadow:0 16px 30px rgba(8,27,68,.22);
+    }
+    .toast.show { display:block; }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <a class="brand" href="dashboard.html" aria-label="Smart DT Project dashboard">
+        <img src="assets/brand/logo.svg" alt="Smart DT Project logo" />
+        <span class="brand-text">Smart DT<br>Project</span>
+      </a>
+      <div class="header-actions">
+        <button class="lang-btn" type="button" aria-label="Language selector">
+          <img src="assets/icons/ui/globe.svg" alt="" aria-hidden="true" />
+          EN
+          <img src="assets/icons/ui/chevron-down.svg" alt="" aria-hidden="true" style="width:10px;height:10px" />
+        </button>
+        <a class="avatar" id="avatar" href="profile.html" aria-label="Open profile">S</a>
+        <button class="icon-btn" type="button" id="menuBtn" aria-label="Open menu">
+          <img src="assets/icons/ui/menu.svg" alt="" aria-hidden="true" />
+        </button>
+      </div>
+    </header>
+
+    <section class="hero-shell" aria-label="Dashboard visual header">
+      <div class="hero-card">
+        <img src="assets/heroes/dashboard-hero.svg" alt="Student continuing the Smart DT Project dashboard journey" />
+      </div>
+    </section>
+
+    <main class="content">
+      <section class="greeting-card" aria-label="Student greeting">
+        <p class="eyebrow">POLIPD · FYP Journey</p>
+        <h1 class="greeting-title">Hello, <span id="studentName">Student</span> 👋</h1>
+        <p class="greeting-desc">Your Design Thinking workspace is ready. Continue your current phase, track progress and manage evidence in one place.</p>
+      </section>
+
+      <section class="card" aria-label="Current project">
+        <div class="card-head">
+          <div class="label"><img src="assets/icons/dashboard/flag.svg" alt="" /> Current Project</div>
+          <div class="progress-pct" id="projectPct">0%</div>
+        </div>
+        <p class="project-title" id="projectTitle">My FYP Project</p>
+        <p class="project-meta"><span id="teamName">My Team</span> · Supervisor: <span id="supervisorName">Not set</span></p>
+        <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressBar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="project-foot">
+          <span class="pill green">In Progress</span>
+          <span class="timestamp"><img src="assets/icons/dashboard/clock.svg" alt="" /> Updated today</span>
+        </div>
+      </section>
+
+      <section class="card stepper-card" aria-label="Design Thinking phase progress">
+        <div class="card-head" style="margin-bottom:14px">
+          <div class="label"><img src="assets/icons/dashboard/progress.svg" alt="" /> Phase Progress</div>
+          <span class="pill yellow" id="gateStatus">Gate check</span>
+        </div>
+        <div class="stepper" id="stepper"></div>
+        <button class="continue-btn" type="button" id="continueBtn">
+          Continue Current Phase
+          <img src="assets/icons/ui/chevron-right.svg" alt="" aria-hidden="true" />
+        </button>
+        <p class="current-phase-text">You are in <strong id="currentPhaseText">Empathy Phase</strong></p>
+      </section>
+
+      <section class="accordion-list" aria-label="Dashboard sections">
+        <article class="accordion-item open">
+          <button class="accordion-trigger" type="button">
+            <span class="acc-icon orange"><img src="assets/icons/dashboard/tasks.svg" alt="" /></span>
+            <span class="acc-main"><span class="acc-title">Tasks & To-Do</span><span class="acc-sub" id="taskSub">3 pending tasks</span></span>
+            <img class="acc-chevron" src="assets/icons/ui/chevron-down.svg" alt="" />
+          </button>
+          <div class="accordion-body">
+            <ul class="mini-list" id="taskList"></ul>
+          </div>
+        </article>
+
+        <article class="accordion-item">
+          <button class="accordion-trigger" type="button">
+            <span class="acc-icon teal"><img src="assets/icons/dashboard/activity.svg" alt="" /></span>
+            <span class="acc-main"><span class="acc-title">Recent Activity</span><span class="acc-sub">Latest student actions</span></span>
+            <img class="acc-chevron" src="assets/icons/ui/chevron-down.svg" alt="" />
+          </button>
+          <div class="accordion-body">
+            <ul class="mini-list" id="activityList"></ul>
+          </div>
+        </article>
+
+        <article class="accordion-item">
+          <button class="accordion-trigger" type="button">
+            <span class="acc-icon yellow"><img src="assets/icons/dashboard/evidence.svg" alt="" /></span>
+            <span class="acc-main"><span class="acc-title">Evidence Files</span><span class="acc-sub">Photos, documents and links</span></span>
+            <img class="acc-chevron" src="assets/icons/ui/chevron-down.svg" alt="" />
+          </button>
+          <div class="accordion-body">
+            <ul class="mini-list" id="evidenceList"></ul>
+            <p class="body-note">Evidence upload will connect to Google Sheets/Drive later. For now, add evidence from each phase page.</p>
+          </div>
+        </article>
+
+        <article class="accordion-item">
+          <button class="accordion-trigger" type="button">
+            <span class="acc-icon teal"><img src="assets/icons/dashboard/feedback.svg" alt="" /></span>
+            <span class="acc-main"><span class="acc-title">Supervisor Feedback</span><span class="acc-sub">Gate approval and comments</span></span>
+            <img class="acc-chevron" src="assets/icons/ui/chevron-down.svg" alt="" />
+          </button>
+          <div class="accordion-body">
+            <ul class="mini-list" id="feedbackList"></ul>
+          </div>
+        </article>
+
+        <article class="accordion-item">
+          <button class="accordion-trigger" type="button">
+            <span class="acc-icon orange"><img src="assets/icons/dashboard/team.svg" alt="" /></span>
+            <span class="acc-main"><span class="acc-title">Team Members</span><span class="acc-sub">Your project group</span></span>
+            <img class="acc-chevron" src="assets/icons/ui/chevron-down.svg" alt="" />
+          </button>
+          <div class="accordion-body" id="teamBody"></div>
+        </article>
+      </section>
+    </main>
+
+    <button class="fab" type="button" id="fabBtn" aria-label="Add evidence or update">
+      <img src="assets/icons/ui/plus.svg" alt="" aria-hidden="true" />
+    </button>
+
+    <nav class="bottom-nav" aria-label="Main navigation">
+      <a href="dashboard.html" class="nav-item active" aria-label="Dashboard">
+        <span class="nav-icon"><img src="assets/icons/nav/dashboard.svg" alt="" aria-hidden="true"></span>
+        <span>Dashboard</span>
+      </a>
+      <a href="phase01-empathy.html" class="nav-item" aria-label="Learn">
+        <span class="nav-icon"><img src="assets/icons/nav/learn.svg" alt="" aria-hidden="true"></span>
+        <span>Learn</span>
+      </a>
+      <a href="phase01-empathy.html" class="nav-item" aria-label="Projects">
+        <span class="nav-icon"><img src="assets/icons/nav/projects.svg" alt="" aria-hidden="true"></span>
+        <span>Projects</span>
+      </a>
+      <a href="progress.html" class="nav-item" aria-label="Progress">
+        <span class="nav-icon"><img src="assets/icons/nav/progress.svg" alt="" aria-hidden="true"></span>
+        <span>Progress</span>
+      </a>
+      <a href="profile.html" class="nav-item" aria-label="Profile">
+        <span class="nav-icon"><img src="assets/icons/nav/profile.svg" alt="" aria-hidden="true"></span>
+        <span>Profile</span>
+      </a>
+    </nav>
+
+    <div class="toast" id="toast">Feature ready for the next build step.</div>
+  </div>
+
+  <script>
+    const phases = [
+      { id:'phase01', name:'Empathy', file:'phase01-empathy.html' },
+      { id:'phase02', name:'Define', file:'phase02-define.html' },
+      { id:'phase03', name:'Ideation', file:'phase03-ideation.html' },
+      { id:'phase04', name:'Prototype', file:'phase04-prototype.html' },
+      { id:'phase05', name:'Test', file:'phase05-test.html' }
+    ];
+
+    const $ = (id) => document.getElementById(id);
+    const get = (key, fallback='') => localStorage.getItem(key) || fallback;
+
+    function initials(name) {
+      return (name || 'Student')
+        .trim()
+        .split(/\s+/)
+        .map(part => part[0])
+        .join('')
+        .slice(0,2)
+        .toUpperCase() || 'S';
+    }
+
+    function completedCount() {
+      return phases.filter(p => localStorage.getItem('df_submitted_' + p.id) === 'true').length;
+    }
+
+    function currentPhaseIndex() {
+      const done = completedCount();
+      return Math.min(done, phases.length - 1);
+    }
+
+    function calcProgress() {
+      return Math.round((completedCount() / phases.length) * 100);
+    }
+
+    function renderStudent() {
+      const name = get('df_student_name', 'Student');
+      $('studentName').textContent = name.split(' ')[0] || 'Student';
+      $('avatar').textContent = initials(name);
+      $('projectTitle').textContent = get('df_project_name', 'My FYP Project');
+      $('teamName').textContent = get('df_team', get('df_class', 'My Team'));
+      $('supervisorName').textContent = get('df_supervisor', 'Not set');
+    }
+
+    function renderProgress() {
+      const pct = calcProgress();
+      $('projectPct').textContent = pct + '%';
+      $('progressFill').style.width = pct + '%';
+      $('progressBar').setAttribute('aria-valuenow', pct);
+
+      const idx = currentPhaseIndex();
+      $('currentPhaseText').textContent = phases[idx].name + ' Phase';
+      $('gateStatus').textContent = idx >= 2 ? 'Gate review' : 'On track';
+
+      const html = phases.map((p, i) => {
+        const isDone = i < idx || localStorage.getItem('df_submitted_' + p.id) === 'true';
+        const isCurrent = i === idx && !isDone;
+        const circleClass = isDone ? 'done' : isCurrent ? 'current' : 'locked';
+        const lineAfter = i < phases.length - 1 ? `<div class="step-line ${i < idx ? 'done' : ''}"></div>` : '';
+        const icon = isDone ? `<img src="assets/icons/ui/tick.svg" alt="" />` : (i+1);
+        return `<div class="step-wrap"><div class="step-circle ${circleClass}">${icon}</div><div class="step-name ${isDone || isCurrent ? 'active' : ''}">${p.name}</div></div>${lineAfter}`;
+      }).join('');
+      $('stepper').innerHTML = html;
+      $('continueBtn').onclick = () => { window.location.href = phases[idx].file; };
+    }
+
+    function renderLists() {
+      const idx = currentPhaseIndex();
+      const phase = phases[idx].name;
+      const tasks = [
+        `Continue ${phase} phase`,
+        `Complete the quick check quiz`,
+        `Save your template evidence before submission`
+      ];
+      $('taskSub').textContent = tasks.length + ' pending tasks';
+      $('taskList').innerHTML = tasks.map(t => `<li><span class="dot"></span><span>${t}</span></li>`).join('');
+
+      const activity = completedCount() > 0
+        ? [`${completedCount()} phase submission(s) recorded`, `Progress updated to ${calcProgress()}%`, `Current phase: ${phase}`]
+        : [`Profile created successfully`, `Dashboard started`, `Current phase: ${phase}`];
+      $('activityList').innerHTML = activity.map(t => `<li><span class="dot"></span><span>${t}</span></li>`).join('');
+
+      const evidence = phases
+        .filter(p => localStorage.getItem('df_submitted_' + p.id) === 'true')
+        .map(p => `${p.name} evidence submitted`);
+      $('evidenceList').innerHTML = (evidence.length ? evidence : ['No evidence submitted yet'])
+        .map(t => `<li><span class="dot"></span><span>${t}</span></li>`).join('');
+
+      const supervisor = get('df_supervisor', 'Supervisor');
+      const feedback = [
+        `Gate 1: ${localStorage.getItem('df_gate_1') === 'approved' ? 'Approved' : 'Pending supervisor review'}`,
+        `Gate 2: ${localStorage.getItem('df_gate_2') === 'approved' ? 'Approved' : 'Locked until ideation submission'}`,
+        `Supervisor: ${supervisor}`
+      ];
+      $('feedbackList').innerHTML = feedback.map(t => `<li><span class="dot"></span><span>${t}</span></li>`).join('');
+
+      const student = get('df_student_name', 'Student');
+      const reg = get('df_reg_no', 'Registration No. not set');
+      const team = get('df_team', get('df_class', 'Class / team not set'));
+      $('teamBody').innerHTML = `
+        <div class="member"><div class="member-avatar">${initials(student)}</div><div><p class="member-name">${student}</p><p class="member-role">${reg} · ${team}</p></div></div>
+        <div class="member"><div class="member-avatar sup">S</div><div><p class="member-name">${supervisor}</p><p class="member-role">Project Supervisor</p></div></div>
+      `;
+    }
+
+    function bindAccordions() {
+      document.querySelectorAll('.accordion-trigger').forEach(btn => {
+        btn.addEventListener('click', () => btn.closest('.accordion-item').classList.toggle('open'));
+      });
+    }
+
+    function showToast(msg) {
+      const toast = $('toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2200);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderStudent();
+      renderProgress();
+      renderLists();
+      bindAccordions();
+      $('fabBtn').addEventListener('click', () => showToast('Add evidence will be connected in the next build step.'));
+      $('menuBtn').addEventListener('click', () => showToast('Menu drawer will be added after core pages are complete.'));
+    });
+  </script>
+</body>
+</html>
