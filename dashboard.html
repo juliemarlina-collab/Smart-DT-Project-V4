@@ -266,6 +266,153 @@
       box-shadow:0 16px 30px rgba(8,27,68,.22);
     }
     .toast.show { display:block; }
+  
+
+    /* Smart DT shared header + hero standardisation
+       Locked across welcome, registration, login and dashboard. */
+    .header {
+      height: 72px !important;
+      padding: 14px 20px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      background: #F7FAFC !important;
+      border-bottom: 1px solid #E7EEF6 !important;
+    }
+
+    .brand {
+      display: flex !important;
+      align-items: center !important;
+      gap: 10px !important;
+      min-width: 0 !important;
+    }
+
+    .brand img {
+      width: 42px !important;
+      height: 42px !important;
+      object-fit: contain !important;
+      border-radius: 0 !important;
+    }
+
+    .brand-text,
+    .brand span {
+      font-size: 13.5px !important;
+      font-weight: 800 !important;
+      line-height: 1.05 !important;
+      color: #081B44 !important;
+      letter-spacing: -0.02em !important;
+    }
+
+    .header-actions {
+      display: flex !important;
+      align-items: center !important;
+      gap: 10px !important;
+    }
+
+    .lang-btn,
+    .language-pill,
+    .lang-pill {
+      height: 36px !important;
+      min-width: 72px !important;
+      border-radius: 999px !important;
+      background: #FFFFFF !important;
+      border: 1px solid #E3EAF2 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 6px !important;
+      padding: 0 10px !important;
+      font-size: 12px !important;
+      font-weight: 700 !important;
+      color: #081B44 !important;
+      box-shadow: 0 6px 16px rgba(8, 27, 68, 0.06) !important;
+      cursor: pointer !important;
+    }
+
+    .lang-btn img,
+    .language-pill img,
+    .lang-pill img {
+      width: 15px !important;
+      height: 15px !important;
+      object-fit: contain !important;
+      border-radius: 0 !important;
+    }
+
+    .menu,
+    .menu-btn,
+    .icon-btn {
+      width: 40px !important;
+      height: 40px !important;
+      border-radius: 999px !important;
+      background: #FFFFFF !important;
+      border: 1px solid #E3EAF2 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      box-shadow: 0 6px 16px rgba(8, 27, 68, 0.06) !important;
+      cursor: pointer !important;
+      padding: 0 !important;
+    }
+
+    .menu img,
+    .menu-btn img,
+    .icon-btn img {
+      width: 21px !important;
+      height: 21px !important;
+      object-fit: contain !important;
+      border-radius: 0 !important;
+    }
+
+    .avatar {
+      width: 40px !important;
+      height: 40px !important;
+      border-radius: 999px !important;
+      font-size: 13px !important;
+      font-weight: 800 !important;
+    }
+
+    .hero,
+    .hero-section,
+    .hero-shell {
+      padding: 14px 20px 10px !important;
+      display: block !important;
+      position: relative !important;
+      z-index: 2 !important;
+    }
+
+    .hero-card {
+      width: 100% !important;
+      min-height: auto !important;
+      background: #FFFFFF !important;
+      border-radius: 28px !important;
+      padding: 12px !important;
+      box-shadow: 0 14px 35px rgba(8, 27, 68, 0.08) !important;
+      border: 1px solid rgba(8, 27, 68, 0.06) !important;
+      overflow: hidden !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      position: relative !important;
+    }
+
+    .hero-card::after {
+      display: none !important;
+    }
+
+    .hero-card img,
+    .hero-art,
+    .hero-img {
+      width: 100% !important;
+      max-width: none !important;
+      max-height: 230px !important;
+      object-fit: contain !important;
+      display: block !important;
+      border-radius: 22px !important;
+      filter: none !important;
+      pointer-events: none !important;
+      user-select: none !important;
+    }
+
   </style>
 </head>
 <body>
