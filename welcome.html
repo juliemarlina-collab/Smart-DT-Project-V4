@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="description" content="Welcome to Smart DT Project — a guided Design Thinking learning app for Final Year Project students." />
+  <title>Welcome — Smart DT Project</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --color-navy: #081B44;
+      --color-teal: #14B8A6;
+      --color-orange: #FF6A3D;
+      --color-yellow: #F5A623;
+      --color-bg: #FAFBFC;
+      --color-card: #FFFFFF;
+      --color-border: #E8EDF2;
+      --color-text-dark: #172033;
+      --color-text-mid: #6B7280;
+      --color-text-light: #9CA3AF;
+      --shadow-card: 0 10px 28px rgba(8, 27, 68, 0.08);
+      --radius-sm: 12px;
+      --radius-md: 18px;
+      --radius-lg: 26px;
+      --radius-pill: 999px;
+      --font-main: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --header-height: 72px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      background: var(--color-bg);
+      font-family: var(--font-main);
+      color: var(--color-text-dark);
+      overflow-x: hidden;
+    }
+
+    .app-container {
+      width: 100%;
+      max-width: 430px;
+      min-height: 100vh;
+      margin: 0 auto;
+      background: linear-gradient(180deg, #FFFFFF 0%, #FAFBFC 54%, #F4F8FB 100%);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 0 1px rgba(8,27,68,.04);
+    }
+
+    .header {
+      height: var(--header-height);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 5;
+      background: rgba(255,255,255,.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(232,237,242,.65);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--color-navy);
+    }
+
+    .brand img { width: 38px; height: 38px; display: block; }
+
+    .brand-text {
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -.01em;
+    }
+
+    .header-actions { display: flex; align-items: center; gap: 8px; }
+
+    .language-pill {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-pill);
+      background: #fff;
+      color: var(--color-navy);
+      font: 600 12px/1 var(--font-main);
+      padding: 9px 12px;
+      cursor: pointer;
+    }
+
+    .menu-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 13px;
+      border: 1px solid var(--color-border);
+      background: #fff;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+    }
+
+    .menu-btn img { width: 19px; height: 19px; }
+
+    .hero-section {
+      padding: 18px 20px 10px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-card {
+      width: 100%;
+      background: #FFFFFF;
+      border: 1px solid rgba(232, 237, 242, .85);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      padding: 10px;
+      overflow: hidden;
+    }
+
+    .hero-art {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 230px;
+      object-fit: contain;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .content {
+      padding: 0 20px 26px;
+      position: relative;
+      z-index: 4;
+    }
+
+    .welcome-card, .expect-card, .pillar-card {
+      background: var(--color-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+    }
+
+    .welcome-card {
+      padding: 18px;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--color-navy);
+      margin-bottom: 6px;
+    }
+
+    .section-text {
+      font-size: 12.5px;
+      line-height: 1.65;
+      color: var(--color-text-mid);
+    }
+
+    .expect-card {
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+
+    .expect-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .expect-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 12px;
+      line-height: 1.45;
+      color: var(--color-text-dark);
+    }
+
+    .tick {
+      width: 22px;
+      height: 22px;
+      min-width: 22px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(20,184,166,.12);
+      color: var(--color-teal);
+      margin-top: -1px;
+    }
+
+    .tick svg { width: 13px; height: 13px; }
+
+    .note-card {
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, rgba(8,27,68,.98), rgba(8,27,68,.88));
+      color: #fff;
+      padding: 16px;
+      margin-bottom: 14px;
+      box-shadow: 0 14px 28px rgba(8,27,68,.16);
+    }
+
+    .note-label {
+      display: inline-flex;
+      padding: 5px 9px;
+      border-radius: var(--radius-pill);
+      background: rgba(255,255,255,.12);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .note-card p:last-child {
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: rgba(255,255,255,.86);
+    }
+
+    .pillar-card {
+      padding: 15px;
+      margin-bottom: 18px;
+    }
+
+    .pillar-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .pillar-row:first-child { padding-top: 0; }
+    .pillar-row:last-child { border-bottom: 0; padding-bottom: 0; }
+
+    .pillar-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .pillar-icon img { width: 30px; height: 30px; display: block; }
+    .pillar-icon.think { background: rgba(255,106,61,.10); }
+    .pillar-icon.test { background: rgba(20,184,166,.10); }
+    .pillar-icon.improve { background: rgba(245,166,35,.12); }
+
+    .pillar-name { font-size: 13px; font-weight: 800; margin-bottom: 2px; }
+    .pillar-name.think { color: var(--color-orange); }
+    .pillar-name.test { color: var(--color-teal); }
+    .pillar-name.improve { color: var(--color-yellow); }
+
+    .pillar-desc {
+      font-size: 11.5px;
+      color: var(--color-text-mid);
+      line-height: 1.35;
+    }
+
+    .cta-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .btn-primary {
+      flex: 1;
+      min-height: 56px;
+      border: 0;
+      border-radius: var(--radius-pill);
+      background: var(--color-navy);
+      color: #fff;
+      font: 800 15px/1 var(--font-main);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 14px 24px rgba(8,27,68,.18);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .btn-circle {
+      width: 56px;
+      height: 56px;
+      min-width: 56px;
+      border-radius: 50%;
+      border: 0;
+      background: #fff;
+      color: var(--color-navy);
+      display: grid;
+      place-items: center;
+      text-decoration: none;
+      box-shadow: var(--shadow-card);
+    }
+
+    .btn-primary:active, .btn-circle:active { transform: translateY(1px); }
+    .arrow-icon { width: 18px; height: 18px; }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translateX(-50%) translateY(20px);
+      max-width: 360px;
+      width: calc(100% - 40px);
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: var(--color-navy);
+      color: #fff;
+      font-size: 12px;
+      line-height: 1.4;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease;
+      z-index: 20;
+      box-shadow: 0 18px 34px rgba(8,27,68,.22);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (min-width: 431px) {
+      .app-container { min-height: 920px; }
+    }
+
+    @media (max-width: 360px) {
+      .header { padding-left: 16px; padding-right: 16px; }
+      .content { padding-left: 16px; padding-right: 16px; }
+      .hero-section { padding-left: 16px; padding-right: 16px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app-container">
+    <header class="header" role="banner">
+      <a class="brand" href="index.html" aria-label="Smart DT Project home">
+        <img src="assets/brand/logo.svg" alt="Smart DT Project logo" />
+        <span class="brand-text">Smart DT<br />Project</span>
+      </a>
+
+      <div class="header-actions">
+        <button class="language-pill" type="button" id="languageBtn" aria-label="Language selector">English</button>
+        <button class="menu-btn" type="button" id="menuBtn" aria-label="Open menu">
+          <img src="assets/icons/ui/menu.svg" alt="" aria-hidden="true" />
+        </button>
+      </div>
+    </header>
+
+    <section class="hero-section" aria-label="Smart DT Project app header">
+      <div class="hero-card">
+        <img class="hero-art" src="assets/heroes/welcome-hero.svg" alt="Smart DT Project welcome header" />
+      </div>
+    </section>
+
+    <main class="content" role="main">
+      <section class="welcome-card" aria-label="Application introduction">
+        <p class="section-title">About Smart DT Project</p>
+        <p class="section-text">
+          Smart DT Project is a mobile learning companion for Final Year Project students. It guides you through the Design Thinking process step by step, helping your team understand users, define problems, build ideas, prototype solutions, and test improvements with evidence.
+        </p>
+      </section>
+
+      <section class="expect-card" aria-label="What to expect in this application">
+        <p class="section-title">What to expect</p>
+        <p class="section-text">Inside the app, you will be guided step by step so you always know what to do next.</p>
+
+        <ul class="expect-list">
+          <li class="expect-item">
+            <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>
+            <span><strong>5 Design Thinking phases</strong> from Empathy to Test, organised in a clear learning path.</span>
+          </li>
+          <li class="expect-item">
+            <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>
+            <span><strong>Quick info and quizzes</strong> to help you understand each phase before completing templates.</span>
+          </li>
+          <li class="expect-item">
+            <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>
+            <span><strong>Digital templates and evidence</strong> to record your interviews, ideas, prototype progress, and testing feedback.</span>
+          </li>
+          <li class="expect-item">
+            <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>
+            <span><strong>Progress and supervisor gates</strong> so your team can move forward with better direction and approval.</span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="note-card" aria-label="Welcome note to users">
+        <span class="note-label">WELCOME NOTE</span>
+        <p>
+          Take your time and follow each phase properly. The goal is not to rush to a solution, but to understand real users, define the right problem, create meaningful ideas, and improve through feedback.
+        </p>
+      </section>
+
+      <section class="pillar-card" aria-label="Smart DT learning pillars">
+        <div class="pillar-row">
+          <div class="pillar-icon think"><img src="assets/icons/pillars/think.svg" alt="" aria-hidden="true" /></div>
+          <div>
+            <p class="pillar-name think">Think</p>
+            <p class="pillar-desc">Understand people, problems, and project direction clearly.</p>
+          </div>
+        </div>
+        <div class="pillar-row">
+          <div class="pillar-icon test"><img src="assets/icons/pillars/test.svg" alt="" aria-hidden="true" /></div>
+          <div>
+            <p class="pillar-name test">Test</p>
+            <p class="pillar-desc">Validate ideas through real evidence and user feedback.</p>
+          </div>
+        </div>
+        <div class="pillar-row">
+          <div class="pillar-icon improve"><img src="assets/icons/pillars/improve.svg" alt="" aria-hidden="true" /></div>
+          <div>
+            <p class="pillar-name improve">Improve</p>
+            <p class="pillar-desc">Refine your solution and grow as a project team.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="cta-row" aria-label="Start Smart DT Project">
+        <a class="btn-primary" href="registration.html" role="button">
+          Let's Get Started
+          <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </a>
+        <a class="btn-circle" href="registration.html" aria-label="Get started">
+          <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </a>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (function () {
+      const toast = document.getElementById('toast');
+      const languageBtn = document.getElementById('languageBtn');
+      const menuBtn = document.getElementById('menuBtn');
+
+      function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add('show');
+        window.setTimeout(() => toast.classList.remove('show'), 2400);
+      }
+
+      languageBtn.addEventListener('click', function () {
+        const current = localStorage.getItem('df_language') || 'English';
+        const next = current === 'English' ? 'BM' : 'English';
+        localStorage.setItem('df_language', next);
+        languageBtn.textContent = next;
+        showToast(`Language set to ${next}. Full translation can be added later.`);
+      });
+
+      menuBtn.addEventListener('click', function () {
+        showToast('Menu will be connected after the main navigation is completed.');
+      });
+
+      const savedLanguage = localStorage.getItem('df_language');
+      if (savedLanguage) languageBtn.textContent = savedLanguage;
+    }());
+  </script>
+</body>
+</html>
