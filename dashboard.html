@@ -1,748 +1,768 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  <meta name="description" content="Smart DT Project dashboard" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="description" content="Smart DT Project — Dashboard">
   <title>Dashboard — Smart DT Project</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet">
 
+  <link rel="stylesheet" href="css/style.css">
+
   <style>
-    :root {
-      --navy:#081B44;
-      --navy-2:#0B2458;
-      --teal:#14B8A6;
-      --orange:#FF6A3D;
-      --yellow:#F5B942;
-      --bg:#F7FAFC;
-      --card:#FFFFFF;
-      --line:#E6EDF5;
-      --text:#27364A;
-      --muted:#6B7A90;
-      --light:#9AA8B8;
-      --success-bg:#DDF8F2;
-      --success-text:#087E72;
-      --warning-bg:#FFF4D6;
-      --warning-text:#9A6500;
-      --radius-lg:24px;
-      --radius-md:18px;
-      --radius-sm:12px;
-      --shadow:0 14px 38px rgba(8,27,68,.08);
-      --header-h:72px;
-      --nav-h:76px;
-      --font:'Poppins', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    body { background-color: var(--color-bg); overflow-x: hidden; }
+
+    /* ── Language selector ─────────────────────────────────── */
+    .lang-btn {
+      display: flex; align-items: center; gap: 5px;
+      padding: 5px 10px;
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-pill);
+      font-family: var(--font-main); font-size: 12px;
+      font-weight: 500; color: var(--color-navy);
+      cursor: pointer;
+    }
+    .lang-btn svg { width:14px; height:14px; flex-shrink:0; }
+
+    /* ── Avatar + name dropdown ────────────────────────────── */
+    .avatar-group {
+      display: flex; align-items: center; gap: 6px; cursor: pointer;
+    }
+    /* These two classes are read by _updateHeaderAvatar() in ui.js */
+    .header-avatar-initials {
+      width:32px; height:32px; min-width:32px;
+      border-radius: var(--radius-circle);
+      background-color: var(--color-teal);
+      color: #FFFFFF; font-size: 12px; font-weight: 700;
+      font-family: var(--font-main);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .header-avatar-name {
+      font-size: 13px; font-weight: 600; color: var(--color-navy);
+      max-width: 64px; overflow: hidden;
+      white-space: nowrap; text-overflow: ellipsis;
+    }
+    .avatar-chevron {
+      width:12px; height:12px; stroke: var(--color-text-mid);
+      fill:none; stroke-width:2; stroke-linecap:round; flex-shrink:0;
     }
 
-    * { box-sizing:border-box; margin:0; padding:0; }
-    body { font-family:var(--font); background:#EAF0F7; color:var(--text); min-height:100vh; }
-    button, input { font-family:inherit; }
-    a { color:inherit; text-decoration:none; }
-
-    .app {
-      max-width:430px;
-      margin:0 auto;
-      min-height:100vh;
-      background:var(--bg);
-      position:relative;
-      overflow:hidden;
-      box-shadow:0 0 0 1px rgba(8,27,68,.06);
+    /* ── Hero section ──────────────────────────────────────── */
+    .hero-section {
+      position: relative;
+      padding: calc(var(--header-height) + 20px) 20px 0;
+      min-height: 200px; overflow: hidden;
     }
-
-    .header {
-      height:var(--header-h);
-      padding:14px 18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      background:rgba(247,250,252,.95);
-      backdrop-filter:blur(10px);
-      border-bottom:1px solid rgba(230,237,245,.75);
-      position:sticky;
-      top:0;
-      z-index:20;
-    }
-    .brand { display:flex; align-items:center; gap:9px; min-width:0; }
-    .brand img { width:38px; height:38px; object-fit:contain; }
-    .brand-text { font-size:13px; font-weight:800; color:var(--navy); line-height:1.05; letter-spacing:-.02em; }
-
-    .header-actions { display:flex; align-items:center; gap:8px; }
-    .icon-btn, .lang-btn {
-      height:36px;
-      border:1px solid var(--line);
-      background:#fff;
-      border-radius:999px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      cursor:pointer;
-      box-shadow:0 6px 14px rgba(8,27,68,.04);
-    }
-    .icon-btn { width:36px; }
-    .icon-btn img { width:18px; height:18px; }
-    .lang-btn { padding:0 10px; gap:5px; font-size:12px; font-weight:700; color:var(--navy); }
-    .lang-btn img { width:15px; height:15px; }
-    .avatar {
-      width:36px; height:36px; border-radius:50%; background:var(--teal); color:#fff;
-      display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:800;
-      box-shadow:0 10px 22px rgba(20,184,166,.25);
-    }
-
-    .hero-shell {
-      padding:12px 18px 0;
-      position:relative;
-      z-index:1;
-    }
-    .hero-card {
-      min-height:205px;
-      border-radius:28px;
-      background:#fff;
-      border:1px solid var(--line);
-      box-shadow:var(--shadow);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      overflow:hidden;
-      position:relative;
-    }
-    .hero-card::after {
-      content:"";
-      position:absolute;
-      inset:auto -45px -70px auto;
-      width:190px; height:190px; border-radius:50%;
-      background:rgba(20,184,166,.08);
-    }
-    .hero-card img {
-      width:100%;
-      max-height:210px;
-      object-fit:contain;
-      display:block;
-      position:relative;
-      z-index:1;
-    }
-
-    .content {
-      padding:16px 18px calc(var(--nav-h) + 28px);
-      position:relative;
-      z-index:2;
-    }
-
-    .greeting-card {
-      background:linear-gradient(135deg, var(--navy), var(--navy-2));
-      color:#fff;
-      border-radius:var(--radius-lg);
-      padding:18px;
-      box-shadow:0 18px 36px rgba(8,27,68,.18);
-      margin-bottom:14px;
-      position:relative;
-      overflow:hidden;
-    }
-    .greeting-card::after {
-      content:""; position:absolute; top:-35px; right:-25px; width:120px; height:120px;
-      border-radius:50%; background:rgba(20,184,166,.22);
-    }
-    .eyebrow { font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.08em; color:rgba(255,255,255,.7); margin-bottom:6px; }
-    .greeting-title { font-size:20px; font-weight:800; line-height:1.25; position:relative; z-index:1; }
-    .greeting-title span { color:#67E5D8; }
-    .greeting-desc { font-size:12px; color:rgba(255,255,255,.78); line-height:1.55; margin-top:7px; max-width:275px; position:relative; z-index:1; }
-
-    .card {
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:var(--radius-lg);
-      padding:16px;
-      box-shadow:var(--shadow);
-      margin-bottom:14px;
-    }
-    .card-head { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:12px; }
-    .label { display:flex; align-items:center; gap:8px; font-size:12px; font-weight:800; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; }
-    .label img { width:18px; height:18px; }
-    .progress-pct { font-size:23px; font-weight:900; color:var(--teal); line-height:1; }
-    .project-title { font-size:17px; font-weight:800; color:var(--navy); margin-bottom:4px; }
-    .project-meta { font-size:12px; color:var(--muted); line-height:1.5; }
-
-    .progress-bar { height:10px; border-radius:999px; background:#E9F0F6; overflow:hidden; margin:13px 0 10px; }
-    .progress-fill { height:100%; border-radius:999px; background:linear-gradient(90deg, var(--teal), #58D7CA); width:0%; transition:width .35s ease; }
-    .project-foot { display:flex; align-items:center; gap:8px; justify-content:space-between; flex-wrap:wrap; }
-    .pill { border-radius:999px; padding:4px 10px; font-size:10px; font-weight:800; }
-    .pill.green { background:var(--success-bg); color:var(--success-text); }
-    .pill.yellow { background:var(--warning-bg); color:var(--warning-text); }
-    .timestamp { font-size:11px; color:var(--light); display:flex; align-items:center; gap:5px; }
-    .timestamp img { width:13px; height:13px; opacity:.7; }
-
-    .stepper-card { padding:17px 14px 15px; }
-    .stepper { display:grid; grid-template-columns:32px 1fr 32px 1fr 32px 1fr 32px 1fr 32px; align-items:start; }
-    .step-wrap { display:flex; flex-direction:column; align-items:center; min-width:0; }
-    .step-circle {
-      width:30px; height:30px; border-radius:50%;
-      display:flex; align-items:center; justify-content:center;
-      border:2px solid #D8E2EC; background:#fff;
-      color:#fff; font-size:11px; font-weight:900;
-    }
-    .step-circle.done { border-color:var(--teal); background:var(--teal); }
-    .step-circle.current { border-color:var(--teal); background:#fff; color:var(--teal); box-shadow:0 0 0 5px rgba(20,184,166,.13); }
-    .step-circle.locked { background:#EFF4F8; }
-    .step-circle img { width:14px; height:14px; filter:brightness(0) invert(1); }
-    .step-line { height:3px; background:#DDE6EF; border-radius:999px; margin-top:14px; }
-    .step-line.done { background:var(--teal); }
-    .step-name { margin-top:6px; font-size:9px; font-weight:800; color:var(--light); text-align:center; width:52px; margin-left:-10px; margin-right:-10px; line-height:1.15; }
-    .step-name.active { color:var(--navy); }
-
-    .continue-btn {
-      width:100%; border:none; border-radius:999px; background:var(--navy); color:#fff;
-      padding:14px 16px; margin-top:18px; font-weight:800; font-size:14px;
-      display:flex; align-items:center; justify-content:center; gap:9px; cursor:pointer;
-      box-shadow:0 14px 28px rgba(8,27,68,.18);
-    }
-    .continue-btn img { width:17px; height:17px; filter:brightness(0) invert(1); }
-    .current-phase-text { text-align:center; font-size:12px; color:var(--muted); margin-top:10px; }
-    .current-phase-text strong { color:var(--teal); }
-
-    .accordion-list { display:flex; flex-direction:column; gap:10px; }
-    .accordion-item { background:#fff; border:1px solid var(--line); border-radius:18px; overflow:hidden; box-shadow:0 10px 24px rgba(8,27,68,.05); }
-    .accordion-trigger { width:100%; border:none; background:#fff; padding:14px; display:flex; align-items:center; gap:12px; cursor:pointer; text-align:left; }
-    .acc-icon { width:38px; height:38px; border-radius:14px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-    .acc-icon img { width:21px; height:21px; }
-    .acc-icon.orange { background:rgba(255,106,61,.12); }
-    .acc-icon.teal { background:rgba(20,184,166,.12); }
-    .acc-icon.yellow { background:rgba(245,185,66,.17); }
-    .acc-main { flex:1; min-width:0; }
-    .acc-title { font-size:13px; font-weight:800; color:var(--navy); }
-    .acc-sub { font-size:11px; color:var(--muted); margin-top:2px; }
-    .acc-chevron { width:15px; height:15px; transition:transform .2s ease; opacity:.65; }
-    .accordion-item.open .acc-chevron { transform:rotate(180deg); }
-    .accordion-body { display:none; border-top:1px solid var(--line); padding:12px 14px 14px 64px; }
-    .accordion-item.open .accordion-body { display:block; }
-    .mini-list { list-style:none; display:flex; flex-direction:column; gap:8px; }
-    .mini-list li { font-size:12px; color:var(--text); line-height:1.45; display:flex; align-items:flex-start; gap:8px; }
-    .dot { width:7px; height:7px; min-width:7px; border-radius:50%; background:var(--teal); margin-top:5px; }
-    .body-note { font-size:11px; color:var(--muted); line-height:1.55; margin-top:10px; }
-    .member { display:flex; align-items:center; gap:9px; margin-bottom:8px; }
-    .member:last-child { margin-bottom:0; }
-    .member-avatar { width:30px; height:30px; border-radius:50%; background:var(--teal); color:#fff; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:800; }
-    .member-avatar.sup { background:var(--orange); }
-    .member-name { font-size:12px; font-weight:800; color:var(--navy); }
-    .member-role { font-size:10px; color:var(--muted); }
-
-    .fab {
-      position:fixed;
-      left:calc(50% + 142px);
-      bottom:92px;
-      width:56px; height:56px; border-radius:50%; border:none;
-      background:var(--orange); color:#fff;
-      display:flex; align-items:center; justify-content:center;
-      box-shadow:0 16px 30px rgba(255,106,61,.28);
-      cursor:pointer; z-index:30;
-    }
-    .fab img { width:24px; height:24px; filter:brightness(0) invert(1); }
-    @media (max-width:430px){ .fab{ right:18px; left:auto; } }
-
-    .bottom-nav {
-      position:fixed;
-      left:50%; transform:translateX(-50%);
-      bottom:0;
-      width:100%; max-width:430px;
-      height:var(--nav-h);
-      background:rgba(255,255,255,.96);
-      backdrop-filter:blur(12px);
-      border-top:1px solid var(--line);
-      display:grid; grid-template-columns:repeat(5,1fr);
-      z-index:25;
-      padding:8px 6px 10px;
-      box-shadow:0 -10px 30px rgba(8,27,68,.08);
-    }
-    .nav-item { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; color:var(--light); font-size:10px; font-weight:800; }
-    .nav-icon { width:23px; height:23px; display:block; }
-    .nav-icon svg { width:23px; height:23px; fill:none; stroke:currentColor; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; }
-    .nav-item.active { color:var(--teal); }
-
-    .toast {
-      position:fixed; left:50%; transform:translateX(-50%); bottom:170px;
-      width:calc(100% - 38px); max-width:390px;
-      background:var(--navy); color:#fff; border-radius:16px; padding:12px 14px;
-      font-size:12px; font-weight:600; text-align:center; z-index:40; display:none;
-      box-shadow:0 16px 30px rgba(8,27,68,.22);
-    }
-    .toast.show { display:block; }
-  
-
-    /* Smart DT shared header + hero standardisation
-       Locked across welcome, registration, login and dashboard. */
-    .header {
-      height: 72px !important;
-      padding: 14px 20px !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: space-between !important;
-      background: #F7FAFC !important;
-      border-bottom: 1px solid #E7EEF6 !important;
-    }
-
-    .brand {
-      display: flex !important;
-      align-items: center !important;
-      gap: 10px !important;
-      min-width: 0 !important;
-    }
-
-    .brand img {
-      width: 42px !important;
-      height: 42px !important;
-      object-fit: contain !important;
-      border-radius: 0 !important;
-    }
-
-    .brand-text,
-    .brand span {
-      font-size: 13.5px !important;
-      font-weight: 800 !important;
-      line-height: 1.05 !important;
-      color: #081B44 !important;
-      letter-spacing: -0.02em !important;
-    }
-
-    .header-actions {
-      display: flex !important;
-      align-items: center !important;
-      gap: 10px !important;
-    }
-
-    .lang-btn,
-    .language-pill,
-    .lang-pill {
-      height: 36px !important;
-      min-width: 72px !important;
-      border-radius: 999px !important;
-      background: #FFFFFF !important;
-      border: 1px solid #E3EAF2 !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      gap: 6px !important;
-      padding: 0 10px !important;
-      font-size: 12px !important;
-      font-weight: 700 !important;
-      color: #081B44 !important;
-      box-shadow: 0 6px 16px rgba(8, 27, 68, 0.06) !important;
-      cursor: pointer !important;
-    }
-
-    .lang-btn img,
-    .language-pill img,
-    .lang-pill img {
-      width: 15px !important;
-      height: 15px !important;
-      object-fit: contain !important;
-      border-radius: 0 !important;
-    }
-
-    .menu,
-    .menu-btn,
-    .icon-btn {
-      width: 40px !important;
-      height: 40px !important;
-      border-radius: 999px !important;
-      background: #FFFFFF !important;
-      border: 1px solid #E3EAF2 !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      box-shadow: 0 6px 16px rgba(8, 27, 68, 0.06) !important;
-      cursor: pointer !important;
-      padding: 0 !important;
-    }
-
-    .menu img,
-    .menu-btn img,
-    .icon-btn img {
-      width: 21px !important;
-      height: 21px !important;
-      object-fit: contain !important;
-      border-radius: 0 !important;
-    }
-
-    .avatar {
-      width: 40px !important;
-      height: 40px !important;
-      border-radius: 999px !important;
-      font-size: 13px !important;
-      font-weight: 800 !important;
-    }
-
-    .hero,
-    .hero-section,
-    .hero-shell {
-      padding: 14px 20px 10px !important;
-      display: block !important;
-      position: relative !important;
-      z-index: 2 !important;
-    }
-
-    .hero-card {
-      width: 100% !important;
-      min-height: auto !important;
-      background: #FFFFFF !important;
-      border-radius: 28px !important;
-      padding: 12px !important;
-      box-shadow: 0 14px 35px rgba(8, 27, 68, 0.08) !important;
-      border: 1px solid rgba(8, 27, 68, 0.06) !important;
-      overflow: hidden !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      position: relative !important;
-    }
-
-    .hero-card::after {
-      display: none !important;
-    }
-
-    .hero-card img,
-    .hero-art,
     .hero-img {
-      width: 100% !important;
-      max-width: none !important;
-      max-height: 230px !important;
-      object-fit: contain !important;
-      display: block !important;
-      border-radius: 22px !important;
-      filter: none !important;
-      pointer-events: none !important;
-      user-select: none !important;
+      position: absolute;
+      top: calc(var(--header-height) - 8px); right: 0;
+      width: 185px; height: auto;
+      pointer-events: none; user-select: none; z-index: 1;
+    }
+    .hero-text {
+      position: relative; z-index: 2; padding-right: 160px;
+    }
+    .greeting {
+      font-size: 15px; font-weight: 500;
+      color: var(--color-text-dark); margin-bottom: 4px;
+    }
+    .greeting strong { font-weight: 700; }
+    .headline {
+      font-size: 22px; font-weight: 700;
+      color: var(--color-navy); line-height: 1.25; margin-bottom: 5px;
+    }
+    .headline .orange { color: var(--color-orange); }
+    .subtext { font-size: 13px; color: var(--color-text-mid); line-height: 1.5; }
+
+    /* ── Scrollable content ────────────────────────────────── */
+    .dash-content {
+      padding: 16px 20px calc(var(--nav-height) + 24px);
+      position: relative; z-index: 2;
     }
 
+    /* ── Project card footer ───────────────────────────────── */
+    .card-footer {
+      display: flex; align-items: center;
+      gap: 8px; margin-top: 10px; flex-wrap: wrap;
+    }
+    .ts { font-size: 12px; color: var(--color-text-light); }
 
-    /* Dashboard layout fixes requested: title/subtitle separation, FAB position, hero height, bottom spacing */
-    .hero-card {
-      min-height: 182px !important;
-      padding: 10px !important;
+    /* ── Stepper card ──────────────────────────────────────── */
+    .stepper-card {
+      background: var(--color-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      padding: 16px 18px 14px; margin-bottom: 14px;
     }
-    .hero-card img,
-    .hero-art,
-    .hero-img {
-      max-height: 190px !important;
+    /* Step lines need to align with the 30px circle centres */
+    .step-line { margin-top: 14px; }
+    .continue-row { margin: 14px 0 0; }
+
+    /* "You are in X Phase" — span inside gets teal colour from style.css */
+    .current-phase-label {
+      text-align: center; font-size: 13px;
+      color: var(--color-text-mid); margin-top: 8px;
     }
-    .content {
-      padding-bottom: calc(var(--nav-h) + 96px) !important;
-    }
-    .accordion-trigger {
-      align-items: center !important;
-      min-height: 68px !important;
-    }
-    .acc-main {
-      flex: 1 !important;
-      min-width: 0 !important;
-      display: flex !important;
-      flex-direction: column !important;
-      gap: 3px !important;
-      line-height: 1.2 !important;
-    }
-    .acc-title {
-      display: block !important;
-      font-size: 14px !important;
-      font-weight: 900 !important;
-      color: var(--navy) !important;
-      line-height: 1.25 !important;
-      white-space: normal !important;
-    }
-    .acc-sub {
-      display: block !important;
-      font-size: 11.5px !important;
-      font-weight: 500 !important;
-      color: var(--muted) !important;
-      line-height: 1.35 !important;
-      margin-top: 0 !important;
-      white-space: normal !important;
-    }
-    .fab {
-      left: auto !important;
-      right: calc(50% - 201px) !important;
-      bottom: 86px !important;
-      z-index: 35 !important;
-    }
-    @media (max-width:430px){
-      .fab{ right:14px !important; left:auto !important; bottom:86px !important; }
+    .current-phase-label span {
+      color: var(--color-teal); font-weight: 600;
     }
 
+    /* ── Accordion content styles ──────────────────────────── */
+    .accordion-wrap { margin-bottom: 8px; }
+
+    /* Body inner lists */
+    .body-list { list-style:none; padding:0; margin:0; }
+    .body-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 13px; color: var(--color-text-dark);
+      padding: 6px 0; border-bottom: 1px solid var(--color-border);
+      line-height: 1.45;
+    }
+    .body-list li:last-child { border-bottom: none; }
+    .bdot {
+      width:8px; height:8px; min-width:8px;
+      border-radius: var(--radius-circle);
+      margin-top:4px; flex-shrink:0;
+    }
+    .bdot.orange { background: var(--color-orange); }
+    .bdot.teal   { background: var(--color-teal);   }
+
+    /* Status pill (Gates) */
+    .status-pill {
+      margin-left: auto; font-size: 10px; font-weight: 600;
+      padding: 2px 8px; border-radius: var(--radius-pill);
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .status-pill.pending { background:#FEF3C7; color:#92400E; }
+    .status-pill.done    { background:var(--color-success-bg); color:var(--color-success-text); }
+
+    .body-note {
+      font-size:12px; color:var(--color-text-mid);
+      margin-top:10px; line-height:1.55;
+    }
+    .body-empty { font-size:13px; color:var(--color-text-light); font-style:italic; }
+
+    /* Team member rows */
+    .member-row {
+      display:flex; align-items:center; gap:10px;
+      padding:7px 0; border-bottom:1px solid var(--color-border);
+    }
+    .member-row:last-child { border-bottom:none; }
+    .member-avatar {
+      width:32px; height:32px; min-width:32px;
+      border-radius:var(--radius-circle);
+      background:var(--color-teal); color:#FFFFFF;
+      font-size:11px; font-weight:700; font-family:var(--font-main);
+      display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    }
+    .member-avatar.sup { background: var(--color-orange); }
+    .member-name { font-size:13px; font-weight:600; color:var(--color-navy); }
+    .member-role { font-size:11px; color:var(--color-text-mid); }
+
+    /* Nav inline SVG sizing */
+    .nav-icon svg {
+      width:24px; height:24px; fill:none; stroke:currentColor;
+      stroke-width:2; stroke-linecap:round; stroke-linejoin:round;
+    }
   </style>
 </head>
-<body>
-  <div class="app">
-    <header class="header">
-      <a class="brand" href="dashboard.html" aria-label="Smart DT Project dashboard">
-        <img src="assets/brand/brand-logo.png" alt="Smart DT Project brand logo" />
-        <span class="brand-text">Smart DT<br>Project</span>
-      </a>
-      <div class="header-actions">
-        <button class="lang-btn" type="button" aria-label="Language selector">
-          <img src="assets/icons/ui/globe.svg" alt="" aria-hidden="true" />
-          EN
-          <img src="assets/icons/ui/chevron-down.svg" alt="" aria-hidden="true" style="width:10px;height:10px" />
-        </button>
-        <a class="avatar" id="avatar" href="profile.html" aria-label="Open profile">S</a>
-        <button class="icon-btn" type="button" id="menuBtn" aria-label="Open menu">
-          <img src="assets/icons/ui/menu.svg" alt="" aria-hidden="true" />
-        </button>
+
+<body data-dots="true">
+<!-- data-dots="true" → ui.js _injectDotGrid() adds grey dot pattern top-right -->
+
+<div class="app-container">
+
+  <!-- PINK BLOB ─────────────────────────────────────────────
+       ui.js _injectBlob() also injects this, but hard-coding
+       it here means it appears instantly before JS runs.      -->
+  <img
+    src="assets/shared/pink-blob.svg"
+    class="pink-blob" alt="" aria-hidden="true"
+    onerror="this.style.display='none'"
+  >
+
+
+  <!-- FIXED HEADER ─────────────────────────────────────────
+       Left:  logo
+       Right: language selector · avatar + name · chevron    -->
+  <header class="header" role="banner">
+
+    <a href="dashboard.html" class="header-logo"
+       aria-label="Smart DT Project home">
+      <img
+        src="assets/brand/logo-icon.svg"
+        class="header-logo-icon"
+        alt="Smart DT Project logo"
+        onerror="this.style.display='none'"
+      >
+      <span class="header-logo-text">Smart DT<br>Project</span>
+    </a>
+
+    <div class="header-right">
+
+      <!-- Language selector -->
+      <button class="lang-btn" id="lang-btn"
+              aria-label="Language — currently English">
+        <svg viewBox="0 0 24 24" fill="none"
+             stroke="var(--color-navy)" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="2" y1="12" x2="22" y2="12"/>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10
+                   15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+        <span class="language-label">English</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-text-mid)"
+             stroke-width="2" stroke-linecap="round" aria-hidden="true"
+             style="width:11px;height:11px">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </button>
+
+      <!-- Avatar + name → goes to profile.html on click -->
+      <div class="avatar-group" id="avatar-group"
+           role="button" tabindex="0"
+           aria-label="Go to My Profile"
+           aria-haspopup="false">
+        <!-- .header-avatar-initials → filled by _updateHeaderAvatar() in ui.js -->
+        <div class="header-avatar-initials" aria-hidden="true">S</div>
+        <!-- .header-avatar-name → filled by _updateHeaderAvatar() in ui.js -->
+        <span class="header-avatar-name">Student</span>
+        <svg class="avatar-chevron" viewBox="0 0 24 24" aria-hidden="true">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
       </div>
-    </header>
 
-    <section class="hero-shell" aria-label="Dashboard visual header">
-      <div class="hero-card">
-        <img src="assets/heroes/dashboard-hero.svg" alt="Student continuing the Smart DT Project dashboard journey" />
+    </div>
+  </header>
+
+
+  <!-- HERO SECTION ──────────────────────────────────────────
+       Text left · illustration right                         -->
+  <section class="hero-section" aria-label="Dashboard greeting">
+
+    <img
+      src="assets/heroes/dashboard-hero.svg"
+      class="hero-img"
+      alt="Student holding a winding journey path"
+      onerror="this.style.display='none'"
+    >
+
+    <div class="hero-text">
+      <!-- .greeting-name → filled by renderDashboardPage() via _setText() -->
+      <p class="greeting">
+        Hello, <strong class="greeting-name">Student</strong>! 👋
+      </p>
+      <h1 class="headline">
+        Let's keep building<br>
+        <span class="orange">smarter</span> solutions.
+      </h1>
+      <p class="subtext">
+        You're doing great! Continue your Design Thinking journey.
+      </p>
+    </div>
+
+  </section>
+
+
+  <!-- MAIN SCROLLABLE CONTENT ───────────────────────────── -->
+  <main class="dash-content" role="main">
+
+
+    <!-- PROJECT CARD ────────────────────────────────────────
+         .project-title, .project-meta → renderDashboardPage()
+         .project-progress-pct         → renderProgressBar()
+         .progress-bar-fill width      → renderProgressBar()   -->
+    <div class="project-card" role="region" aria-label="Current project">
+
+      <div class="project-card-header">
+        <div class="project-card-label">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+               aria-hidden="true">
+            <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
+            <line x1="4" y1="22" x2="4" y2="15"/>
+          </svg>
+          Current Project
+        </div>
+        <div class="project-progress-pct" aria-label="Overall progress">0%</div>
       </div>
-    </section>
 
-    <main class="content">
-      <section class="greeting-card" aria-label="Student greeting">
-        <p class="eyebrow">POLIPD · FYP Journey</p>
-        <h1 class="greeting-title">Hello, <span id="studentName">Student</span> 👋</h1>
-        <p class="greeting-desc">Your Design Thinking workspace is ready. Continue your current phase, track progress and manage evidence in one place.</p>
-      </section>
+      <p class="project-title">My FYP Project</p>
+      <p class="project-meta">My Team · My Supervisor</p>
 
-      <section class="card" aria-label="Current project">
-        <div class="card-head">
-          <div class="label"><img src="assets/icons/dashboard/flag.svg" alt="" /> Current Project</div>
-          <div class="progress-pct" id="projectPct">0%</div>
-        </div>
-        <p class="project-title" id="projectTitle">My FYP Project</p>
-        <p class="project-meta"><span id="teamName">My Team</span> · Supervisor: <span id="supervisorName">Not set</span></p>
-        <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressBar">
-          <div class="progress-fill" id="progressFill"></div>
-        </div>
-        <div class="project-foot">
-          <span class="pill green">In Progress</span>
-          <span class="timestamp"><img src="assets/icons/dashboard/clock.svg" alt="" /> Updated today</span>
-        </div>
-      </section>
+      <div class="progress-bar-wrap"
+           role="progressbar"
+           aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+           aria-label="Overall project progress">
+        <div class="progress-bar-fill" style="width:0%"></div>
+      </div>
 
-      <section class="card stepper-card" aria-label="Design Thinking phase progress">
-        <div class="card-head" style="margin-bottom:14px">
-          <div class="label"><img src="assets/icons/dashboard/progress.svg" alt="" /> Phase Progress</div>
-          <span class="pill yellow" id="gateStatus">Gate check</span>
+      <div class="card-footer">
+        <span class="tag-in-progress">In Progress</span>
+        <span class="ts" id="dash-ts"></span>
+      </div>
+
+    </div><!-- /.project-card -->
+
+
+    <!-- STEPPER CARD ────────────────────────────────────────
+         .stepper             → renderStepper() rewrites innerHTML
+         [data-continue-phase]→ _updateContinueButton() wires click
+         .current-phase-label → _updateCurrentPhaseLabel() sets text -->
+    <div class="stepper-card" role="region" aria-label="Phase progress">
+
+      <!-- renderStepper() targets '.stepper' and replaces all children -->
+      <div class="stepper" aria-label="Design Thinking phases">
+        <!-- Static fallback — replaced by JS immediately on load -->
+        <div class="step-item">
+          <div class="step-circle active" aria-label="Phase 1: Empathize"></div>
+          <span class="step-label active">Empathize</span>
         </div>
-        <div class="stepper" id="stepper"></div>
-        <button class="continue-btn" type="button" id="continueBtn">
+        <div class="step-line"></div>
+        <div class="step-item">
+          <div class="step-circle pending" aria-label="Phase 2: Define"></div>
+          <span class="step-label">Define</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step-item">
+          <div class="step-circle pending" aria-label="Phase 3: Ideate"></div>
+          <span class="step-label">Ideate</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step-item">
+          <div class="step-circle pending" aria-label="Phase 4: Prototype"></div>
+          <span class="step-label">Prototype</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step-item">
+          <div class="step-circle pending" aria-label="Phase 5: Test"></div>
+          <span class="step-label">Test</span>
+        </div>
+      </div>
+
+      <!-- _updateContinueButton() in ui.js adds a click listener to this -->
+      <div class="continue-row">
+        <button class="btn-primary"
+                data-continue-phase
+                aria-label="Continue to current phase">
           Continue Current Phase
-          <img src="assets/icons/ui/chevron-right.svg" alt="" aria-hidden="true" />
+          <svg width="18" height="18" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor"
+               stroke-width="2.5" stroke-linecap="round"
+               stroke-linejoin="round" aria-hidden="true"
+               style="flex-shrink:0">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
         </button>
-        <p class="current-phase-text">You are in <strong id="currentPhaseText">Empathy Phase</strong></p>
-      </section>
+      </div>
 
-      <section class="accordion-list" aria-label="Dashboard sections">
-        <article class="accordion-item open">
-          <button class="accordion-trigger" type="button">
-            <span class="acc-icon orange"><img src="assets/icons/dashboard/tasks.svg" alt="" /></span>
-            <span class="acc-main"><span class="acc-title">Tasks & To-Do</span><span class="acc-sub" id="taskSub">3 pending tasks</span></span>
-            <img class="acc-chevron" src="assets/icons/ui/chevron-down.svg" alt="" />
-          </button>
-          <div class="accordion-body">
-            <ul class="mini-list" id="taskList"></ul>
+      <!-- _updateCurrentPhaseLabel() writes into this element -->
+      <p class="current-phase-label" aria-live="polite">
+        You are in <span>Empathize Phase</span>
+      </p>
+
+    </div><!-- /.stepper-card -->
+
+
+    <!-- 5 ACCORDION ROWS ────────────────────────────────────
+         STRUCTURE RULE — initAccordions() requires:
+           row.nextElementSibling === body
+         So each .accordion-row must be the DIRECT previous
+         sibling of its .accordion-body. No wrapper divs
+         between them. No extra elements between them.        -->
+    <div class="accordion-wrap">
+      <div class="accordion-list">
+
+
+        <!-- 1. TASKS & TO-DO ──────────────────────────────── -->
+        <div class="accordion-row" id="row-tasks">
+          <div class="accordion-icon-circle orange" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/>
+              <rect x="9" y="3" width="6" height="4" rx="1"/>
+              <line x1="9" y1="12" x2="15" y2="12"/>
+              <line x1="9" y1="16" x2="11" y2="16"/>
+            </svg>
           </div>
-        </article>
-
-        <article class="accordion-item">
-          <button class="accordion-trigger" type="button">
-            <span class="acc-icon teal"><img src="assets/icons/dashboard/activity.svg" alt="" /></span>
-            <span class="acc-main"><span class="acc-title">Recent Activity</span><span class="acc-sub">Latest student actions</span></span>
-            <img class="acc-chevron" src="assets/icons/ui/chevron-down.svg" alt="" />
-          </button>
-          <div class="accordion-body">
-            <ul class="mini-list" id="activityList"></ul>
+          <div class="accordion-text">
+            <p class="accordion-title">Tasks &amp; To-Do</p>
+            <p class="accordion-subtitle" id="tasks-sub">3 tasks pending</p>
           </div>
-        </article>
+          <svg class="accordion-chevron" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+        <div class="accordion-body" aria-labelledby="row-tasks">
+          <ul class="body-list">
+            <li><span class="bdot orange" aria-hidden="true"></span>
+              Complete the Interview Guide (T01) for Phase 01 Empathy</li>
+            <li><span class="bdot orange" aria-hidden="true"></span>
+              Fill in the Empathy Map (T02) — interview at least 3 users</li>
+            <li><span class="bdot orange" aria-hidden="true"></span>
+              Submit Phase 01 before your next supervisor meeting</li>
+          </ul>
+        </div>
 
-        <article class="accordion-item">
-          <button class="accordion-trigger" type="button">
-            <span class="acc-icon yellow"><img src="assets/icons/dashboard/evidence.svg" alt="" /></span>
-            <span class="acc-main"><span class="acc-title">Evidence Files</span><span class="acc-sub">Photos, documents and links</span></span>
-            <img class="acc-chevron" src="assets/icons/ui/chevron-down.svg" alt="" />
-          </button>
-          <div class="accordion-body">
-            <ul class="mini-list" id="evidenceList"></ul>
-            <p class="body-note">Evidence upload will connect to Google Sheets/Drive later. For now, add evidence from each phase page.</p>
+
+        <!-- 2. RECENT ACTIVITY ────────────────────────────── -->
+        <div class="accordion-row" id="row-activity">
+          <div class="accordion-icon-circle teal" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+            </svg>
           </div>
-        </article>
-
-        <article class="accordion-item">
-          <button class="accordion-trigger" type="button">
-            <span class="acc-icon teal"><img src="assets/icons/dashboard/feedback.svg" alt="" /></span>
-            <span class="acc-main"><span class="acc-title">Supervisor Feedback</span><span class="acc-sub">Gate approval and comments</span></span>
-            <img class="acc-chevron" src="assets/icons/ui/chevron-down.svg" alt="" />
-          </button>
-          <div class="accordion-body">
-            <ul class="mini-list" id="feedbackList"></ul>
+          <div class="accordion-text">
+            <p class="accordion-title">Recent Activity</p>
+            <p class="accordion-subtitle">See latest updates and actions</p>
           </div>
-        </article>
+          <svg class="accordion-chevron" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+        <div class="accordion-body" aria-labelledby="row-activity">
+          <ul class="body-list">
+            <li><span class="bdot teal" aria-hidden="true"></span>
+              Profile registered and saved successfully</li>
+            <li><span class="bdot teal" aria-hidden="true"></span>
+              Dashboard loaded for the first time</li>
+            <li><span class="bdot orange" aria-hidden="true"></span>
+              Phase 01 Empathy — not yet started</li>
+          </ul>
+        </div>
 
-        <article class="accordion-item">
-          <button class="accordion-trigger" type="button">
-            <span class="acc-icon orange"><img src="assets/icons/dashboard/team.svg" alt="" /></span>
-            <span class="acc-main"><span class="acc-title">Team Members</span><span class="acc-sub">Your project group</span></span>
-            <img class="acc-chevron" src="assets/icons/ui/chevron-down.svg" alt="" />
-          </button>
-          <div class="accordion-body" id="teamBody"></div>
-        </article>
-      </section>
-    </main>
 
-    <button class="fab" type="button" id="fabBtn" aria-label="Add evidence or update">
-      <img src="assets/icons/ui/plus.svg" alt="" aria-hidden="true" />
-    </button>
+        <!-- 3. EVIDENCE FILES ─────────────────────────────── -->
+        <div class="accordion-row" id="row-evidence">
+          <div class="accordion-icon-circle yellow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <polyline points="21 15 16 10 5 21"/>
+            </svg>
+          </div>
+          <div class="accordion-text">
+            <p class="accordion-title">Evidence Files</p>
+            <p class="accordion-subtitle">Photos, documents, links and more</p>
+          </div>
+          <svg class="accordion-chevron" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+        <div class="accordion-body" aria-labelledby="row-evidence">
+          <p class="body-empty">No evidence files uploaded yet.</p>
+          <p class="body-note">Tap the + button to add photos, documents or links.</p>
+        </div>
 
-    <nav class="bottom-nav" aria-label="Main navigation">
-      <a href="dashboard.html" class="nav-item active">
-        <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg></span>
-        <span>Dashboard</span>
-      </a>
-      <a href="phase01-empathy.html" class="nav-item">
-        <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 22h4"/><path d="M15.1 14c.2-1 .7-1.8 1.4-2.5A5 5 0 1 0 7.5 11.5C8.3 12.2 8.8 13 8.9 14"/></svg></span>
-        <span>Learn</span>
-      </a>
-      <a href="phase01-empathy.html" class="nav-item">
-        <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h5"/></svg></span>
-        <span>Projects</span>
-      </a>
-      <a href="progress.html" class="nav-item">
-        <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-7"/></svg></span>
-        <span>Progress</span>
-      </a>
-      <a href="profile.html" class="nav-item">
-        <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg></span>
-        <span>Profile</span>
-      </a>
-    </nav>
 
-    <div class="toast" id="toast">Feature ready for the next build step.</div>
-  </div>
+        <!-- 4. SUPERVISOR FEEDBACK ───────────────────────── -->
+        <div class="accordion-row" id="row-feedback">
+          <div class="accordion-icon-circle teal" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <div class="accordion-text">
+            <p class="accordion-title">Supervisor Feedback</p>
+            <p class="accordion-subtitle">View feedback and approval status</p>
+          </div>
+          <svg class="accordion-chevron" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+        <div class="accordion-body" aria-labelledby="row-feedback">
+          <ul class="body-list">
+            <li>Gate 1 — after Phase 02 Define
+              <span class="status-pill pending">Pending</span></li>
+            <li>Gate 2 — after Phase 03 Ideation
+              <span class="status-pill pending">Pending</span></li>
+            <li>Gate 3 — after Phase 05 Test
+              <span class="status-pill pending">Pending</span></li>
+          </ul>
+          <p class="body-note">Gates unlock after each phase is submitted and reviewed.</p>
+        </div>
 
-  <script>
-    const phases = [
-      { id:'phase01', name:'Empathy', file:'phase01-empathy.html' },
-      { id:'phase02', name:'Define', file:'phase02-define.html' },
-      { id:'phase03', name:'Ideation', file:'phase03-ideation.html' },
-      { id:'phase04', name:'Prototype', file:'phase04-prototype.html' },
-      { id:'phase05', name:'Test', file:'phase05-test.html' }
-    ];
 
-    const $ = (id) => document.getElementById(id);
-    const get = (key, fallback='') => localStorage.getItem(key) || fallback;
+        <!-- 5. TEAM MEMBERS ───────────────────────────────── -->
+        <div class="accordion-row" id="row-team">
+          <div class="accordion-icon-circle orange" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <div class="accordion-text">
+            <p class="accordion-title">Team Members</p>
+            <p class="accordion-subtitle">Manage and view your team</p>
+          </div>
+          <svg class="accordion-chevron" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+        <div class="accordion-body" aria-labelledby="row-team">
+          <!-- Built by buildTeamBody() on DOMContentLoaded -->
+          <div id="team-body-inner">
+            <p class="body-empty">Loading team data…</p>
+          </div>
+        </div>
 
-    function initials(name) {
-      return (name || 'Student')
-        .trim()
-        .split(/\s+/)
-        .map(part => part[0])
-        .join('')
-        .slice(0,2)
-        .toUpperCase() || 'S';
-    }
 
-    function completedCount() {
-      return phases.filter(p => localStorage.getItem('df_submitted_' + p.id) === 'true').length;
-    }
+      </div><!-- /.accordion-list -->
+    </div><!-- /.accordion-wrap -->
 
-    function currentPhaseIndex() {
-      const done = completedCount();
-      return Math.min(done, phases.length - 1);
-    }
+  </main><!-- /.dash-content -->
 
-    function calcProgress() {
-      return Math.round((completedCount() / phases.length) * 100);
-    }
 
-    function renderStudent() {
-      const name = get('df_student_name', 'Student');
-      $('studentName').textContent = name.split(' ')[0] || 'Student';
-      $('avatar').textContent = initials(name);
-      $('projectTitle').textContent = get('df_project_name', 'My FYP Project');
-      $('teamName').textContent = get('df_team', get('df_class', 'My Team'));
-      $('supervisorName').textContent = get('df_supervisor', 'Not set');
-    }
+  <!-- FAB BUTTON ───────────────────────────────────────────
+       Large teal circle, fixed bottom-right.
+       .fab styles and positioning live in css/style.css.     -->
+  <button class="fab" id="fab-btn" aria-label="Add evidence or note">
+    <svg width="26" height="26" viewBox="0 0 24 24"
+         fill="none" stroke="#FFFFFF" stroke-width="2.5"
+         stroke-linecap="round" stroke-linejoin="round"
+         aria-hidden="true">
+      <line x1="12" y1="5" x2="12" y2="19"/>
+      <line x1="5"  y1="12" x2="19" y2="12"/>
+    </svg>
+  </button>
 
-    function renderProgress() {
-      const pct = calcProgress();
-      $('projectPct').textContent = pct + '%';
-      $('progressFill').style.width = pct + '%';
-      $('progressBar').setAttribute('aria-valuenow', pct);
 
-      const idx = currentPhaseIndex();
-      $('currentPhaseText').textContent = phases[idx].name + ' Phase';
-      $('gateStatus').textContent = idx >= 2 ? 'Gate review' : 'On track';
+  <!-- BOTTOM NAVIGATION ────────────────────────────────────
+       _setNavActive() in ui.js reads the current filename
+       and adds class 'active' to the matching nav item.
+       data-page="dashboard.html" on this page → Dashboard active. -->
+  <nav class="bottom-nav" role="navigation" aria-label="Main navigation">
 
-      const html = phases.map((p, i) => {
-        const isDone = i < idx || localStorage.getItem('df_submitted_' + p.id) === 'true';
-        const isCurrent = i === idx && !isDone;
-        const circleClass = isDone ? 'done' : isCurrent ? 'current' : 'locked';
-        const lineAfter = i < phases.length - 1 ? `<div class="step-line ${i < idx ? 'done' : ''}"></div>` : '';
-        const icon = isDone ? `<img src="assets/icons/ui/tick.svg" alt="" />` : (i+1);
-        return `<div class="step-wrap"><div class="step-circle ${circleClass}">${icon}</div><div class="step-name ${isDone || isCurrent ? 'active' : ''}">${p.name}</div></div>${lineAfter}`;
-      }).join('');
-      $('stepper').innerHTML = html;
-      $('continueBtn').onclick = () => { window.location.href = phases[idx].file; };
-    }
+    <a href="dashboard.html" class="nav-item"
+       data-page="dashboard.html" aria-label="Dashboard">
+      <span class="nav-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </span>
+      <span class="nav-label">Dashboard</span>
+    </a>
 
-    function renderLists() {
-      const idx = currentPhaseIndex();
-      const phase = phases[idx].name;
-      const tasks = [
-        `Continue ${phase} phase`,
-        `Complete the quick check quiz`,
-        `Save your template evidence before submission`
-      ];
-      $('taskSub').textContent = tasks.length + ' pending tasks';
-      $('taskList').innerHTML = tasks.map(t => `<li><span class="dot"></span><span>${t}</span></li>`).join('');
+    <a href="dashboard.html" class="nav-item"
+       data-page="learn" aria-label="Learn">
+      <span class="nav-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <path d="M9 18h6M10 22h4"/>
+          <path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/>
+        </svg>
+      </span>
+      <span class="nav-label">Learn</span>
+    </a>
 
-      const activity = completedCount() > 0
-        ? [`${completedCount()} phase submission(s) recorded`, `Progress updated to ${calcProgress()}%`, `Current phase: ${phase}`]
-        : [`Profile created successfully`, `Dashboard started`, `Current phase: ${phase}`];
-      $('activityList').innerHTML = activity.map(t => `<li><span class="dot"></span><span>${t}</span></li>`).join('');
+    <a href="phase01-empathy.html" class="nav-item"
+       data-page="projects" aria-label="Projects">
+      <span class="nav-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+        </svg>
+      </span>
+      <span class="nav-label">Projects</span>
+    </a>
 
-      const evidence = phases
-        .filter(p => localStorage.getItem('df_submitted_' + p.id) === 'true')
-        .map(p => `${p.name} evidence submitted`);
-      $('evidenceList').innerHTML = (evidence.length ? evidence : ['No evidence submitted yet'])
-        .map(t => `<li><span class="dot"></span><span>${t}</span></li>`).join('');
+    <a href="progress.html" class="nav-item"
+       data-page="progress.html" aria-label="Progress">
+      <span class="nav-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <polyline points="14 11 17 14 22 9"/>
+          <path d="M22 12v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/>
+        </svg>
+      </span>
+      <span class="nav-label">Progress</span>
+    </a>
 
-      const supervisor = get('df_supervisor', 'Supervisor');
-      const feedback = [
-        `Gate 1: ${localStorage.getItem('df_gate_1') === 'approved' ? 'Approved' : 'Pending supervisor review'}`,
-        `Gate 2: ${localStorage.getItem('df_gate_2') === 'approved' ? 'Approved' : 'Locked until ideation submission'}`,
-        `Supervisor: ${supervisor}`
-      ];
-      $('feedbackList').innerHTML = feedback.map(t => `<li><span class="dot"></span><span>${t}</span></li>`).join('');
+    <a href="profile.html" class="nav-item"
+       data-page="profile.html" aria-label="Profile">
+      <span class="nav-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+      </span>
+      <span class="nav-label">Profile</span>
+    </a>
 
-      const student = get('df_student_name', 'Student');
-      const reg = get('df_reg_no', 'Registration No. not set');
-      const team = get('df_team', get('df_class', 'Class / team not set'));
-      $('teamBody').innerHTML = `
-        <div class="member"><div class="member-avatar">${initials(student)}</div><div><p class="member-name">${student}</p><p class="member-role">${reg} · ${team}</p></div></div>
-        <div class="member"><div class="member-avatar sup">S</div><div><p class="member-name">${supervisor}</p><p class="member-role">Project Supervisor</p></div></div>
-      `;
-    }
+  </nav>
 
-    function bindAccordions() {
-      document.querySelectorAll('.accordion-trigger').forEach(btn => {
-        btn.addEventListener('click', () => btn.closest('.accordion-item').classList.toggle('open'));
-      });
-    }
+</div><!-- /.app-container -->
 
-    function showToast(msg) {
-      const toast = $('toast');
-      toast.textContent = msg;
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 2200);
-    }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      renderStudent();
-      renderProgress();
-      renderLists();
-      bindAccordions();
-      $('fabBtn').addEventListener('click', () => showToast('Add evidence will be connected in the next build step.'));
-      $('menuBtn').addEventListener('click', () => showToast('Menu drawer will be added after core pages are complete.'));
+<!-- SCRIPTS ─────────────────────────────────────────────────
+     Order: data.js → ui.js → inline.
+     No async / defer — must be synchronous so window.DT and
+     window.UI are fully built before DOMContentLoaded fires. -->
+<script src="js/app.js"></script>
+<script src="js/data.js"></script>
+<script src="js/ui.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  'use strict';
+
+  /* Guard ─────────────────────────────────────────────────── */
+  if (typeof window.DT === 'undefined' || typeof window.UI === 'undefined') {
+    /* ui.js already shows the red banner — nothing more needed */
+    return;
+  }
+
+  /* 1. Redirect if not registered ─────────────────────────── */
+  if (!window.DT.isRegistered()) {
+    window.location.replace('welcome.html');
+    return;
+  }
+
+  /* 2. Fill all dynamic content ───────────────────────────── */
+  /*
+     renderDashboardPage() in ui.js calls:
+       _setText('.greeting-name',  getFirstName())
+       _setText('.project-title',  student.projectName)
+       _setText('.project-meta',   team · supervisor)
+       renderProgressBar()   → .progress-bar-fill width + .project-progress-pct text
+       renderStepper()       → rewrites .stepper innerHTML + wires circle clicks
+       initAccordions()      → wires all 5 .accordion-row expand/collapse
+       _updateHeaderAvatar() → .header-avatar-initials + .header-avatar-name
+  */
+  window.UI.renderDashboardPage();
+
+  /* 3. Progress bar aria attribute ────────────────────────── */
+  var pct = window.DT.calculateOverallProgress();
+  var bar = document.querySelector('.progress-bar-wrap');
+  if (bar) bar.setAttribute('aria-valuenow', String(pct));
+
+  /* 4. Timestamp ──────────────────────────────────────────── */
+  var tsEl = document.getElementById('dash-ts');
+  if (tsEl) {
+    var now  = new Date();
+    var h    = now.getHours();
+    var m    = String(now.getMinutes()).padStart(2, '0');
+    var ap   = h >= 12 ? 'PM' : 'AM';
+    h        = h % 12 || 12;
+    tsEl.textContent = '\u00b7 Updated today, ' + h + ':' + m + ' ' + ap;
+  }
+
+  /* 5. Tasks subtitle ─────────────────────────────────────── */
+  var remaining = window.DT.getAllPhaseProgress()
+    .filter(function (p) { return !p.submitted; }).length;
+  var sub = document.getElementById('tasks-sub');
+  if (sub) {
+    sub.textContent = remaining + (remaining === 1 ? ' task' : ' tasks') + ' pending';
+  }
+
+  /* 6. Team accordion ─────────────────────────────────────── */
+  buildTeamBody();
+
+  /* 7. FAB ────────────────────────────────────────────────── */
+  var fab = document.getElementById('fab-btn');
+  if (fab) {
+    fab.addEventListener('click', function () {
+      window.UI.showToast('Evidence upload coming in a later milestone.', '');
     });
-  </script>
+  }
+
+  /* 8. Avatar → profile.html ──────────────────────────────── */
+  var ag = document.getElementById('avatar-group');
+  if (ag) {
+    ag.addEventListener('click', function () {
+      window.location.href = 'profile.html';
+    });
+    ag.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        window.location.href = 'profile.html';
+      }
+    });
+  }
+
+  /* 9. Language selector ──────────────────────────────────── */
+  var lb = document.getElementById('lang-btn');
+  if (lb) lb.addEventListener('click', function () { /* later milestone */ });
+
+});
+
+
+/* buildTeamBody ──────────────────────────────────────────────
+   Populates #team-body-inner from localStorage data.
+   Called after renderDashboardPage() completes.              */
+function buildTeamBody () {
+  var el = document.getElementById('team-body-inner');
+  if (!el || typeof window.DT === 'undefined') return;
+
+  var s    = window.DT.getStudentData();
+  var html = '';
+
+  if (s.name) {
+    html += row(initials(s.name), false, s.name, 'Team Member (You)');
+  }
+  if (s.supervisor) {
+    html += row(initials(s.supervisor), true, s.supervisor, 'Supervisor');
+  }
+  if (!s.name && !s.supervisor) {
+    html = '<p class="body-empty">No team data yet — update your profile.</p>';
+  }
+  if (s.team) {
+    html += '<p class="body-note">Team: <strong>' + esc(s.team) + '</strong></p>';
+  }
+
+  el.innerHTML = html;
+}
+
+function row (init, isSup, name, role) {
+  return '<div class="member-row">' +
+    '<div class="member-avatar' + (isSup ? ' sup' : '') + '" aria-hidden="true">' +
+    esc(init) + '</div>' +
+    '<div><p class="member-name">' + esc(name) + '</p>' +
+    '<p class="member-role">' + role + '</p></div>' +
+    '</div>';
+}
+
+function initials (name) {
+  var p = String(name).trim().split(/\s+/).filter(Boolean);
+  if (!p.length) return 'S';
+  return (p.length === 1 ? p[0][0] : p[0][0] + p[p.length - 1][0]).toUpperCase();
+}
+
+function esc (s) {
+  return String(s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+</script>
+
 </body>
 </html>

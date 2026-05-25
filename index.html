@@ -4,34 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Smart DT Project — Loading">
+
   <title>Smart DT Project</title>
 
   <!--
-    ┌─────────────────────────────────────────────────────────────────┐
-    │  index.html — Entry Router (DO NOT add app content here)        │
-    │                                                                 │
-    │  Routing logic:                                                 │
-    │    df_registered === "true"  →  login.html                      │
-    │    anything else             →  welcome.html                    │
-    │                                                                 │
-    │  Rules for this file:                                           │
-    │  ✗  Do NOT load app.js                                          │
-    │  ✗  Do NOT load ui.js                                           │
-    │  ✗  Do NOT load data.js  (routing uses localStorage directly)   │
-    │  ✗  Do NOT load phase-engine.js                                 │
-    │  ✓  Only inline CSS + inline routing script                     │
-    └─────────────────────────────────────────────────────────────────┘
+    index.html — Router only.
+    This page has no visible content.
+    It reads localStorage and redirects immediately:
+      df_registered === "true"  →  dashboard.html
+      anything else             →  welcome.html
+
+    js/data.js is the only script needed here.
+    ui.js and phase-engine.js are NOT loaded on this page.
   -->
 
   <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    /* Minimal style — shown only for the fraction of a second
+       before the redirect fires, or if JS is disabled.        */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: 'Poppins', Arial, sans-serif;
+      font-family: 'Poppins', sans-serif;
       background-color: #FAFBFC;
       display: flex;
       align-items: center;
@@ -44,17 +37,9 @@
       flex-direction: column;
       align-items: center;
       gap: 16px;
-
-      /* Fade in so the splash is visible for at least one frame
-         before the JS redirect fires. */
-      animation: fadeIn 0.25s ease forwards;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to   { opacity: 1; transform: translateY(0);   }
-    }
-
+    /* Logo mark — inline SVG, no external file needed here */
     .splash-logo {
       width: 56px;
       height: 56px;
@@ -67,6 +52,7 @@
       letter-spacing: 0.02em;
     }
 
+    /* Teal spinner */
     .spinner {
       width: 28px;
       height: 28px;
@@ -76,24 +62,19 @@
       animation: spin 0.75s linear infinite;
     }
 
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* No-JS fallback — hidden by default, shown only when JS is off */
-    .no-js-msg {
+    /* Message shown only when JavaScript is fully disabled */
+    .no-js {
       display: none;
       font-size: 14px;
       color: #6B7280;
       text-align: center;
       max-width: 260px;
-      line-height: 1.6;
-      padding: 0 16px;
+      line-height: 1.5;
     }
 
-    noscript .no-js-msg {
-      display: block;
-    }
+    noscript .no-js { display: block; }
   </style>
 </head>
 
@@ -101,117 +82,67 @@
 
   <div class="splash" role="status" aria-label="Loading Smart DT Project">
 
-    <!-- App logo mark -->
+    <!-- Inline logo so no external SVG request can fail on first load -->
     <svg class="splash-logo" viewBox="0 0 56 56" fill="none"
          xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <rect width="56" height="56" rx="14" fill="#071B3D"/>
+      <!-- Bulb body -->
       <path d="M28 14C22.477 14 18 18.477 18 24c0 3.72 1.97 6.98 4.9 8.77V36
                a1 1 0 0 0 1 1h8.2a1 1 0 0 0 1-1v-3.23C35.03 30.98 37 27.72 37
                24c0-5.523-4.477-10-9-10z"
             fill="#FF6A3D"/>
+      <!-- Bulb base lines -->
       <rect x="23" y="38" width="10" height="2" rx="1" fill="#14B8A6"/>
       <rect x="24" y="41" width="8"  height="2" rx="1" fill="#14B8A6"/>
+      <!-- Shine dot -->
       <circle cx="23" cy="21" r="1.5" fill="white" opacity="0.7"/>
     </svg>
 
     <p class="splash-name">Smart DT Project</p>
-
     <div class="spinner" aria-hidden="true"></div>
 
-    <!-- Shown only when JavaScript is completely disabled -->
     <noscript>
-      <p class="no-js-msg">
+      <p class="no-js">
         JavaScript is required to use Smart DT Project.<br>
         Please enable JavaScript in your browser settings.
       </p>
     </noscript>
 
-  </div><!-- /.splash -->
-
+  </div>
 
   <!--
-    ┌─────────────────────────────────────────────────────────────────┐
-    │  Entry Router — NO external scripts loaded here.                │
-    │                                                                 │
-    │  FIX 1: Removed <script src="js/data.js"> — data.js is NOT     │
-    │  needed on the router page. Loading it delayed the redirect     │
-    │  by an unnecessary network round-trip.                          │
-    │                                                                 │
-    │  FIX 2: Removed window.DT.isRegistered() check — it was a      │
-    │  fragile dependency on data.js. localStorage is the source      │
-    │  of truth for routing; no external function is needed.          │
-    │                                                                 │
-    │  FIX 3: Redirect now waits for at least one animation frame     │
-    │  so the splash screen actually paints before navigating.        │
-    │  Previously the IIFE fired synchronously and the browser        │
-    │  never had a chance to render even one frame of the spinner.    │
-    └─────────────────────────────────────────────────────────────────┘
+    Load ONLY data.js here.
+    The routing function reads localStorage and redirects.
+    No other scripts are needed on this page.
   -->
+  <script src="js/app.js"></script>
+<script src="js/data.js"></script>
+
   <script>
-    (function routeToDestination() {
-      /**
-       * Routing rules
-       * ─────────────────────────────────────────────────────────────
-       *  df_registered === "true"   Student has completed registration
-       *                             → send to login.html
-       *
-       *  anything else              First-time visitor OR cleared storage
-       *                             → send to welcome.html
-       * ─────────────────────────────────────────────────────────────
-       * NOTE: Do NOT change localStorage keys here.
-       * The keys below must match exactly what login.html writes.
-       * ─────────────────────────────────────────────────────────────
-       */
-      function getDestination() {
-        try {
-          var registered = localStorage.getItem('df_registered');
-          return registered === 'true' ? 'login.html' : 'welcome.html';
-        } catch (storageErr) {
-          // localStorage blocked (private browsing restriction on some browsers)
-          console.warn('Smart DT: localStorage unavailable —', storageErr);
-          return 'welcome.html';
-        }
+    /**
+     * Route the student immediately on page load.
+     *
+     * Logic:
+     *   df_registered === "true"  →  dashboard.html
+     *   anything else             →  welcome.html
+     *
+     * window.DT.isRegistered() is defined in js/data.js.
+     * We call it directly here so there is zero dependency on ui.js.
+     */
+    (function route() {
+      try {
+        var destination = window.DT.isRegistered()
+          ? 'dashboard.html'
+          : 'welcome.html';
+        window.location.replace(destination);
+      } catch (err) {
+        /**
+         * Fallback: if data.js failed to load for any reason,
+         * go to welcome.html so the student is never stuck.
+         */
+        console.error('Smart DT: routing error —', err);
+        window.location.replace('welcome.html');
       }
-
-      function redirect(dest) {
-        try {
-          // window.location.replace keeps the history stack clean —
-          // students cannot tap Back to land on this spinner page.
-          window.location.replace(dest);
-        } catch (navErr) {
-          // Last resort: href assignment
-          console.error('Smart DT: replace() failed, falling back to href —', navErr);
-          window.location.href = dest;
-        }
-      }
-
-      var destination = getDestination();
-
-      /**
-       * FIX 3 — Wait for two animation frames before redirecting.
-       *
-       * Why: The synchronous IIFE in the original file called
-       * window.location.replace() before the browser painted even
-       * one frame. Students on fast connections saw a white flash
-       * instead of the spinner. Two rAF calls guarantee the browser
-       * has committed at least one render before we navigate away.
-       *
-       * The total added delay is ~32 ms — invisible to the user but
-       * enough for the splash fade-in animation to be visible.
-       */
-      if (typeof requestAnimationFrame === 'function') {
-        requestAnimationFrame(function () {
-          requestAnimationFrame(function () {
-            redirect(destination);
-          });
-        });
-      } else {
-        // Fallback for very old browsers that lack rAF
-        setTimeout(function () {
-          redirect(destination);
-        }, 50);
-      }
-
     }());
   </script>
 

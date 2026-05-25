@@ -5,160 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <meta name="description" content="Smart DT Project — Phase 03: Ideation">
   <title>Phase 03: Ideation — Smart DT Project</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 
   <style>
-    body { background-color:var(--color-bg); overflow-x:hidden; }
+    body { background-color: var(--color-bg); overflow-x: hidden; }
 
-    /* ── Phase hero band ─────────────────────────────── */
+    .hamburger-btn {
+      width:36px; height:36px; display:flex; align-items:center;
+      justify-content:center; border-radius:var(--radius-sm);
+      background-color:var(--color-bg); border:1px solid var(--color-border);
+      cursor:pointer; flex-shrink:0;
+    }
+    .hamburger-btn svg {
+      width:20px; height:20px; stroke:var(--color-navy); fill:none;
+      stroke-width:2; stroke-linecap:round;
+    }
     .phase-header {
-      position:relative;
-      padding:calc(var(--header-height) + 20px) 20px 24px;
-      /* Soft tinted background band behind hero area */
-      background:linear-gradient(160deg,#EDF9F7 0%,#F8FFFE 55%,var(--color-bg) 100%);
-      overflow:hidden;
-      min-height:260px;
+      position:relative; padding:calc(var(--header-height) + 16px) 20px 0;
+      overflow:hidden; min-height:240px;
     }
-
-    /* Hero image — larger, right-aligned, blended */
-    .hero-wrap {
-      position:absolute;
-      top:calc(var(--header-height) - 4px);
-      right:-8px;
-      width:240px;
-      z-index:1;
-      pointer-events:none;
-    }
-    .hero-img { width:100%; height:auto; display:block; }
-
-    /* Left text block — enough right padding to clear hero */
-    .page-header-text {
-      position:relative; z-index:2;
-      padding-right:190px;
-      padding-top:4px;
-    }
-
-    /* Phase title lines — slightly smaller for mobile fit */
-    .phase-title-line { font-size:32px; font-weight:700; line-height:1.1; display:block; }
-    .phase-title-line .word-accent { color:var(--color-orange); font-style:italic; }
-    .phase-title-line .word-phase  { color:var(--color-navy); }
-
-    /* ── Back link ───────────────────────────────────── */
-    .back-link {
-      display:inline-flex; align-items:center; gap:5px;
-      font-size:12px; font-weight:600; color:var(--color-text-mid);
-      text-decoration:none; margin-bottom:10px;
-      background:rgba(255,255,255,0.8); border:1px solid var(--color-border);
-      border-radius:99px; padding:4px 10px;
-      position:relative; z-index:2;
-    }
-    .back-link:hover { color:var(--color-navy); background:#fff; }
-    .back-link svg { width:14px; height:14px; stroke:currentColor; fill:none; stroke-width:2.5; stroke-linecap:round; }
-
-    /* ── PILL TAB BAR ────────────────────────────────── */
-    .phase-tab-wrap {
-      padding:12px 20px 0;
-      background:var(--color-bg);
-      position:sticky; top:var(--header-height); z-index:50;
-    }
-    .phase-tabs {
-      display:flex;
-      background:var(--color-border);
-      border-radius:99px;
-      padding:3px;
-      gap:2px;
-    }
-    .phase-tab-btn {
-      flex:1; display:flex; align-items:center; justify-content:center;
-      gap:5px; padding:8px 6px;
-      font-family:var(--font-main); font-size:12px; font-weight:600;
-      border-radius:99px; border:none; cursor:pointer;
-      transition:background var(--transition-fast), color var(--transition-fast);
-      color:var(--color-text-mid); background:transparent;
-      white-space:nowrap; text-decoration:none;
-    }
-    .phase-tab-btn.active {
-      background:var(--color-navy); color:#FFFFFF;
-      box-shadow:0 2px 8px rgba(7,27,61,0.25);
-    }
-    .phase-tab-btn.quiz-tab { color:var(--color-text-dark); }
-    .phase-tab-btn.quiz-tab.active { background:var(--color-navy); color:#fff; }
-    .phase-tab-btn.locked {
-      color:var(--color-text-light); cursor:not-allowed;
-    }
-    .quiz-badge {
-      display:inline-flex; align-items:center; justify-content:center;
-      background:var(--color-orange); color:#fff;
-      font-size:9px; font-weight:700;
-      padding:1px 5px; border-radius:99px; line-height:1.4;
-    }
-    .active .quiz-badge { background:rgba(255,255,255,0.3); }
-    .phase-tab-divider {
-      display:block; height:1px; background:var(--color-border);
-      margin:0 20px;
-    }
-
-    /* ── Scrollable content area ─────────────────────── */
     .phase-content {
       padding:16px 20px calc(var(--nav-height) + 24px);
       position:relative; z-index:2;
     }
-
-    /* ── Carousel slide: larger illustration on top ── */
-    .carousel-slide {
-      display:flex; flex-direction:column; align-items:center;
-      text-align:center; padding:20px 16px 16px;
+    .back-link {
+      display:inline-flex; align-items:center; gap:6px; font-size:13px;
+      font-weight:500; color:var(--color-text-mid); text-decoration:none;
+      margin-bottom:8px; position:relative; z-index:2;
     }
-    .carousel-slide-illustration {
-      width:110px; height:110px;
-      margin-bottom:14px;
+    .back-link:hover { color:var(--color-navy); }
+    .back-link svg {
+      width:16px; height:16px; stroke:currentColor; fill:none;
+      stroke-width:2; stroke-linecap:round; stroke-linejoin:round;
     }
-    .carousel-slide-illustration img {
-      width:110px; height:110px;
-      object-fit:contain; border-radius:16px;
-    }
-    .carousel-slide-content { width:100%; }
-    .carousel-slide-title {
-      font-size:16px; font-weight:700;
-      color:var(--color-navy); margin-bottom:6px; line-height:1.3;
-    }
-    .carousel-slide-text {
-      font-size:13px; color:var(--color-text-mid); line-height:1.55;
-    }
-
-    /* ── Feature list — stacked vertically on mobile ── */
-    .phase-content-grid {
-      display:grid; grid-template-columns:1fr;
-      gap:12px; margin-top:16px; margin-bottom:14px;
-    }
-
-    /* ── CTA — single button only ─────────────────────
-       No duplicate arrow button. Only one action.      */
-    .phase-cta { margin:16px 0 10px; }
-    .phase-cta .btn-primary {
-      display:flex; align-items:center; justify-content:center;
-      gap:10px; width:100%; padding:16px 24px;
-      background:var(--color-navy); color:#fff;
-      font-family:var(--font-main); font-size:16px; font-weight:600;
-      border:none; border-radius:99px; cursor:pointer;
-    }
-
-    /* ── Hamburger ───────────────────────────────────── */
-    .hamburger-btn {
-      width:36px; height:36px; display:flex; align-items:center;
-      justify-content:center; border-radius:var(--radius-sm);
-      background:var(--color-bg); border:1px solid var(--color-border);
-      cursor:pointer; flex-shrink:0;
-    }
-    .hamburger-btn svg {
-      width:20px; height:20px; stroke:var(--color-navy);
-      fill:none; stroke-width:2; stroke-linecap:round;
-    }
-
-    /* ── Nav SVG ──────────────────────────────────────── */
     .nav-icon svg {
       width:24px; height:24px; fill:none; stroke:currentColor;
       stroke-width:2; stroke-linecap:round; stroke-linejoin:round;
@@ -169,14 +52,15 @@
 <body data-dots="true">
 <div class="app-container">
 
-  <img src="https://res.cloudinary.com/dmj9fqkrl/image/upload/v1779027549/pink-blob_jakcn5.png" class="pink-blob" alt="" aria-hidden="true"
+  <img src="assets/shared/pink-blob.svg"
+       class="pink-blob" alt="" aria-hidden="true"
        onerror="this.style.display='none'">
 
   <!-- HEADER -->
   <header class="header" role="banner">
     <a href="dashboard.html" class="header-logo"
        aria-label="Smart DT Project — back to dashboard">
-      <img src="https://res.cloudinary.com/dmj9fqkrl/image/upload/v1779027460/logo-icon_lxo0z0.png" class="header-logo-icon"
+      <img src="assets/brand/logo-icon.svg" class="header-logo-icon"
            alt="Smart DT Project logo" onerror="this.style.display='none'">
       <span class="header-logo-text">Smart DT<br>Project</span>
     </a>
@@ -197,11 +81,11 @@
     </div>
   </header>
 
-  <!-- PHASE HEADER — tinted background band -->
+  <!-- PHASE HEADER -->
   <section class="phase-header" aria-label="Ideation phase introduction">
     <div class="hero-wrap" aria-hidden="true">
-      <img src="https://res.cloudinary.com/dmj9fqkrl/image/upload/v1779027468/ideate-hero_n5cgy2.png" class="hero-img"
-           alt="Ideation phase illustration" onerror="this.style.display='none'">
+      <img src="assets/heroes/ideate-hero.svg" class="hero-img"
+           alt="Student holding two gears" onerror="this.style.display='none'">
     </div>
     <div class="page-header-text">
       <a href="dashboard.html" class="back-link" aria-label="Back to dashboard">
@@ -221,43 +105,51 @@
     </div>
   </section>
 
-  <!-- PILL TAB BAR -->
-  <div class="phase-tab-wrap">
-    <div class="phase-tabs" role="tablist" aria-label="Phase sections">
-      <button class="phase-tab-btn active" data-tab="info"
-              id="tab-btn-info" role="tab" aria-selected="true" aria-controls="tab-info">
-        Overview
-      </button>
-      <button class="phase-tab-btn quiz-tab" data-tab="quiz"
-              id="tab-btn-quiz" role="tab" aria-selected="false" aria-controls="tab-quiz">
-        Quiz <span class="quiz-badge">5</span>
-      </button>
-      <a class="phase-tab-btn locked" id="tab-btn-templates"
-         href="phase03-templates.html"
-         aria-label="Open Phase 03 Templates">
-        Templates 🔒
-      </a>
-    </div>
-  </div>
-  <span class="phase-tab-divider" aria-hidden="true"></span>
-
   <!-- MAIN CONTENT -->
   <main class="phase-content" role="main">
 
-    <!-- TAB 1: OVERVIEW -->
+    <!-- TAB BAR -->
+    <div class="tab-bar" role="tablist" aria-label="Phase navigation">
+      <button class="tab-btn active" data-tab="info"
+              id="tab-btn-info" role="tab"
+              aria-selected="true" aria-controls="tab-info">
+        Quick Info
+      </button>
+      <button class="tab-btn" data-tab="quiz"
+              id="tab-btn-quiz" role="tab"
+              aria-selected="false" aria-controls="tab-quiz">
+        Quiz
+      </button>
+      <a class="tab-btn" id="tab-btn-templates"
+         href="phase03-templates.html"
+         aria-label="Open Phase 03 Templates"
+         style="text-decoration:none;display:flex;align-items:center;justify-content:center;gap:6px">
+        📋 Templates
+      </a>
+    </div>
+    
+
+
+    <!-- TAB 1: QUICK INFO -->
     <div class="tab-panel" id="tab-info"
          role="tabpanel" aria-labelledby="tab-btn-info">
 
-      <!-- Carousel — vertical layout on mobile -->
-      <div class="carousel-wrap" id="phase-carousel"
-           aria-label="Ideation phase information slides">
-        <div class="carousel-track" id="carousel-track">
-          
+      <div class="phase-content-grid">
+
+        <!-- Carousel -->
+        <div>
+          <div class="carousel-wrap" id="phase-carousel"
+               aria-label="Ideation phase information slides">
+            <div class="carousel-track" id="carousel-track">
+              
             <div class="carousel-slide"
                  role="group" aria-roledescription="slide"
                  aria-label="Slide 1 of 4: Explore without limits">
               <div class="carousel-slide-illustration" aria-hidden="true">
-                <img src="https://res.cloudinary.com/dmj9fqkrl/image/upload/v1779027540/ideation-card_r0vxop.png" alt="" style="width:90px;height:90px;object-fit:contain;border-radius:12px;">
+                <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"
+                     style="display:block;width:80px;height:80px">
+                  <rect x="24" y="44" width="32" height="24" rx="3" fill="#14B8A6" opacity=".2" stroke="#14B8A6" stroke-width="1.5"/><path d="M24 44 L40 36 L56 44" stroke="#14B8A6" stroke-width="1.5" fill="none"/><circle cx="32" cy="26" r="6" fill="#FF6A3D" opacity=".5"/><circle cx="48" cy="20" r="5" fill="#F5A623" opacity=".6"/><circle cx="40" cy="12" r="4" fill="#14B8A6" opacity=".5"/>
+                </svg>
               </div>
               <div class="carousel-slide-content">
                 <p class="carousel-slide-title">Explore without limits</p>
@@ -269,7 +161,10 @@
                  aria-label="Slide 2 of 4: Why quantity matters"
                  aria-hidden="true">
               <div class="carousel-slide-illustration" aria-hidden="true">
-                <img src="https://res.cloudinary.com/dmj9fqkrl/image/upload/v1779027540/ideation-card_r0vxop.png" alt="" style="width:90px;height:90px;object-fit:contain;border-radius:12px;">
+                <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"
+                     style="display:block;width:80px;height:80px">
+                  <circle cx="40" cy="40" r="26" fill="#F5A623" opacity=".1"/><path d="M30 38a10 10 0 1 1 20 0c0 5-3 7-5 10H35c-2-3-5-5-5-10z" stroke="#F5A623" stroke-width="2" fill="none"/><line x1="35" y1="50" x2="45" y2="50" stroke="#F5A623" stroke-width="2" stroke-linecap="round"/>
+                </svg>
               </div>
               <div class="carousel-slide-content">
                 <p class="carousel-slide-title">Why quantity matters</p>
@@ -281,7 +176,10 @@
                  aria-label="Slide 3 of 4: Your Ideation tools"
                  aria-hidden="true">
               <div class="carousel-slide-illustration" aria-hidden="true">
-                <img src="https://res.cloudinary.com/dmj9fqkrl/image/upload/v1779027540/ideation-card_r0vxop.png" alt="" style="width:90px;height:90px;object-fit:contain;border-radius:12px;">
+                <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"
+                     style="display:block;width:80px;height:80px">
+                  <circle cx="40" cy="40" r="28" fill="#E05C7A" opacity=".08"/><text x="40" y="36" text-anchor="middle" font-size="9" fill="#E05C7A" font-family="sans-serif" font-weight="700">SCAMPER</text><line x1="20" y1="40" x2="60" y2="40" stroke="#E05C7A" stroke-width="1" opacity=".5"/>
+                </svg>
               </div>
               <div class="carousel-slide-content">
                 <p class="carousel-slide-title">Your Ideation tools</p>
@@ -293,24 +191,28 @@
                  aria-label="Slide 4 of 4: Your goal this phase"
                  aria-hidden="true">
               <div class="carousel-slide-illustration" aria-hidden="true">
-                <img src="https://res.cloudinary.com/dmj9fqkrl/image/upload/v1779027540/ideation-card_r0vxop.png" alt="" style="width:90px;height:90px;object-fit:contain;border-radius:12px;">
+                <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"
+                     style="display:block;width:80px;height:80px">
+                  <rect x="14" y="14" width="52" height="52" rx="4" fill="#14B8A6" opacity=".08" stroke="#14B8A6" stroke-width="1.5"/><line x1="30" y1="14" x2="30" y2="66" stroke="#14B8A6" stroke-width="1" opacity=".4"/><line x1="46" y1="14" x2="46" y2="66" stroke="#14B8A6" stroke-width="1" opacity=".4"/><line x1="14" y1="30" x2="66" y2="30" stroke="#14B8A6" stroke-width="1" opacity=".4"/>
+                </svg>
               </div>
               <div class="carousel-slide-content">
                 <p class="carousel-slide-title">Your goal this phase</p>
                 <p class="carousel-slide-text">Generate 20+ ideas, apply SCAMPER, and select the top idea using a scoring matrix.</p>
               </div>
             </div>
+            </div>
+          </div>
+          <div class="dot-row" id="carousel-dots"
+               role="tablist" aria-label="Slide navigation">
+            <div class="dot active" role="tab" aria-selected="true"  aria-label="Slide 1"></div>
+            <div class="dot"        role="tab" aria-selected="false" aria-label="Slide 2"></div>
+            <div class="dot"        role="tab" aria-selected="false" aria-label="Slide 3"></div>
+            <div class="dot"        role="tab" aria-selected="false" aria-label="Slide 4"></div>
+          </div>
         </div>
-      </div>
-      <div class="dot-row" id="carousel-dots" role="tablist" aria-label="Slide navigation">
-        <div class="dot active" role="tab" aria-selected="true"  aria-label="Slide 1"></div>
-        <div class="dot"        role="tab" aria-selected="false" aria-label="Slide 2"></div>
-        <div class="dot"        role="tab" aria-selected="false" aria-label="Slide 3"></div>
-        <div class="dot"        role="tab" aria-selected="false" aria-label="Slide 4"></div>
-      </div>
 
-      <!-- Feature rows — full width stacked -->
-      <div class="phase-content-grid">
+        <!-- Feature rows -->
         <div class="feature-list" aria-label="Ideation phase key skills">
           
         <div class="feature-row">
@@ -350,17 +252,27 @@
           </div>
         </div>
         </div>
-      </div>
 
-      <!-- SINGLE CTA — no duplicate arrow button -->
-      <div class="phase-cta">
+      </div><!-- /.phase-content-grid -->
+
+      <!-- CTA -->
+      <div class="cta-row">
         <button class="btn-primary" id="cta-btn"
-                aria-label="Continue Phase — Phase 03 Ideation">
-          Continue Phase
+                aria-label="Let's Continue with Phase 03 Ideation">
+          Let's Continue
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
                stroke="currentColor" stroke-width="2.5"
                stroke-linecap="round" stroke-linejoin="round"
                aria-hidden="true" style="flex-shrink:0">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </button>
+        <button class="btn-arrow-circle" id="cta-arrow-btn"
+                aria-label="Let's Continue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2.5" stroke-linecap="round"
+               stroke-linejoin="round" aria-hidden="true">
             <line x1="5" y1="12" x2="19" y2="12"/>
             <polyline points="12 5 19 12 12 19"/>
           </svg>
@@ -379,85 +291,181 @@
 
     </div><!-- /#tab-info -->
 
+
     <!-- TAB 2: QUIZ -->
     <div class="tab-panel hidden" id="tab-quiz"
          role="tabpanel" aria-labelledby="tab-btn-quiz">
+      <!--
+        phase-engine.js renders the quiz here.
+        initQuiz(03) builds one question at a time inside this div.
+      -->
       <div id="quiz-container"></div>
-    </div>
+    </div><!-- /#tab-quiz -->
 
-    <!-- TAB 3: TEMPLATES (inline fallback — real templates are in phaseXX-templates.html) -->
+
+    <!-- TAB 3: TEMPLATES -->
     <div class="tab-panel hidden" id="tab-templates"
          role="tabpanel" aria-labelledby="tab-btn-templates">
+      <!--
+        Auto-saved every 500ms by phase-engine.js initTemplateForm().
+        namespace = "df_p03_" — all localStorage keys prefixed here.
+      -->
       <form id="template-form" novalidate>
-        <div style="text-align:center;padding:32px 20px">
-          <p style="font-size:14px;font-weight:600;color:var(--color-navy);margin-bottom:6px">
-            Templates ready!
-          </p>
-          <p style="font-size:13px;color:var(--color-text-mid);margin-bottom:20px">
-            Pass the quiz to unlock the full template pack for this phase.
-          </p>
-          <a href="phase03-templates.html" class="btn-primary"
-             style="display:inline-flex;align-items:center;justify-content:center;
-                    gap:8px;text-decoration:none;width:100%;max-width:320px;
-                    padding:14px 24px;background:var(--color-teal);color:#fff;
-                    font-family:var(--font-main);font-size:15px;font-weight:600;
-                    border-radius:99px;">
-            Open Templates
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                 stroke-linejoin="round" aria-hidden="true">
+        
+          <section class="template-section" aria-label="T07 Brainstorm Sheet">
+            <div class="template-section-header">
+              <span class="template-badge">T07</span>
+              <h3 class="template-section-title">Brainstorm Sheet</h3>
+            </div>
+            
+            <label class="form-label" for="t07_ideas">All Ideas — List every idea (aim for 20+, one per line)</label>
+            <textarea id="t07_ideas" name="t07_ideas" class="form-input"
+                      rows="3" placeholder=""></textarea>
+            <label class="form-label" for="t07_scamper_s">SCAMPER — Substitute: What can you replace?</label>
+            <textarea id="t07_scamper_s" name="t07_scamper_s" class="form-input"
+                      rows="3" placeholder=""></textarea>
+            <label class="form-label" for="t07_scamper_c">SCAMPER — Combine: What can you merge?</label>
+            <textarea id="t07_scamper_c" name="t07_scamper_c" class="form-input"
+                      rows="3" placeholder=""></textarea>
+            <label class="form-label" for="t07_scamper_a">SCAMPER — Adapt: What can you adjust?</label>
+            <textarea id="t07_scamper_a" name="t07_scamper_a" class="form-input"
+                      rows="3" placeholder=""></textarea>
+            <label class="form-label" for="t07_wild">Wild Card Idea — Your most creative, unexpected idea</label>
+            <textarea id="t07_wild" name="t07_wild" class="form-input"
+                      rows="3" placeholder=""></textarea>
+          </section>
+          <section class="template-section" aria-label="T08 Idea Selection Matrix">
+            <div class="template-section-header">
+              <span class="template-badge">T08</span>
+              <h3 class="template-section-title">Idea Selection Matrix</h3>
+            </div>
+            
+            <label class="form-label" for="t08_idea1">Idea 1 — Name</label>
+            <input id="t08_idea1" name="t08_idea1" type="text" class="form-input"
+                   placeholder="">
+            <label class="form-label" for="t08_score1">Idea 1 — Score (1–10)</label>
+            <input id="t08_score1" name="t08_score1" type="text" class="form-input"
+                   placeholder="">
+            <label class="form-label" for="t08_idea2">Idea 2 — Name</label>
+            <input id="t08_idea2" name="t08_idea2" type="text" class="form-input"
+                   placeholder="">
+            <label class="form-label" for="t08_score2">Idea 2 — Score (1–10)</label>
+            <input id="t08_score2" name="t08_score2" type="text" class="form-input"
+                   placeholder="">
+            <label class="form-label" for="t08_idea3">Idea 3 — Name</label>
+            <input id="t08_idea3" name="t08_idea3" type="text" class="form-input"
+                   placeholder="">
+            <label class="form-label" for="t08_score3">Idea 3 — Score (1–10)</label>
+            <input id="t08_score3" name="t08_score3" type="text" class="form-input"
+                   placeholder="">
+            <label class="form-label" for="t08_winner">Selected Idea — Which idea scored highest and why?</label>
+            <textarea id="t08_winner" name="t08_winner" class="form-input"
+                      rows="3" placeholder=""></textarea>
+            <label class="form-label" for="t08_justify">Justification — How does it solve the problem?</label>
+            <textarea id="t08_justify" name="t08_justify" class="form-input"
+                      rows="3" placeholder=""></textarea>
+          </section>
+
+        <!-- Submit phase button -->
+        <div style="margin-top:24px">
+          <button type="button" class="btn-primary"
+                  onclick="PhaseEngine.submitPhase(3, '', ['df_p03_'])"
+                  aria-label="Submit Phase 03 Ideation">
+            Submit Phase 03
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.5"
+                 stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true" style="flex-shrink:0">
               <line x1="5" y1="12" x2="19" y2="12"/>
               <polyline points="12 5 19 12 12 19"/>
             </svg>
-          </a>
+          </button>
         </div>
-      </form>
+
+      </form><!-- /#template-form -->
+
       
       <!-- SUPERVISOR GATE — rendered by PhaseEngine.initGateCard() -->
       <div id="gate-container"
            role="region" aria-label="Supervisor Gate 2">
+        <!-- Gate card injected by phase-engine.js on DOMContentLoaded -->
       </div>
-    </div>
 
-  </main>
+    </div><!-- /#tab-templates -->
+
+  </main><!-- /.phase-content -->
+
 
   <!-- BOTTOM NAV -->
   <nav class="bottom-nav" role="navigation" aria-label="Main navigation">
-    <a href="dashboard.html" class="nav-item" data-page="dashboard.html" aria-label="Dashboard">
+    <a href="dashboard.html" class="nav-item"
+       data-page="dashboard.html" aria-label="Dashboard">
       <span class="nav-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-      </span><span class="nav-label">Dashboard</span>
+        <svg viewBox="0 0 24 24">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </span>
+      <span class="nav-label">Dashboard</span>
     </a>
-    <a href="dashboard.html" class="nav-item" data-page="learn" aria-label="Learn">
+    <a href="dashboard.html" class="nav-item"
+       data-page="learn" aria-label="Learn">
       <span class="nav-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><path d="M9 18h6M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
-      </span><span class="nav-label">Learn</span>
+        <svg viewBox="0 0 24 24">
+          <path d="M9 18h6M10 22h4"/>
+          <path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/>
+        </svg>
+      </span>
+      <span class="nav-label">Learn</span>
     </a>
-    <a href="phase03-ideation.html" class="nav-item" data-page="projects" aria-label="Projects">
+    <a href="phase03-ideation.html" class="nav-item"
+       data-page="projects" aria-label="Projects">
       <span class="nav-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-      </span><span class="nav-label">Projects</span>
+        <svg viewBox="0 0 24 24">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+        </svg>
+      </span>
+      <span class="nav-label">Projects</span>
     </a>
-    <a href="progress.html" class="nav-item" data-page="progress.html" aria-label="Progress">
+    <a href="progress.html" class="nav-item"
+       data-page="progress.html" aria-label="Progress">
       <span class="nav-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><polyline points="14 11 17 14 22 9"/><path d="M22 12v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>
-      </span><span class="nav-label">Progress</span>
+        <svg viewBox="0 0 24 24">
+          <polyline points="14 11 17 14 22 9"/>
+          <path d="M22 12v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/>
+        </svg>
+      </span>
+      <span class="nav-label">Progress</span>
     </a>
-    <a href="profile.html" class="nav-item" data-page="profile.html" aria-label="Profile">
+    <a href="profile.html" class="nav-item"
+       data-page="profile.html" aria-label="Profile">
       <span class="nav-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-      </span><span class="nav-label">Profile</span>
+        <svg viewBox="0 0 24 24">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+      </span>
+      <span class="nav-label">Profile</span>
     </a>
   </nav>
 
-</div>
+</div><!-- /.app-container -->
 
+
+<!-- SCRIPTS — data.js → ui.js → phase-engine.js → inline -->
 <script src="js/data.js"></script>
 <script src="js/ui.js"></script>
 <script src="js/phase-engine.js"></script>
 
 <script>
   'use strict';
+
+  /* PhaseEngine.init() queues its own DOMContentLoaded internally.
+     Calling it here (synchronously) is correct — it registers the
+     handler before the DOM fires, so nothing is missed.            */
   PhaseEngine.init({
     phaseNum:  3,
       hasGate:   true,
@@ -467,32 +475,27 @@
   });
 
   document.addEventListener('DOMContentLoaded', function () {
+
     /* CTA → switch to Quiz tab */
-    var cta = document.getElementById('cta-btn');
-    if (cta) cta.addEventListener('click', function () {
-      var quizTab = document.querySelector('[data-tab="quiz"]');
+    var cta   = document.getElementById('cta-btn');
+    var arrow = document.getElementById('cta-arrow-btn');
+    function goToQuiz() {
+      var quizTab = document.querySelector('.tab-btn[data-tab="quiz"]');
       if (quizTab) quizTab.click();
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+    }
+    if (cta)   cta.addEventListener('click', goToQuiz);
+    if (arrow) arrow.addEventListener('click', goToQuiz);
 
     /* Hamburger */
     var hbtn = document.getElementById('hamburger-btn');
-    if (hbtn) hbtn.addEventListener('click', function () {
-      var exp = this.getAttribute('aria-expanded') === 'true';
-      this.setAttribute('aria-expanded', String(!exp));
-    });
-
-    /* Update templates tab — unlock after quiz pass */
-    function checkTemplatesLock() {
-      var passed = window.DT && window.DT.isQuizPassed && window.DT.isQuizPassed(3);
-      var tBtn = document.getElementById('tab-btn-templates');
-      if (tBtn && passed) {
-        tBtn.classList.remove('locked');
-        tBtn.textContent = '📋 Templates';
-      }
+    if (hbtn) {
+      hbtn.addEventListener('click', function () {
+        var exp = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', String(!exp));
+      });
     }
-    checkTemplatesLock();
-    document.addEventListener('quizPassed', checkTemplatesLock);
+
   });
 </script>
 

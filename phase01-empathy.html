@@ -1,326 +1,528 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  <meta name="description" content="Smart DT Project — Phase 01 Empathy" />
-  <title>Phase 01 Empathy — Smart DT Project</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="description" content="Smart DT Project — Phase 01: Empathy">
+  <title>Phase 01: Empathy — Smart DT Project</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
   <style>
-    :root{
-      --navy:#081B44;--navy-2:#0B2458;--teal:#14B8A6;--orange:#FF6A3D;--yellow:#F5B942;
-      --bg:#F7FAFC;--card:#FFFFFF;--line:#E6EDF5;--text:#263448;--muted:#6B7A90;--light:#9AA8B8;
-      --success-bg:#DDF8F2;--success-text:#087E72;--warn-bg:#FFF4D6;--warn-text:#9A6500;--danger:#DC2626;
-      --radius-lg:24px;--radius-md:18px;--radius-sm:12px;--shadow:0 14px 38px rgba(8,27,68,.08);
-      --header-h:72px;--nav-h:76px;--font:'Poppins',system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+    body { background-color: var(--color-bg); overflow-x: hidden; }
+
+    .hamburger-btn {
+      width:36px; height:36px; display:flex; align-items:center;
+      justify-content:center; border-radius:var(--radius-sm);
+      background-color:var(--color-bg); border:1px solid var(--color-border);
+      cursor:pointer; flex-shrink:0;
     }
-    *{box-sizing:border-box;margin:0;padding:0} body{font-family:var(--font);background:#EAF0F7;color:var(--text);min-height:100vh} button,input,textarea,select{font-family:inherit} a{color:inherit;text-decoration:none}
-    .app{max-width:430px;margin:0 auto;min-height:100vh;background:var(--bg);position:relative;overflow:hidden;box-shadow:0 0 0 1px rgba(8,27,68,.06)}
-    .header{height:var(--header-h);padding:14px 18px;display:flex;align-items:center;justify-content:space-between;background:rgba(247,250,252,.96);backdrop-filter:blur(10px);border-bottom:1px solid rgba(230,237,245,.85);position:sticky;top:0;z-index:30}.brand{display:flex;align-items:center;gap:10px;min-width:0}.brand img{width:42px;height:42px;object-fit:contain}.brand-text{font-size:13.5px;font-weight:800;color:var(--navy);line-height:1.05;letter-spacing:-.02em}.header-actions{display:flex;align-items:center;gap:9px}.phase-pill,.lang-btn,.menu-btn{height:40px;border:1px solid var(--line);background:#fff;border-radius:999px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(8,27,68,.06)}.phase-pill{padding:0 11px;font-size:12px;font-weight:900;color:var(--navy)}.phase-pill span:first-child{color:var(--orange)}.lang-btn{padding:0 10px;gap:6px;font-size:12px;font-weight:800;color:var(--navy);cursor:pointer}.lang-btn img{width:16px;height:16px}.menu-btn{width:40px;cursor:pointer}.menu-btn img{width:22px;height:22px}
-    .hero-shell{padding:12px 18px 0;position:relative;z-index:1}.hero-card{width:100%;min-height:205px;border-radius:28px;background:#fff;border:1px solid rgba(230,237,245,.95);box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;overflow:hidden;padding:12px}.hero-card img{width:100%;max-height:214px;object-fit:contain;display:block;border-radius:22px}
-    .content{padding:16px 18px calc(var(--nav-h) + 26px);position:relative;z-index:2}.phase-intro{background:linear-gradient(135deg,var(--navy),var(--navy-2));color:#fff;border-radius:var(--radius-lg);padding:18px;box-shadow:0 18px 36px rgba(8,27,68,.18);margin-bottom:14px;position:relative;overflow:hidden}.phase-intro:after{content:"";position:absolute;top:-40px;right:-30px;width:130px;height:130px;background:rgba(20,184,166,.22);border-radius:50%}.eyebrow{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.72);margin-bottom:6px}.intro-title{font-size:22px;font-weight:900;line-height:1.15;position:relative;z-index:1}.intro-title span{color:#67E5D8}.intro-text{font-size:12.5px;color:rgba(255,255,255,.82);line-height:1.6;margin-top:8px;position:relative;z-index:1}
-    .tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}.tab-btn{border:1px solid var(--line);background:#fff;color:var(--muted);border-radius:999px;padding:10px 8px;font-size:11px;font-weight:900;cursor:pointer;box-shadow:0 8px 18px rgba(8,27,68,.04);display:flex;align-items:center;justify-content:center;gap:5px}.tab-btn.active{background:var(--navy);color:#fff;border-color:var(--navy)}.tab-btn.locked{opacity:.72}.tab-btn img{width:14px;height:14px}.tab-panel{display:none}.tab-panel.active{display:block}.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow);padding:16px;margin-bottom:14px}.card-head{display:flex;align-items:flex-start;gap:12px;margin-bottom:11px}.icon-box{width:44px;height:44px;min-width:44px;border-radius:16px;display:grid;place-items:center;background:rgba(20,184,166,.12)}.icon-box.orange{background:rgba(255,106,61,.12)}.icon-box.yellow{background:rgba(245,185,66,.17)}.icon-box img{width:30px;height:30px}.card-title{font-size:15px;font-weight:900;color:var(--navy);line-height:1.25}.card-sub{font-size:11.5px;color:var(--muted);line-height:1.5;margin-top:3px}.mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.mini-card{border:1px solid var(--line);border-radius:18px;background:#fff;padding:12px;display:flex;gap:10px;align-items:flex-start}.mini-card img{width:28px;height:28px}.mini-card strong{display:block;font-size:12px;color:var(--navy);margin-bottom:2px}.mini-card span{font-size:11px;color:var(--muted);line-height:1.35}.list{list-style:none;display:grid;gap:9px}.list li{display:flex;gap:9px;font-size:12px;line-height:1.45;color:var(--text)}.dot{width:8px;height:8px;min-width:8px;border-radius:50%;background:var(--teal);margin-top:5px}.dot.orange{background:var(--orange)}.dot.yellow{background:var(--yellow)}
-    .quiz-card{padding:18px}.question-count{display:inline-flex;border-radius:999px;background:rgba(20,184,166,.1);color:var(--teal);font-size:10px;font-weight:900;padding:5px 9px;margin-bottom:9px}.question{font-size:15px;font-weight:900;color:var(--navy);line-height:1.35;margin-bottom:13px}.option{width:100%;border:1.5px solid var(--line);background:#fff;border-radius:16px;padding:12px;margin-bottom:9px;text-align:left;font-size:12.5px;color:var(--text);font-weight:700;cursor:pointer}.option.selected{border-color:var(--teal);box-shadow:0 0 0 4px rgba(20,184,166,.10)}.option.correct{border-color:var(--teal);background:#ECFDF5}.option.wrong{border-color:var(--danger);background:#FEF2F2}.btn-row{display:flex;gap:10px;margin-top:12px}.btn{border:0;border-radius:999px;background:var(--navy);color:#fff;font:900 13px var(--font);padding:13px 16px;display:inline-flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;box-shadow:0 12px 24px rgba(8,27,68,.16)}.btn.full{width:100%}.btn.secondary{background:#fff;color:var(--navy);border:1px solid var(--line);box-shadow:0 8px 18px rgba(8,27,68,.05)}.btn.teal{background:var(--teal)}.btn.orange{background:var(--orange)}.btn img{width:17px;height:17px;filter:brightness(0) invert(1)}.btn.secondary img{filter:none}.result-card{display:none;border-radius:18px;padding:14px;margin-top:13px;font-size:12px;line-height:1.55}.result-card.pass{display:block;background:var(--success-bg);color:var(--success-text);border:1px solid rgba(8,126,114,.18)}.result-card.fail{display:block;background:var(--warn-bg);color:var(--warn-text);border:1px solid rgba(154,101,0,.18)}
-    .templates-locked{background:#fff;border:1px dashed #C8D3E0;border-radius:var(--radius-lg);padding:18px;text-align:center;box-shadow:var(--shadow);margin-bottom:14px}.templates-locked img{width:38px;height:38px;margin-bottom:8px}.templates-locked strong{display:block;color:var(--navy);font-size:14px;margin-bottom:4px}.templates-locked p{font-size:12px;color:var(--muted);line-height:1.5}.template-section{display:none}.template-section.unlocked{display:block}.template-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow);padding:16px;margin-bottom:14px}.template-title-row{display:flex;align-items:center;gap:12px;margin-bottom:14px}.template-badge{width:42px;height:42px;min-width:42px;border-radius:15px;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:900}.template-title h3{font-size:15px;color:var(--navy);font-weight:900}.template-title p{font-size:11.5px;color:var(--muted);margin-top:2px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{margin-bottom:12px}.label{display:block;font-size:11.5px;font-weight:900;color:var(--navy);margin-bottom:6px}.input,.textarea,.select{width:100%;border:1.5px solid var(--line);background:#F9FAFB;border-radius:16px;padding:12px 13px;font:600 13px var(--font);color:var(--text);outline:0}.textarea{min-height:86px;resize:vertical;line-height:1.5}.input:focus,.textarea:focus,.select:focus{border-color:var(--teal);background:#fff;box-shadow:0 0 0 4px rgba(20,184,166,.10)}.helper{font-size:10.5px;color:var(--muted);line-height:1.45;margin-top:4px}.consent-card{display:flex;gap:10px;align-items:flex-start;border:1px solid rgba(255,106,61,.22);background:rgba(255,106,61,.07);border-radius:18px;padding:12px;margin-bottom:12px}.consent-card img{width:26px;height:26px}.consent-card strong{font-size:12px;color:var(--orange);display:block;margin-bottom:2px}.consent-card span{font-size:11px;color:var(--text);line-height:1.45}.record-panel{border:1px solid var(--line);border-radius:18px;background:#FAFCFE;padding:12px;margin-bottom:13px}.record-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}.record-title{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:900;color:var(--navy)}.record-title img{width:24px;height:24px}.timer{font-size:12px;font-weight:900;color:var(--orange);background:rgba(255,106,61,.1);padding:6px 10px;border-radius:999px}.record-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:10px}.audio-box{width:100%;margin-top:8px}audio{width:100%}.template-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px}.toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%) translateY(20px);max-width:390px;width:calc(100% - 36px);background:var(--navy);color:#fff;border-radius:16px;padding:12px 14px;font-size:12px;font-weight:700;text-align:center;opacity:0;pointer-events:none;transition:.2s;z-index:50}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-    .bottom-nav{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:100%;max-width:430px;height:var(--nav-h);background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);z-index:25;padding:8px 6px 10px;box-shadow:0 -10px 30px rgba(8,27,68,.08)}.nav-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:var(--light);font-size:10px;font-weight:900}.nav-item img{width:24px;height:24px;object-fit:contain}.nav-item.active{color:var(--teal)}.nav-item.active img{filter:none}.nav-label{line-height:1}
-    @media(max-width:370px){.header{padding-left:14px;padding-right:14px}.hero-shell,.content{padding-left:14px;padding-right:14px}.mini-grid,.form-grid{grid-template-columns:1fr}.template-actions{grid-template-columns:1fr}.record-actions{grid-template-columns:1fr}.phase-pill{display:none}.lang-btn{padding:0 8px}}
-
-    /* Empathy template sub-tabs + inline icon fixes */
-    .template-section{display:none}
-    .template-section.unlocked{display:block}
-    .template-subtabs{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-bottom:14px;position:sticky;top:72px;z-index:12;background:var(--bg);padding:8px 0 4px}
-    .template-subtab{border:1px solid var(--line);background:#fff;color:var(--muted);border-radius:999px;padding:9px 4px;font-size:11px;font-weight:900;cursor:pointer;box-shadow:0 8px 18px rgba(8,27,68,.04)}
-    .template-subtab.active{background:var(--navy);border-color:var(--navy);color:#fff}
-    .template-panel{display:none}.template-panel.active{display:block}
-    .template-icon-inline{width:44px;height:44px;min-width:44px;border-radius:16px;display:grid;place-items:center;background:rgba(20,184,166,.12);color:var(--teal)}
-    .template-icon-inline.orange{background:rgba(255,106,61,.12);color:var(--orange)}
-    .template-icon-inline.yellow{background:rgba(245,185,66,.17);color:#C58A00}
-    .template-icon-inline svg{width:25px;height:25px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-    .btn svg{width:18px;height:18px;min-width:18px;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
-    .btn.icon-only svg{margin:0}.btn.secondary svg{color:var(--navy)}
-    .tab-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
-    .templates-locked svg{width:38px;height:38px;margin-bottom:8px;stroke:var(--muted);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-    .consent-card svg{width:26px;height:26px;min-width:26px;color:var(--orange);stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-    .record-title svg{width:22px;height:22px;stroke:var(--teal);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-    .checklist{display:grid;gap:8px;margin-top:8px}.check-item{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--text);line-height:1.45}.check-item input{margin-top:2px;accent-color:var(--teal)}
-    .empathy-map-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.empathy-map-grid .textarea{min-height:110px}
-    .template-actions{position:relative;z-index:2}
-
-    .option{display:flex!important;align-items:flex-start!important;gap:12px!important}.option-label{width:24px;min-width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:#F4F7FA;color:var(--navy);font-size:11.5px;font-weight:900;line-height:1;margin-top:1px}.option-text{flex:1;line-height:1.45}.option.selected .option-label{background:rgba(20,184,166,.12);color:var(--teal)}.btn-row.quiz-nav{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px}.quiz-nav-spacer{min-width:24px}
-
+    .hamburger-btn svg {
+      width:20px; height:20px; stroke:var(--color-navy); fill:none;
+      stroke-width:2; stroke-linecap:round;
+    }
+    .phase-header {
+      position:relative; padding:calc(var(--header-height) + 16px) 20px 0;
+      overflow:hidden; min-height:240px;
+    }
+    .phase-content {
+      padding:16px 20px calc(var(--nav-height) + 24px);
+      position:relative; z-index:2;
+    }
+    .back-link {
+      display:inline-flex; align-items:center; gap:6px; font-size:13px;
+      font-weight:500; color:var(--color-text-mid); text-decoration:none;
+      margin-bottom:8px; position:relative; z-index:2;
+    }
+    .back-link:hover { color:var(--color-navy); }
+    .back-link svg {
+      width:16px; height:16px; stroke:currentColor; fill:none;
+      stroke-width:2; stroke-linecap:round; stroke-linejoin:round;
+    }
+    .nav-icon svg {
+      width:24px; height:24px; fill:none; stroke:currentColor;
+      stroke-width:2; stroke-linecap:round; stroke-linejoin:round;
+    }
   </style>
 </head>
-<body>
-  <div class="app">
-    <header class="header">
-      <a class="brand" href="dashboard.html" aria-label="Smart DT Project home">
-        <img src="assets/brand/brand-logo.png" alt="Smart DT Project brand logo" />
-        <span class="brand-text">Smart DT<br>Project</span>
-      </a>
-      <div class="header-actions">
-        <div class="phase-pill" aria-label="Phase 01 of 05"><span>01</span>&nbsp;/&nbsp;<span>05</span></div>
-        <button class="lang-btn" type="button" id="languageBtn"><img src="assets/icons/ui/globe.svg" alt="" />EN<img src="assets/icons/ui/chevron-down.svg" alt="" style="width:10px;height:10px" /></button>
-        <button class="menu-btn" type="button" id="menuBtn" aria-label="Open menu"><img src="assets/icons/ui/menu.svg" alt="" /></button>
+
+<body data-dots="true">
+<div class="app-container">
+
+  <img src="assets/shared/pink-blob.svg"
+       class="pink-blob" alt="" aria-hidden="true"
+       onerror="this.style.display='none'">
+
+  <!-- HEADER -->
+  <header class="header" role="banner">
+    <a href="dashboard.html" class="header-logo"
+       aria-label="Smart DT Project — back to dashboard">
+      <img src="assets/brand/logo-icon.svg" class="header-logo-icon"
+           alt="Smart DT Project logo" onerror="this.style.display='none'">
+      <span class="header-logo-text">Smart DT<br>Project</span>
+    </a>
+    <div class="header-right">
+      <div class="phase-counter" aria-label="Phase 01 of 5">
+        <span class="phase-counter-current">01</span>
+        <span class="phase-counter-sep"> / </span>
+        <span class="phase-counter-total">05</span>
       </div>
-    </header>
+      <button class="hamburger-btn" id="hamburger-btn"
+              aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <line x1="3" y1="6"  x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </header>
 
-    <section class="hero-shell" aria-label="Empathy phase visual header">
-      <div class="hero-card"><img src="assets/heroes/empathy-hero.svg" alt="Smart DT Project Empathy phase header" /></div>
-    </section>
+  <!-- PHASE HEADER -->
+  <section class="phase-header" aria-label="Empathy phase introduction">
+    <div class="hero-wrap" aria-hidden="true">
+      <img src="assets/heroes/empathy-hero.svg" class="hero-img"
+           alt="Student pointing at a phone interface" onerror="this.style.display='none'">
+    </div>
+    <div class="page-header-text">
+      <a href="dashboard.html" class="back-link" aria-label="Back to dashboard">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Dashboard
+      </a>
+      <div class="phase-badge" aria-hidden="true">01</div>
+      <div class="phase-title-area">
+        <p class="phase-title-line"><span class="word-accent">Empathy</span></p>
+        <p class="phase-title-line"><span class="word-phase">Phase</span></p>
+        <p class="phase-description">Understand people deeply to discover real needs before we solve.</p>
+        <div class="orange-underline" aria-hidden="true"></div>
+        <p class="phase-tagline">Smarter Learning.<br>Better Solutions.</p>
+      </div>
+    </div>
+  </section>
 
-    <main class="content">
-      <section class="phase-intro">
-        <p class="eyebrow">Phase 01 · Empathy</p>
-        <h1 class="intro-title">Understand users before you <span>solve.</span></h1>
-        <p class="intro-text">In this phase, your team interviews, observes, listens and documents real user needs before moving to Define.</p>
-      </section>
+  <!-- MAIN CONTENT -->
+  <main class="phase-content" role="main">
 
-      <nav class="tabs" aria-label="Empathy phase tabs">
-        <button class="tab-btn active" data-tab="info" type="button">Quick Info</button>
-        <button class="tab-btn" data-tab="quiz" type="button"><img src="assets/icons/ui/quiz.svg" alt="" />Quiz</button>
-        <button class="tab-btn locked" data-tab="templates" type="button" id="templatesTab"><img src="assets/icons/ui/lock.svg" alt="" />Templates</button>
-      </nav>
+    <!-- TAB BAR -->
+    <div class="tab-bar" role="tablist" aria-label="Phase navigation">
+      <button class="tab-btn active" data-tab="info"
+              id="tab-btn-info" role="tab"
+              aria-selected="true" aria-controls="tab-info">
+        Quick Info
+      </button>
+      <button class="tab-btn" data-tab="quiz"
+              id="tab-btn-quiz" role="tab"
+              aria-selected="false" aria-controls="tab-quiz">
+        Quiz
+      </button>
+      <a class="tab-btn" id="tab-btn-templates"
+         href="phase01-templates.html"
+         aria-label="Open Phase 01 Templates"
+         style="text-decoration:none;display:flex;align-items:center;justify-content:center;gap:6px">
+        📋 Templates
+      </a>
+    </div>
+    
 
-      <section class="tab-panel active" id="tab-info">
-        <article class="card">
-          <div class="card-head"><div class="icon-box"><img src="assets/icons/features/empathy-overview.svg" alt="" /></div><div><h2 class="card-title">What is Empathy?</h2><p class="card-sub">Empathy helps you understand real users — their feelings, struggles, routines and needs — before deciding on a solution.</p></div></div>
-          <div class="mini-grid">
-            <div class="mini-card"><img src="assets/icons/features/listen.svg" alt="" /><div><strong>Listen actively</strong><span>Let users explain their real experience.</span></div></div>
-            <div class="mini-card"><img src="assets/icons/features/observe.svg" alt="" /><div><strong>Observe closely</strong><span>Watch what users do, not only what they say.</span></div></div>
-            <div class="mini-card"><img src="assets/icons/features/understand.svg" alt="" /><div><strong>Understand deeply</strong><span>Capture pains, gains, emotions and needs.</span></div></div>
-            <div class="mini-card"><img src="assets/icons/features/goal.svg" alt="" /><div><strong>Goal</strong><span>Interview at least 3 real target users.</span></div></div>
-          </div>
-        </article>
 
-        <article class="card">
-          <div class="card-head"><div class="icon-box orange"><img src="assets/icons/features/interview-users.svg" alt="" /></div><div><h2 class="card-title">What students need to do</h2><p class="card-sub">Complete the full empathy evidence trail.</p></div></div>
-          <ul class="list">
-            <li><span class="dot"></span><span>Prepare interview questions using T01 Interview Guide.</span></li>
-            <li><span class="dot"></span><span>Conduct interviews with at least 3 real target users.</span></li>
-            <li><span class="dot"></span><span>Record and transcribe interviews with permission.</span></li>
-            <li><span class="dot"></span><span>Complete Empathy Map, Persona and User Needs Summary.</span></li>
-          </ul>
-        </article>
+    <!-- TAB 1: QUICK INFO -->
+    <div class="tab-panel" id="tab-info"
+         role="tabpanel" aria-labelledby="tab-btn-info">
 
-        <article class="card">
-          <div class="card-head"><div class="icon-box yellow"><img src="assets/icons/features/mistake.svg" alt="" /></div><div><h2 class="card-title">Common mistakes to avoid</h2><p class="card-sub">Stay objective and evidence-based.</p></div></div>
-          <ul class="list">
-            <li><span class="dot orange"></span><span>Do not ask leading questions such as “Don’t you think this is a problem?”</span></li>
-            <li><span class="dot orange"></span><span>Do not interview only friends. Find real target users.</span></li>
-            <li><span class="dot orange"></span><span>Do not assume what users feel without evidence.</span></li>
-            <li><span class="dot orange"></span><span>Do not skip observation. Watch what users actually do.</span></li>
-          </ul>
-        </article>
+      <div class="phase-content-grid">
 
-        <button class="btn full" type="button" data-go-quiz>Start Quick Check Quiz <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></button>
-      </section>
-
-      <section class="tab-panel" id="tab-quiz">
-        <article class="card quiz-card">
-          <span class="question-count" id="questionCount">Question 1 of 5</span>
-          <p class="question" id="questionText"></p>
-          <div id="options"></div>
-          <div class="btn-row quiz-nav">
-            <button class="btn secondary" type="button" id="prevQuestion">Back</button>
-            <div class="quiz-nav-spacer" aria-hidden="true"></div>
-            <button class="btn" type="button" id="nextQuestion">Next</button>
-          </div>
-          <div class="result-card" id="quizResult"></div>
-        </article>
-      </section>
-
-      <section class="tab-panel" id="tab-templates">
-        <div class="templates-locked" id="lockedBox">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="11" width="18" height="10" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-          <strong>Templates are locked</strong>
-          <p>Pass the Empathy Quick Check Quiz with at least 3 out of 5 to unlock T00–T04.</p>
-        </div>
-
-        <div class="template-section" id="templatesArea">
-          <div class="template-subtabs" role="tablist" aria-label="Empathy template navigation">
-            <button class="template-subtab active" type="button" data-template="t00">T00</button>
-            <button class="template-subtab" type="button" data-template="t01">T01</button>
-            <button class="template-subtab" type="button" data-template="t02">T02</button>
-            <button class="template-subtab" type="button" data-template="t03">T03</button>
-            <button class="template-subtab" type="button" data-template="t04">T04</button>
-          </div>
-
-          <article class="template-card template-panel active" id="template-t00">
-            <div class="template-title-row">
-              <div class="template-badge">T00</div>
-              <div class="template-icon-inline orange"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg></div>
-              <div class="template-title"><h3>Interview Recording + Transcript</h3><p>Record or upload interview audio, then save the transcript as evidence.</p></div>
+        <!-- Carousel -->
+        <div>
+          <div class="carousel-wrap" id="phase-carousel"
+               aria-label="Empathy phase information slides">
+            <div class="carousel-track" id="carousel-track">
+              
+            <div class="carousel-slide"
+                 role="group" aria-roledescription="slide"
+                 aria-label="Slide 1 of 4: Empathy is the first step">
+              <div class="carousel-slide-illustration" aria-hidden="true">
+                <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"
+                     style="display:block;width:80px;height:80px">
+                  <circle cx="40" cy="22" r="12" fill="#14B8A6" opacity=".2"/><path d="M28 50c0-6.6 5.4-12 12-12s12 5.4 12 12" fill="none" stroke="#14B8A6" stroke-width="2"/><path d="M40 68c0 0-14-9-14-18a8 8 0 0 1 14-5.3A8 8 0 0 1 54 50c0 9-14 18-14 18z" fill="#FF6A3D" opacity=".7"/>
+                </svg>
+              </div>
+              <div class="carousel-slide-content">
+                <p class="carousel-slide-title">Empathy is the first step</p>
+                <p class="carousel-slide-text">Listen, observe and understand your users' world before thinking about solutions.</p>
+              </div>
             </div>
-            <div class="consent-card"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg><div><strong>Consent Reminder</strong><span>Always ask permission before recording. Avoid sensitive personal information and use interviewee codes.</span></div></div>
-            <div class="form-grid"><div class="field"><label class="label">Interviewee Code</label><input class="input" id="t00_code" placeholder="e.g. U01" /></div><div class="field"><label class="label">Recording Date</label><input class="input" id="t00_date" type="date" /></div></div>
-            <section class="record-panel" aria-label="Interview recording and transcript">
-              <div class="record-top"><div class="record-title"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path></svg>Recording Tools</div><div class="timer" id="timer">00:00</div></div>
-              <div class="record-actions"><button class="btn orange" type="button" id="startRec"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="6"></circle></svg>Start Recording</button><button class="btn secondary" type="button" id="stopRec" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="1"></rect></svg>Stop</button></div>
-              <div class="field"><label class="label">Audio Preview</label><audio id="audioPreview" controls class="audio-box"></audio><p class="helper" id="recordHelp">Recording works in browsers that support microphone access.</p></div>
-              <div class="field"><label class="label">Upload Audio File</label><input class="input" id="audioUpload" type="file" accept="audio/*" /></div>
-              <div class="field"><label class="label">Transcript</label><textarea class="textarea" id="t00_transcript" style="min-height:150px" placeholder="Paste or type the interview transcript here..."></textarea></div>
-              <div class="btn-row"><button class="btn secondary" type="button" id="autoTranscribe"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h5"></path><path d="M16 3h5v5"></path><path d="m21 3-7 7"></path></svg>Auto Transcribe</button><button class="btn teal" type="button" id="saveTranscript"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>Save Transcript</button></div>
-            </section>
-          </article>
-
-          <article class="template-card template-panel" id="template-t01">
-            <div class="template-title-row"><div class="template-badge">T01</div><div class="template-icon-inline orange"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="8" y1="13" x2="16" y2="13"></line><line x1="8" y1="17" x2="13" y2="17"></line></svg></div><div class="template-title"><h3>Interview Guide</h3><p>Plan your interview, ask open questions, observe behaviour and capture insights.</p></div></div>
-            <div class="form-grid"><div class="field"><label class="label">Interview Date</label><input class="input" id="t01_date" type="date" /></div><div class="field"><label class="label">Location / Platform</label><input class="input" id="t01_location" placeholder="e.g. Canteen / Google Meet" /></div></div>
-            <div class="form-grid"><div class="field"><label class="label">Interviewee Code</label><input class="input" id="t01_code" placeholder="e.g. U01" /><p class="helper">Use code, not real name.</p></div><div class="field"><label class="label">User Type</label><input class="input" id="t01_user_type" placeholder="e.g. Diploma student / Lecturer" /></div></div>
-            <div class="field"><label class="label">Warm-up Questions</label><textarea class="textarea" id="t01_warmup" placeholder="Write 2–3 warm-up questions..."></textarea></div>
-            <div class="field"><label class="label">5 Main Interview Questions</label><textarea class="textarea" id="t01_questions" placeholder="Write your 5 main empathy questions..."></textarea></div>
-            <div class="field"><label class="label">Probing Starters</label><textarea class="textarea" id="t01_probing" placeholder="e.g. Can you tell me more? Why was that difficult? What happened next?"></textarea></div>
-            <div class="field"><label class="label">Observation Notes</label><textarea class="textarea" id="t01_observe" placeholder="What did the user do, show, hesitate, repeat or avoid?"></textarea></div>
-            <div class="field"><label class="label">3 Key Insights</label><textarea class="textarea" id="t01_insights" placeholder="1. ...&#10;2. ...&#10;3. ..."></textarea></div>
-          </article>
-
-          <article class="template-card template-panel" id="template-t02">
-            <div class="template-title-row"><div class="template-badge">T02</div><div class="template-icon-inline"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"></rect><line x1="12" y1="3" x2="12" y2="21"></line><line x1="3" y1="12" x2="21" y2="12"></line></svg></div><div class="template-title"><h3>Empathy Map</h3><p>Map what the user says, thinks, does and feels, then identify pains and gains.</p></div></div>
-            <div class="field"><label class="label">User Identity / Interviewee Code</label><input class="input" id="t02_user" placeholder="e.g. U01 / Diploma student" /></div>
-            <div class="empathy-map-grid"><div class="field"><label class="label">Says</label><textarea class="textarea" id="t02_says" placeholder="Direct quotes or repeated phrases..."></textarea></div><div class="field"><label class="label">Thinks</label><textarea class="textarea" id="t02_thinks" placeholder="What might the user be thinking?"></textarea></div><div class="field"><label class="label">Does</label><textarea class="textarea" id="t02_does" placeholder="Observed actions and behaviours..."></textarea></div><div class="field"><label class="label">Feels</label><textarea class="textarea" id="t02_feels" placeholder="Emotions, frustrations, hopes..."></textarea></div></div>
-            <div class="form-grid"><div class="field"><label class="label">Pains</label><textarea class="textarea" id="t02_pains" placeholder="Challenges and frustrations..."></textarea></div><div class="field"><label class="label">Gains</label><textarea class="textarea" id="t02_gains" placeholder="Desired outcomes or benefits..."></textarea></div></div>
-          </article>
-
-          <article class="template-card template-panel" id="template-t03">
-            <div class="template-title-row"><div class="template-badge">T03</div><div class="template-icon-inline yellow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21a8 8 0 0 0-16 0"></path><circle cx="12" cy="7" r="4"></circle></svg></div><div class="template-title"><h3>Persona Template</h3><p>Build one persona from research patterns, not assumptions.</p></div></div>
-            <div class="form-grid"><div class="field"><label class="label">Persona Name</label><input class="input" id="t03_name" placeholder="e.g. Busy Bina" /></div><div class="field"><label class="label">Age</label><input class="input" id="t03_age" placeholder="e.g. 21" /></div></div>
-            <div class="form-grid"><div class="field"><label class="label">Tech Comfort</label><select class="select" id="t03_tech"><option value="">Choose level</option><option>Low</option><option>Medium</option><option>High</option></select></div><div class="field"><label class="label">Programme / Role</label><input class="input" id="t03_role" placeholder="e.g. Diploma student" /></div></div>
-            <div class="field"><label class="label">Persona Quote</label><input class="input" id="t03_quote" placeholder="Short quote that represents the user" /></div>
-            <div class="field"><label class="label">Background</label><textarea class="textarea" id="t03_background" placeholder="Brief user background..."></textarea></div>
-            <div class="form-grid"><div class="field"><label class="label">Goals (x3)</label><textarea class="textarea" id="t03_goals" placeholder="1. ...&#10;2. ...&#10;3. ..."></textarea></div><div class="field"><label class="label">Pain Points (x3)</label><textarea class="textarea" id="t03_pains" placeholder="1. ...&#10;2. ...&#10;3. ..."></textarea></div></div>
-            <div class="field"><label class="label">Current Workaround</label><textarea class="textarea" id="t03_workaround" placeholder="What does the user do now to cope with the problem?"></textarea></div>
-            <div class="field"><label class="label">Solution Need</label><textarea class="textarea" id="t03_need" placeholder="What kind of support does this persona need?"></textarea></div>
-          </article>
-
-          <article class="template-card template-panel" id="template-t04">
-            <div class="template-title-row"><div class="template-badge">T04</div><div class="template-icon-inline"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg></div><div class="template-title"><h3>User Needs Summary</h3><p>Summarise research patterns and evidence before moving to Define.</p></div></div>
-            <div class="form-grid"><div class="field"><label class="label">Interview Count</label><input class="input" id="t04_count" type="number" min="1" placeholder="e.g. 3" /></div><div class="field"><label class="label">Research Period</label><input class="input" id="t04_period" placeholder="e.g. 20–24 May 2026" /></div></div>
-            <div class="field"><label class="label">Context</label><textarea class="textarea" id="t04_context" placeholder="Where and with whom did your team collect data?"></textarea></div>
-            <div class="field"><label class="label">Patterns Found (x3)</label><textarea class="textarea" id="t04_patterns" placeholder="List 3 repeated patterns from your research..."></textarea></div>
-            <div class="field"><label class="label">Top User Needs with Evidence (x3)</label><textarea class="textarea" id="t04_needs" placeholder="Need 1 + evidence&#10;Need 2 + evidence&#10;Need 3 + evidence"></textarea></div>
-            <div class="field"><label class="label">Surprising Findings (x2)</label><textarea class="textarea" id="t04_surprises" placeholder="What surprised your team?"></textarea></div>
-            <div class="checklist" aria-label="Completion checklist"><label class="check-item"><input type="checkbox" id="t04_check_interviews" /> At least 3 real target users interviewed.</label><label class="check-item"><input type="checkbox" id="t04_check_map" /> Empathy Map completed using evidence.</label><label class="check-item"><input type="checkbox" id="t04_check_persona" /> Persona created from combined research.</label><label class="check-item"><input type="checkbox" id="t04_check_ready" /> Team is ready to move to Define.</label></div>
-            <div class="template-actions"><button class="btn secondary" type="button" id="saveDraft"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>Save</button><button class="btn secondary" type="button" id="printPage"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>Print</button><button class="btn" type="button" id="submitPhase"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Submit</button></div>
-          </article>
+            <div class="carousel-slide"
+                 role="group" aria-roledescription="slide"
+                 aria-label="Slide 2 of 4: Why empathy matters"
+                 aria-hidden="true">
+              <div class="carousel-slide-illustration" aria-hidden="true">
+                <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"
+                     style="display:block;width:80px;height:80px">
+                  <circle cx="40" cy="40" r="28" fill="#14B8A6" opacity=".12"/><path d="M50 32a12 12 0 1 0-12 20v8" stroke="#14B8A6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="38" cy="62" r="2" fill="#14B8A6"/>
+                </svg>
+              </div>
+              <div class="carousel-slide-content">
+                <p class="carousel-slide-title">Why empathy matters</p>
+                <p class="carousel-slide-text">Without understanding real user feelings, you risk building solutions nobody needs.</p>
+              </div>
+            </div>
+            <div class="carousel-slide"
+                 role="group" aria-roledescription="slide"
+                 aria-label="Slide 3 of 4: Your empathy tools"
+                 aria-hidden="true">
+              <div class="carousel-slide-illustration" aria-hidden="true">
+                <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"
+                     style="display:block;width:80px;height:80px">
+                  <rect x="10" y="10" width="60" height="60" rx="8" fill="#F5A623" opacity=".15"/><line x1="40" y1="10" x2="40" y2="70" stroke="#F5A623" stroke-width="1.5" stroke-dasharray="3 2"/><line x1="10" y1="40" x2="70" y2="40" stroke="#F5A623" stroke-width="1.5" stroke-dasharray="3 2"/>
+                </svg>
+              </div>
+              <div class="carousel-slide-content">
+                <p class="carousel-slide-title">Your empathy tools</p>
+                <p class="carousel-slide-text">Use the Empathy Map to capture what users Say, Think, Do and Feel.</p>
+              </div>
+            </div>
+            <div class="carousel-slide"
+                 role="group" aria-roledescription="slide"
+                 aria-label="Slide 4 of 4: Your goal this phase"
+                 aria-hidden="true">
+              <div class="carousel-slide-illustration" aria-hidden="true">
+                <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"
+                     style="display:block;width:80px;height:80px">
+                  <circle cx="40" cy="40" r="28" fill="#FF6A3D" opacity=".12"/><circle cx="40" cy="40" r="18" stroke="#FF6A3D" stroke-width="2" fill="none"/><circle cx="40" cy="40" r="8" fill="#FF6A3D" opacity=".5"/><circle cx="40" cy="40" r="3" fill="#FF6A3D"/>
+                </svg>
+              </div>
+              <div class="carousel-slide-content">
+                <p class="carousel-slide-title">Your goal this phase</p>
+                <p class="carousel-slide-text">Interview at least 3 real users and complete all 4 Empathy templates.</p>
+              </div>
+            </div>
+            </div>
+          </div>
+          <div class="dot-row" id="carousel-dots"
+               role="tablist" aria-label="Slide navigation">
+            <div class="dot active" role="tab" aria-selected="true"  aria-label="Slide 1"></div>
+            <div class="dot"        role="tab" aria-selected="false" aria-label="Slide 2"></div>
+            <div class="dot"        role="tab" aria-selected="false" aria-label="Slide 3"></div>
+            <div class="dot"        role="tab" aria-selected="false" aria-label="Slide 4"></div>
+          </div>
         </div>
-      </section>
-    </main>
 
-    <nav class="bottom-nav" aria-label="Main navigation">
-      <a href="dashboard.html" class="nav-item"><img src="assets/icons/nav/dashboard.svg" alt="" /><span class="nav-label">Dashboard</span></a>
-      <a href="phase01-empathy.html" class="nav-item active"><img src="assets/icons/nav/learn.svg" alt="" /><span class="nav-label">Learn</span></a>
-      <a href="phase01-empathy.html" class="nav-item"><img src="assets/icons/nav/projects.svg" alt="" /><span class="nav-label">Projects</span></a>
-      <a href="progress.html" class="nav-item"><img src="assets/icons/nav/progress.svg" alt="" /><span class="nav-label">Progress</span></a>
-      <a href="profile.html" class="nav-item"><img src="assets/icons/nav/profile.svg" alt="" /><span class="nav-label">Profile</span></a>
-    </nav>
+        <!-- Feature rows -->
+        <div class="feature-list" aria-label="Empathy phase key skills">
+          
+        <div class="feature-row">
+          <div class="feature-icon-box teal" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 8a6 6 0 1 1 12 0c0 3-2 4-3 6H9c-1-2-3-3-3-6z"/><path d="M9 20a3 3 0 0 0 6 0"/><line x1="12" y1="14" x2="12" y2="20"/>
+            </svg>
+          </div>
+          <div class="feature-text">
+            <p class="feature-text-title">Listen actively</p>
+            <p class="feature-text-desc">Hear what users say.</p>
+          </div>
+        </div>
+        <div class="feature-row">
+          <div class="feature-icon-box pink-red" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+            </svg>
+          </div>
+          <div class="feature-text">
+            <p class="feature-text-title">Observe closely</p>
+            <p class="feature-text-desc">See what users do.</p>
+          </div>
+        </div>
+        <div class="feature-row">
+          <div class="feature-icon-box yellow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.781.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </div>
+          <div class="feature-text">
+            <p class="feature-text-title">Understand deeply</p>
+            <p class="feature-text-desc">Feel what users feel.</p>
+          </div>
+        </div>
+        </div>
 
-    <div class="toast" id="toast">Saved.</div>
-  </div>
+      </div><!-- /.phase-content-grid -->
 
-  <script>
-    const $ = (id) => document.getElementById(id);
-    const toast = $('toast');
-    const showToast = (msg) => { toast.textContent = msg; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 2300); };
+      <!-- CTA -->
+      <div class="cta-row">
+        <button class="btn-primary" id="cta-btn"
+                aria-label="Let's Get Started with Phase 01 Empathy">
+          Let's Get Started
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5"
+               stroke-linecap="round" stroke-linejoin="round"
+               aria-hidden="true" style="flex-shrink:0">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </button>
+        <button class="btn-arrow-circle" id="cta-arrow-btn"
+                aria-label="Let's Get Started">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2.5" stroke-linecap="round"
+               stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </button>
+      </div>
 
-    const quiz = [
-      { q:'What is the MAIN goal of the Empathy phase?', options:['To understand users real feelings, needs and experiences','To build the final product immediately','To choose the cheapest solution','To prepare a presentation only'], answer:0 },
-      { q:'Should you already know the solution before interviewing users?', options:['True — the interview should confirm your idea','False — keep an open mind and discover','True — users only need to agree','False — because interviews are optional'], answer:1 },
-      { q:'Which is the BEST interview question for Empathy?', options:['Don’t you think the canteen system is bad?','Would you use our app if we build it?','Tell me about your experience using the canteen during peak hours.','Do you like my solution?'], answer:2 },
-      { q:'Is interviewing one person enough for the Empathy phase?', options:['True — one user is enough','False — interview at least 3 users to find patterns','True — if the user is your friend','False — no interviews are needed'], answer:1 },
-      { q:'Which tool maps what a user SAYS, THINKS, DOES and FEELS?', options:['Idea Selection Matrix','Empathy Map','Prototype Version Log','Final Reflection'], answer:1 }
-    ];
-    let current = 0, selected = Array(quiz.length).fill(null), quizPassed = localStorage.getItem('df_quiz_phase01_passed') === 'true';
+      <!-- Progress line -->
+      <div class="phase-progress-line" aria-label="Phase progress indicator">
+        
+      <div class="line-segment done" aria-label="Phase 1"></div>
+      <div class="line-segment" aria-label="Phase 2"></div>
+      <div class="line-segment" aria-label="Phase 3"></div>
+      <div class="line-segment" aria-label="Phase 4"></div>
+      <div class="line-segment" aria-label="Phase 5"></div>
+      </div>
 
-    function setTab(tab){
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
-      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-      $('tab-' + tab).classList.add('active');
-      if(tab === 'templates') updateTemplateLock();
+    </div><!-- /#tab-info -->
+
+
+    <!-- TAB 2: QUIZ -->
+    <div class="tab-panel hidden" id="tab-quiz"
+         role="tabpanel" aria-labelledby="tab-btn-quiz">
+      <!--
+        phase-engine.js renders the quiz here.
+        initQuiz(01) builds one question at a time inside this div.
+      -->
+      <div id="quiz-container"></div>
+    </div><!-- /#tab-quiz -->
+
+
+    <!-- TAB 3: TEMPLATES -->
+    <div class="tab-panel hidden" id="tab-templates"
+         role="tabpanel" aria-labelledby="tab-btn-templates">
+      <!--
+        Auto-saved every 500ms by phase-engine.js initTemplateForm().
+        namespace = "df_p01_" — all localStorage keys prefixed here.
+      -->
+      <form id="template-form" novalidate>
+        
+          <section class="template-section" aria-label="T01 Interview Guide">
+            <div class="template-section-header">
+              <span class="template-badge">T01</span>
+              <h3 class="template-section-title">Interview Guide</h3>
+            </div>
+            
+            <label class="form-label" for="t01_date">Interview Date</label>
+            <input id="t01_date" name="t01_date" type="date" class="form-input">
+            <label class="form-label" for="t01_location">Location / Method</label>
+            <input id="t01_location" name="t01_location" type="text" class="form-input"
+                   placeholder="e.g. Canteen, Google Meet">
+            <label class="form-label" for="t01_participant">Participant Name / Code</label>
+            <input id="t01_participant" name="t01_participant" type="text" class="form-input"
+                   placeholder="e.g. User A">
+            <label class="form-label" for="t01_q1">Q1 — Describe your typical experience with this problem.</label>
+            <textarea id="t01_q1" name="t01_q1" class="form-input"
+                      rows="3" placeholder=""></textarea>
+            <label class="form-label" for="t01_q2">Q2 — How does it make you feel when this happens?</label>
+            <textarea id="t01_q2" name="t01_q2" class="form-input"
+                      rows="3" placeholder=""></textarea>
+            <label class="form-label" for="t01_q3">Q3 — What have you tried to solve it?</label>
+            <textarea id="t01_q3" name="t01_q3" class="form-input"
+                      rows="3" placeholder=""></textarea>
+            <label class="form-label" for="t01_notes">Additional Notes</label>
+            <textarea id="t01_notes" name="t01_notes" class="form-input"
+                      rows="3" placeholder=""></textarea>
+          </section>
+          <section class="template-section" aria-label="T02 Empathy Map">
+            <div class="template-section-header">
+              <span class="template-badge">T02</span>
+              <h3 class="template-section-title">Empathy Map</h3>
+            </div>
+            
+            <label class="form-label" for="t02_says">SAYS — Quotes and key phrases from the user</label>
+            <textarea id="t02_says" name="t02_says" class="form-input"
+                      rows="3" placeholder=""></textarea>
+            <label class="form-label" for="t02_thinks">THINKS — What they might be thinking but not saying</label>
+            <textarea id="t02_thinks" name="t02_thinks" class="form-input"
+                      rows="3" placeholder=""></textarea>
+            <label class="form-label" for="t02_does">DOES — Actions and behaviours observed</label>
+            <textarea id="t02_does" name="t02_does" class="form-input"
+                      rows="3" placeholder=""></textarea>
+            <label class="form-label" for="t02_feels">FEELS — Emotions and feelings expressed or implied</label>
+            <textarea id="t02_feels" name="t02_feels" class="form-input"
+                      rows="3" placeholder=""></textarea>
+          </section>
+          <section class="template-section" aria-label="T03 User Persona">
+            <div class="template-section-header">
+              <span class="template-badge">T03</span>
+              <h3 class="template-section-title">User Persona</h3>
+            </div>
+            
+            <label class="form-label" for="t03_name">Persona Name</label>
+            <input id="t03_name" name="t03_name" type="text" class="form-input"
+                   placeholder="e.g. Aina the Busy Student">
+            <label class="form-label" for="t03_age">Age / Background</label>
+            <input id="t03_age" name="t03_age" type="text" class="form-input"
+                   placeholder="e.g. 20, Diploma Semester 3">
+            <label class="form-label" for="t03_goals">Goals — What does this person want to achieve?</label>
+            <textarea id="t03_goals" name="t03_goals" class="form-input"
+                      rows="3" placeholder=""></textarea>
+            <label class="form-label" for="t03_pains">Pain Points — What frustrates or blocks them?</label>
+            <textarea id="t03_pains" name="t03_pains" class="form-input"
+                      rows="3" placeholder=""></textarea>
+            <label class="form-label" for="t03_quote">Key Quote — One sentence that captures their situation</label>
+            <textarea id="t03_quote" name="t03_quote" class="form-input"
+                      rows="3" placeholder=""></textarea>
+          </section>
+          <section class="template-section" aria-label="T04 User Needs Summary">
+            <div class="template-section-header">
+              <span class="template-badge">T04</span>
+              <h3 class="template-section-title">User Needs Summary</h3>
+            </div>
+            
+            <label class="form-label" for="t04_needs">Core User Needs — List 3–5 real needs discovered</label>
+            <textarea id="t04_needs" name="t04_needs" class="form-input"
+                      rows="3" placeholder=""></textarea>
+            <label class="form-label" for="t04_insights">Key Insights — What surprised you most?</label>
+            <textarea id="t04_insights" name="t04_insights" class="form-input"
+                      rows="3" placeholder=""></textarea>
+            <label class="form-label" for="t04_hmw">First How Might We… Question</label>
+            <textarea id="t04_hmw" name="t04_hmw" class="form-input"
+                      rows="3" placeholder="How might we help [user] to…"></textarea>
+          </section>
+
+        <!-- Submit phase button -->
+        <div style="margin-top:24px">
+          <button type="button" class="btn-primary"
+                  onclick="PhaseEngine.submitPhase(1, '', ['df_p01_'])"
+                  aria-label="Submit Phase 01 Empathy">
+            Submit Phase 01
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.5"
+                 stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true" style="flex-shrink:0">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </button>
+        </div>
+
+      </form><!-- /#template-form -->
+
+      
+
+    </div><!-- /#tab-templates -->
+
+  </main><!-- /.phase-content -->
+
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav" role="navigation" aria-label="Main navigation">
+    <a href="dashboard.html" class="nav-item"
+       data-page="dashboard.html" aria-label="Dashboard">
+      <span class="nav-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </span>
+      <span class="nav-label">Dashboard</span>
+    </a>
+    <a href="dashboard.html" class="nav-item"
+       data-page="learn" aria-label="Learn">
+      <span class="nav-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <path d="M9 18h6M10 22h4"/>
+          <path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/>
+        </svg>
+      </span>
+      <span class="nav-label">Learn</span>
+    </a>
+    <a href="phase01-empathy.html" class="nav-item"
+       data-page="projects" aria-label="Projects">
+      <span class="nav-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+        </svg>
+      </span>
+      <span class="nav-label">Projects</span>
+    </a>
+    <a href="progress.html" class="nav-item"
+       data-page="progress.html" aria-label="Progress">
+      <span class="nav-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <polyline points="14 11 17 14 22 9"/>
+          <path d="M22 12v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/>
+        </svg>
+      </span>
+      <span class="nav-label">Progress</span>
+    </a>
+    <a href="profile.html" class="nav-item"
+       data-page="profile.html" aria-label="Profile">
+      <span class="nav-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+      </span>
+      <span class="nav-label">Profile</span>
+    </a>
+  </nav>
+
+</div><!-- /.app-container -->
+
+
+<!-- SCRIPTS — data.js → ui.js → phase-engine.js → inline -->
+<script src="js/data.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/phase-engine.js"></script>
+
+<script>
+  'use strict';
+
+  /* PhaseEngine.init() queues its own DOMContentLoaded internally.
+     Calling it here (synchronously) is correct — it registers the
+     handler before the DOM fires, so nothing is missed.            */
+  PhaseEngine.init({
+    phaseNum:  1,
+      hasGate:   false,
+    namespace: 'df_p01_',
+    sheetUrl:  '',
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
+
+    /* CTA → switch to Quiz tab */
+    var cta   = document.getElementById('cta-btn');
+    var arrow = document.getElementById('cta-arrow-btn');
+    function goToQuiz() {
+      var quizTab = document.querySelector('.tab-btn[data-tab="quiz"]');
+      if (quizTab) quizTab.click();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-    document.querySelectorAll('.tab-btn').forEach(btn => btn.addEventListener('click', () => setTab(btn.dataset.tab)));
-    document.querySelectorAll('[data-go-quiz]').forEach(btn => btn.addEventListener('click', () => setTab('quiz')));
-    $('languageBtn').addEventListener('click', () => showToast('Language setting will be connected later.'));
-    $('menuBtn').addEventListener('click', () => showToast('Menu drawer will be added after the phase pages are complete.'));
+    if (cta)   cta.addEventListener('click', goToQuiz);
+    if (arrow) arrow.addEventListener('click', goToQuiz);
 
-    function renderQuiz(){
-      const item = quiz[current];
-      $('questionCount').textContent = `Question ${current + 1} of ${quiz.length}`;
-      $('questionText').textContent = item.q;
-      const letters = ['A','B','C','D'];
-      $('options').innerHTML = item.options.map((opt,i)=>`<button class="option ${selected[current]===i?'selected':''}" type="button" data-option="${i}" aria-label="Option ${letters[i]}: ${opt}"><span class="option-label">${letters[i]}</span><span class="option-text">${opt}</span></button>`).join('');
-      document.querySelectorAll('[data-option]').forEach(btn => btn.addEventListener('click',()=>{ selected[current]=Number(btn.dataset.option); renderQuiz(); }));
-      $('prevQuestion').disabled = current === 0;
-      $('nextQuestion').textContent = current === quiz.length - 1 ? 'Submit Quiz' : 'Next';
-    }
-    $('prevQuestion').addEventListener('click',()=>{ if(current>0){current--; renderQuiz();} });
-    $('nextQuestion').addEventListener('click',()=>{
-      if(selected[current] === null){ showToast('Please choose one answer.'); return; }
-      if(current < quiz.length - 1){ current++; renderQuiz(); return; }
-      const score = selected.reduce((total, ans, i) => total + (ans === quiz[i].answer ? 1 : 0), 0);
-      localStorage.setItem('df_quiz_phase01', String(score));
-      quizPassed = score >= 3;
-      localStorage.setItem('df_quiz_phase01_passed', quizPassed ? 'true' : 'false');
-      const result = $('quizResult');
-      result.className = 'result-card ' + (quizPassed ? 'pass' : 'fail');
-      result.innerHTML = quizPassed ? `<strong>Passed: ${score}/5</strong><br>You may now unlock the Empathy templates.` : `<strong>Score: ${score}/5</strong><br>Please review the Quick Info and try again. You need at least 3/5.`;
-      updateTemplateLock();
-    });
-    renderQuiz();
-
-    function updateTemplateLock(){
-      $('templatesTab').classList.toggle('locked', !quizPassed);
-      $('templatesTab').innerHTML = quizPassed ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Templates' : '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="11" width="18" height="10" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>Templates';
-      $('lockedBox').style.display = quizPassed ? 'none' : 'block';
-      $('templatesArea').classList.toggle('unlocked', quizPassed);
-    }
-    updateTemplateLock();
-
-    document.querySelectorAll('[data-template]').forEach(btn => btn.addEventListener('click', () => {
-      const key = btn.dataset.template;
-      document.querySelectorAll('[data-template]').forEach(b => b.classList.toggle('active', b.dataset.template === key));
-      document.querySelectorAll('.template-panel').forEach(panel => panel.classList.toggle('active', panel.id === 'template-' + key));
-    }));
-
-    const draftFields = Array.from(document.querySelectorAll('#templatesArea input[id], #templatesArea textarea[id], #templatesArea select[id]'));
-    function saveDraft(){
-      draftFields.forEach(el => {
-        const value = el.type === 'checkbox' ? (el.checked ? 'true' : 'false') : (el.value || '');
-        localStorage.setItem('df_p01_' + el.id, value);
+    /* Hamburger */
+    var hbtn = document.getElementById('hamburger-btn');
+    if (hbtn) {
+      hbtn.addEventListener('click', function () {
+        var exp = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', String(!exp));
       });
-      showToast('Empathy draft saved locally.');
     }
-    function loadDraft(){
-      draftFields.forEach(el => {
-        const v=localStorage.getItem('df_p01_' + el.id);
-        if(v !== null){ if(el.type === 'checkbox') el.checked = v === 'true'; else el.value = v; }
-      });
-    }
-    loadDraft();
-    $('saveDraft').addEventListener('click', saveDraft);
-    $('printPage').addEventListener('click', () => window.print());
-    $('submitPhase').addEventListener('click', () => { saveDraft(); localStorage.setItem('df_submitted_phase01','true'); localStorage.setItem('df_last_phase','phase01'); showToast('Phase 01 Empathy submitted. You can continue to Define.'); });
-    $('saveTranscript').addEventListener('click', () => { localStorage.setItem('df_p01_t00_transcript', $('t00_transcript').value || ''); showToast('Transcript saved locally.'); });
-    $('autoTranscribe').addEventListener('click', () => showToast('Auto Transcribe will be connected to AI transcription in the next build step. For now, paste or type the transcript manually.'));
-    $('audioUpload').addEventListener('change', (e) => { const f=e.target.files[0]; if(f){ $('audioPreview').src = URL.createObjectURL(f); showToast('Audio file loaded for preview.'); } });
 
-    let mediaRecorder, chunks=[], timerInterval, seconds=0;
-    function formatTime(s){ const m=String(Math.floor(s/60)).padStart(2,'0'); const sec=String(s%60).padStart(2,'0'); return `${m}:${sec}`; }
-    function startTimer(){ seconds=0; $('timer').textContent='00:00'; timerInterval=setInterval(()=>{ seconds++; $('timer').textContent=formatTime(seconds); },1000); }
-    function stopTimer(){ clearInterval(timerInterval); }
-    $('startRec').addEventListener('click', async () => {
-      if(!navigator.mediaDevices || !window.MediaRecorder){ showToast('Recording is not supported in this browser. Please upload an audio file.'); return; }
-      try{
-        const stream = await navigator.mediaDevices.getUserMedia({audio:true});
-        chunks=[]; mediaRecorder = new MediaRecorder(stream);
-        mediaRecorder.ondataavailable = e => chunks.push(e.data);
-        mediaRecorder.onstop = () => { const blob = new Blob(chunks,{type:'audio/webm'}); $('audioPreview').src = URL.createObjectURL(blob); stream.getTracks().forEach(t=>t.stop()); showToast('Recording saved for preview.'); };
-        mediaRecorder.start(); startTimer();
-        $('startRec').disabled = true; $('stopRec').disabled = false; $('recordHelp').textContent = 'Recording in progress. Stop when the interview is complete.';
-      }catch(err){ showToast('Microphone permission was not granted. You may upload audio instead.'); }
-    });
-    $('stopRec').addEventListener('click', () => { if(mediaRecorder && mediaRecorder.state !== 'inactive'){ mediaRecorder.stop(); stopTimer(); $('startRec').disabled=false; $('stopRec').disabled=true; $('recordHelp').textContent='Recording stopped. Preview the audio below.'; } });
-  </script>
+  });
+</script>
+
 </body>
 </html>

@@ -261,7 +261,7 @@
 <body data-dots="true">
 <div class="app-container">
 
-  <img src="https://res.cloudinary.com/dmj9fqkrl/image/upload/f_auto,q_85/v1779027549/pink-blob_jakcn5.png"
+  <img src="assets/shared/pink-blob.svg"
        class="pink-blob" alt="" aria-hidden="true"
        onerror="this.style.display='none'">
 
@@ -270,7 +270,7 @@
   <header class="header" role="banner">
     <a href="dashboard.html" class="header-logo"
        aria-label="Smart DT Project home">
-      <img src="https://res.cloudinary.com/dmj9fqkrl/image/upload/f_auto,q_85/v1779027460/logo-icon_lxo0z0.png"
+      <img src="assets/brand/logo-icon.svg"
            class="header-logo-icon" alt="Smart DT Project logo"
            onerror="this.style.display='none'">
       <span class="header-logo-text">Smart DT<br>Project</span>
@@ -332,10 +332,7 @@
 
 
     <!-- SUPERVISOR GATES ──────────────────────────────── -->
-    <div style="display:flex;align-items:center;gap:12px;margin:20px 0 10px">
-      <img src="https://res.cloudinary.com/dmj9fqkrl/image/upload/v1779027471/supervisor-hero_mw8vr9.png" alt="" style="width:48px;height:48px;object-fit:contain;border-radius:12px;" onerror="this.style.display='none'">
-      <p class="section-heading" style="margin:0">Supervisor Gates</p>
-    </div>
+    <p class="section-heading">Supervisor Gates</p>
 
     <div id="gate-container">
       <!-- Filled by JS -->
@@ -526,7 +523,6 @@ function renderGates() {
   var container = document.getElementById('gate-container');
   if (!container) return;
 
-  var supHero = 'https://res.cloudinary.com/dmj9fqkrl/image/upload/v1779027471/supervisor-hero_mw8vr9.png';
   var gates = [
     { num:1, label:'Gate 1', desc:'After Phase 02 Define' },
     { num:2, label:'Gate 2', desc:'After Phase 03 Ideation' },
@@ -570,34 +566,37 @@ function renderBadgeGrid() {
   if (!container) return;
 
   var BADGES = [
-    { key: window.DT.KEYS.BADGE_EXPLORER,  name:'DT Explorer',      desc:'Complete 3 of 5 phases',     img:'https://res.cloudinary.com/dmj9fqkrl/image/upload/v1779027451/dt-explorer_rhlato.png' },
-    { key: window.DT.KEYS.BADGE_EMPATHY,   name:'Empathy Champion', desc:'Complete Empathy Map',        img:'https://res.cloudinary.com/dmj9fqkrl/image/upload/v1779027452/empathy-champion_hadfjz.png' },
-    { key: window.DT.KEYS.BADGE_FRAMER,    name:'Problem Framer',   desc:'Gate 1 approved',             img:'https://res.cloudinary.com/dmj9fqkrl/image/upload/v1779027458/problem-framer_swgwbk.png' },
-    { key: window.DT.KEYS.BADGE_IDEAS,     name:'Idea Generator',   desc:'Generate 20+ ideas',          img:'https://res.cloudinary.com/dmj9fqkrl/image/upload/v1779027455/idea-generator_gafexk.png' },
-    { key: window.DT.KEYS.BADGE_BUILDER,   name:'Prototype Builder',desc:'Log 2+ prototype versions',   img:'https://res.cloudinary.com/dmj9fqkrl/image/upload/v1779027458/prototype-builder_yj6dga.png' },
-    { key: window.DT.KEYS.BADGE_TESTER,    name:'User Tester',      desc:'Submit 3+ feedback forms',    img:'https://res.cloudinary.com/dmj9fqkrl/image/upload/v1779027460/user-tester_xwvvpl.png' },
-    { key: window.DT.KEYS.BADGE_GRADUATE,  name:'DT Graduate',      desc:'Complete all phases',         img:'https://res.cloudinary.com/dmj9fqkrl/image/upload/v1779027452/dt-graduate_gjai7d.png' },
-    { key: window.DT.KEYS.BADGE_PORTFOLIO, name:'Full Portfolio',   desc:'Submit your portfolio',       img:'https://res.cloudinary.com/dmj9fqkrl/image/upload/v1779027453/full-portfolio_oo24lt.png' },
+    { key: window.DT.KEYS.BADGE_EXPLORER,  name:'DT Explorer',      desc:'3 of 5 phases submitted'   },
+    { key: window.DT.KEYS.BADGE_EMPATHY,   name:'Empathy Champion', desc:'Empathy Map completed'      },
+    { key: window.DT.KEYS.BADGE_FRAMER,    name:'Problem Framer',   desc:'Gate 1 approved'            },
+    { key: window.DT.KEYS.BADGE_IDEAS,     name:'Idea Generator',   desc:'20+ ideas in brainstorm'    },
+    { key: window.DT.KEYS.BADGE_BUILDER,   name:'Prototype Builder',desc:'2+ iterations logged'       },
+    { key: window.DT.KEYS.BADGE_TESTER,    name:'User Tester',      desc:'3+ feedback forms submitted'},
+    { key: window.DT.KEYS.BADGE_GRADUATE,  name:'DT Graduate',      desc:'All phases + Gate 3'        },
+    { key: window.DT.KEYS.BADGE_PORTFOLIO, name:'Full Portfolio',   desc:'Portfolio submitted'        },
   ];
 
   var html = '';
   BADGES.forEach(function(b) {
-    var earned     = window.DT.hasBadge(b.key);
-    var opacity    = earned ? '1' : '0.35';
-    var filter     = earned ? '' : 'filter:grayscale(1);';
-    var dateTxt    = earned ? 'Earned ✓' : 'Not yet earned';
-    var dateCls    = earned ? 'color:var(--color-teal);font-weight:600' : 'color:var(--color-text-light)';
+    var earned  = window.DT.hasBadge(b.key);
+    var lockedCls = earned ? '' : ' locked';
+    var dateTxt = earned ? 'Earned ' + todayStr() : 'Not yet earned';
 
-    html += '<div style="background:var(--color-card);border:1px solid var(--color-border);'
-      + 'border-radius:var(--radius-lg);padding:16px 12px;display:flex;flex-direction:column;'
-      + 'align-items:center;text-align:center;box-shadow:var(--shadow-card);">'
-      + '<img src="' + b.img + '" alt="' + b.name + ' badge" '
-      + 'style="width:72px;height:72px;object-fit:contain;margin-bottom:8px;'
-      + 'border-radius:8px;opacity:' + opacity + ';' + filter + '" '
-      + 'onerror="this.style.display='none'">'
-      + '<p style="font-size:13px;font-weight:700;color:var(--color-navy);margin-bottom:3px">' + b.name + '</p>'
-      + '<p style="font-size:11px;color:var(--color-text-mid);line-height:1.4;margin-bottom:5px">' + b.desc + '</p>'
-      + '<p style="font-size:11px;' + dateCls + '">' + dateTxt + '</p>'
+    html += '<div class="badge-card' + lockedCls + '">'
+      + '<div class="badge-hex">'
+      + '<svg class="badge-hex-icon" viewBox="0 0 24 24" fill="none" '
+      + 'stroke="currentColor" stroke-width="1.5" stroke-linecap="round" '
+      + 'stroke-linejoin="round" aria-hidden="true">'
+      + '<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25'
+      + 'L7 14.14 2 9.27l6.91-1.01L12 2z"/>'
+      + '</svg></div>'
+      + '<div class="badge-ribbon">'
+      + '<div class="badge-ribbon-stripe"></div>'
+      + '<div class="badge-ribbon-stripe"></div>'
+      + '</div>'
+      + '<p class="badge-name">' + b.name + '</p>'
+      + '<p class="badge-desc">' + b.desc + '</p>'
+      + '<p class="badge-date">' + dateTxt + '</p>'
       + '</div>';
   });
 

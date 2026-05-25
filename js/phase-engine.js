@@ -332,12 +332,10 @@ const QUIZ_DATA = {
  * @param {string} containerSelector  Default: '.tab-bar'
  */
 function initTabs(containerSelector = '.tab-bar') {
-  /* Support both old .tab-bar/.tab-btn and new .phase-tabs/.phase-tab-btn */
-  const bar = document.querySelector('.phase-tabs') || document.querySelector(containerSelector);
+  const bar = document.querySelector(containerSelector);
   if (!bar) return;
 
-  const btnClass = bar.classList.contains('phase-tabs') ? '.phase-tab-btn' : '.tab-btn';
-  bar.querySelectorAll(btnClass).forEach(btn => {
+  bar.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const target = btn.getAttribute('data-tab');
 
@@ -348,7 +346,7 @@ function initTabs(containerSelector = '.tab-bar') {
       }
 
       /* Update button active states */
-      bar.querySelectorAll(btnClass).forEach(b => b.classList.remove('active'));
+      bar.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
       /* Show matching panel, hide others */
@@ -541,19 +539,6 @@ function _renderQuizResult(container, score, alreadyPassed) {
  * Called by the result card button.
  */
 function switchToTemplates() {
-  /* Templates tab is now an <a> link — navigate directly */
-  const link = document.getElementById('tab-btn-templates');
-  if (link && link.tagName === 'A') {
-    window.location.href = link.getAttribute('href');
-    return;
-  }
-  /* Fallback: derive template page from current filename */
-  const page  = window.location.pathname.split('/').pop();
-  const match = page.match(/^(phase0[1-5])/);
-  if (match) {
-    window.location.href = match[1] + '-templates.html';
-    return;
-  }
   document.querySelector('.tab-btn[data-tab="templates"]')?.click();
 }
 
@@ -831,8 +816,8 @@ function init(config) {
       initGateCard('#gate-container', gateNum, phaseNum, sheetUrl || '');
     }
 
-    /* AI Coach */
-    if (window.UI && window.UI.initAICoach) window.UI.initAICoach(phaseNum);
+    /* AI Coach — disabled until M10 milestone */
+    /* UI.initAICoach(phaseNum); */
   });
 }
 
