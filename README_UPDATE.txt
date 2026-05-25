@@ -21,3 +21,6 @@ Important:
 3. Dashboard and Empathy bottom nav use assets/icons/nav/*.svg.
 4. Empathy keeps the template style but follows the new blueprint with T00-T04.
 5. The prototype saves data locally through localStorage first.
+
+
+Latest update: Added pause.svg and refined T00 Recording controls. Auto Transcribe and Save Transcript are now compact side-by-side buttons on normal mobile width.

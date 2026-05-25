@@ -94,7 +94,7 @@
       box.innerHTML=`<div class="quiz-card"><span class="q-count">Question ${current+1} of ${quiz.length}</span><div class="q-title">${item.q}</div><div>${item.o.map((o,i)=>`<button type="button" class="option ${selected[current]===i?'selected':''}" data-i="${i}"><span class="option-letter">${letters[i]}</span><span class="option-text">${o}</span></button>`).join('')}</div><div class="quiz-nav"><button class="btn ghost" id="qBack" ${current===0?'disabled':''}>Back</button><span></span><button class="btn primary" id="qNext">${current===quiz.length-1?'Submit Quiz':'Next'}</button></div></div>`;
       $$('.option',box).forEach(b=>b.addEventListener('click',()=>{selected[current]=Number(b.dataset.i);render()}));
       $('#qBack').onclick=()=>{if(current>0){current--;render()}};
-      $('#qNext').onclick=()=>{ if(selected[current]===null){alert('Please choose an answer.'); return;} if(current<quiz.length-1){current++;render();} else { const score=selected.reduce((s,v,i)=>s+(v===quiz[i].a?1:0),0); store.set('df_quiz_phase01',String(score)); alert(`Quiz score: ${score}/5. ${score>=3?'Templates unlocked.':'Try again to unlock templates.'}`); if(score>=3){ $('[data-tab="templates"]')?.click(); } } };
+      $('#qNext').onclick=()=>{ if(selected[current]===null){alert('Please choose an answer.'); return;} if(current<quiz.length-1){current++;render();} else { const score=selected.reduce((s,v,i)=>s+(v===quiz[i].a?1:0),0); store.set('df_quiz_phase01',String(score)); alert(`Quiz score: ${score}/5. ${score>=3?'Templates unlocked.':'Try again to unlock templates.'}`); if(score>=3){ $('[data-tab="templatesPanel"]')?.click(); } } };
     }; render();
   }
   function setupForms(){
@@ -106,6 +106,7 @@
     $('[data-submit-phase]')?.addEventListener('click',()=>{store.set('df_submitted_phase01','true');alert('Phase 01 submitted locally. Progress updated.');});
     $('[data-print]')?.addEventListener('click',()=>window.print());
     $('#startRec')?.addEventListener('click',()=>alert('Recording placeholder: connect browser MediaRecorder/API later.'));
+    $('#pauseRec')?.addEventListener('click',()=>alert('Recording paused placeholder.'));
     $('#stopRec')?.addEventListener('click',()=>alert('Recording stopped placeholder.'));
     $('#autoTranscribe')?.addEventListener('click',()=>alert('Auto Transcribe placeholder: connect AI transcription later.'));
   }
