@@ -1,26 +1,15 @@
-Smart DT Clean Update Folder
+Smart DT Clean Update v5
 
-Replace or add these files into your project root:
-- index.html
-- welcome.html
-- registration.html
-- login.html
-- dashboard.html
-- phase01-empathy.html
-- css/smartdt.css
-- js/smartdt.js
-- assets/brand/brand-logo.png
-- assets/heroes/*.svg
-- assets/icons/nav/*.svg
-- assets/icons/dashboard/*.svg
-- assets/icons/actions/*.svg
+Updated checks and fixes:
+- Verified the corrected Empathy sequence: T00 Prepare Interview + Roles, then T01 Interview Guide + Evidence with consent, recording and transcript.
+- Confirmed the template intro follows: prepare → roles → questions → interview with consent → record/transcribe → map/persona/needs.
+- Removed local asset dependencies except assets/heroes/.
+- Replaced brand logo, nav icons, dashboard icons and action icons with inline SVG so there are no missing icon files or white-box SVG issues.
+- Hero files remain local in assets/heroes/ for easy replacement with your own hosted links later.
 
-Important:
-1. These pages use css/smartdt.css and js/smartdt.js.
-2. Icons are clean transparent SVG files.
-3. Dashboard and Empathy bottom nav use assets/icons/nav/*.svg.
-4. Empathy keeps the template style but follows the new blueprint with T00-T04.
-5. The prototype saves data locally through localStorage first.
-
-
-Latest update: Added pause.svg and refined T00 Recording controls. Auto Transcribe and Save Transcript are now compact side-by-side buttons on normal mobile width.
+Remaining local assets:
+assets/heroes/welcome-hero.svg
+assets/heroes/registration-hero.svg
+assets/heroes/login-hero.svg
+assets/heroes/dashboard-hero.svg
+assets/heroes/empathy-hero.svg
