@@ -115,7 +115,23 @@
       $$('input,textarea,select',form).forEach(el=>{ if(el.name) data[el.name]=el.value; });
       const phase=activePhase(); store.setJson(`df_phase${phase}_draft`,data); alert('Draft saved on this device.');
     }));
-    $('[data-submit-phase]')?.addEventListener('click',()=>{const phase=activePhase(); store.set(`df_submitted_phase${phase}`,'true'); alert(`Phase ${phase} submitted locally. Progress updated.`);});
+    
+    $('[data-submit-phase]')?.addEventListener('click',()=>{
+      const phase=activePhase();
+      store.set(`df_submitted_phase${phase}`,'true');
+      const nextMap={
+        '01':{label:'Phase 02 Define',url:'phase02-define.html'},
+        '02':{label:'Phase 03 Ideation',url:'phase03-ideation.html'},
+        '03':{label:'Phase 04 Prototype',url:'phase04-prototype.html'},
+        '04':{label:'Phase 05 Test',url:'phase05-test.html'},
+        '05':{label:'Progress page',url:'progress.html'}
+      };
+      const next=nextMap[phase];
+      const msg=`Phase ${phase} submitted locally. Progress updated.${next ? '\n\nContinue to '+next.label+' now?' : ''}`;
+      if(next && confirm(msg)) location.href=next.url;
+      else if(!next) alert(`Phase ${phase} submitted locally. Progress updated.`);
+    });
+
     $('[data-print]')?.addEventListener('click',()=>window.print());
     $('#startRec')?.addEventListener('click',()=>alert('Recording placeholder: connect browser MediaRecorder/API later.'));
     $('#pauseRec')?.addEventListener('click',()=>alert('Recording paused placeholder.'));

@@ -95,3 +95,153 @@ html{scroll-behavior:smooth} body{font-family:var(--font);background:#E8F0F7;col
   .pill img,.pill-icon{width:15px!important;height:15px!important;}
   .icon-btn{width:38px!important;height:38px!important;min-width:38px!important;}
 }
+
+
+/* ==========================================================
+   V3 FIX — Smart DT icon scale, button icon background,
+   template sample guidance, uniform font size, and phase flow
+   ========================================================== */
+
+/* 1) Make all action icons visible and remove ugly PNG white boxes.
+   New button icons are inline SVG, not hosted PNG. */
+.btn .btn-icon-svg,
+.btn .btn-icon-inline,
+.btn > svg.btn-icon-svg{
+  width:22px!important;
+  height:22px!important;
+  min-width:22px!important;
+  flex:0 0 22px!important;
+  display:block!important;
+  stroke:currentColor!important;
+  fill:none!important;
+  stroke-width:2.6!important;
+  stroke-linecap:round!important;
+  stroke-linejoin:round!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+.btn.teal .btn-icon-svg,
+.btn.orange .btn-icon-svg,
+.btn.primary .btn-icon-svg{color:#fff!important;stroke:#fff!important;}
+.btn.warning .btn-icon-svg{color:var(--navy)!important;stroke:var(--navy)!important;}
+.btn.ghost .btn-icon-svg{color:var(--navy)!important;stroke:var(--navy)!important;}
+
+/* Hide any old broken/hosted button PNG if one remains accidentally. */
+.btn img.btn-icon,
+.btn img.btn-icon-img{display:none!important;}
+
+/* 2) Bigger, consistent nav icons across dashboard, empathy and define. */
+.bottom-nav{height:76px!important;}
+.nav-item{gap:5px!important;font-size:10.5px!important;font-weight:900!important;}
+.nav-item img,.nav-icon-img,.nav-item svg{
+  width:29px!important;
+  height:29px!important;
+  max-width:29px!important;
+  max-height:29px!important;
+  object-fit:contain!important;
+  display:block!important;
+  flex-shrink:0!important;
+}
+.nav-item.active .nav-label{color:var(--teal)!important;font-weight:900!important;}
+.nav-item.active img,.nav-item.active svg{transform:translateY(-1px);}
+
+/* 3) Bigger dashboard accordion icons. */
+.acc-icon{
+  width:50px!important;
+  height:50px!important;
+  border-radius:17px!important;
+}
+.acc-icon img,.acc-icon svg{
+  width:32px!important;
+  height:32px!important;
+  max-width:32px!important;
+  max-height:32px!important;
+}
+.acc-head{gap:14px!important;padding:15px 16px!important;}
+.acc-body{padding-left:80px!important;}
+
+/* 4) Header/control icons remain clean but not oversized. */
+.brand-logo{width:42px!important;height:42px!important;overflow:hidden!important;}
+.brand-logo svg,.brand-logo img{width:42px!important;height:42px!important;max-width:42px!important;max-height:42px!important;object-fit:contain!important;display:block!important;}
+.pill img,.pill-icon{width:18px!important;height:18px!important;max-width:18px!important;max-height:18px!important;object-fit:contain!important;}
+.icon-btn img,.icon-btn svg{width:23px!important;height:23px!important;max-width:23px!important;max-height:23px!important;}
+
+/* 5) Consistent template typography. */
+.template-head h2{font-size:21px!important;line-height:1.18!important;}
+.template-card .section-sub,.template-guide-card p,.sample-lead,.sample-tip,.bullet{font-size:12.5px!important;line-height:1.55!important;}
+.field label,.form-label{font-size:12px!important;line-height:1.3!important;}
+.input,.select,.textarea{font-size:13px!important;line-height:1.55!important;}
+.activity-title{font-size:14px!important;line-height:1.25!important;}
+
+/* 6) Solid, synced example/sample block style across phases. */
+.sample-answer,
+.student-guide-example{
+  background:#F7FBFF;
+  border:1px solid #D7E5F0;
+  border-left:6px solid var(--teal);
+  border-radius:18px;
+  padding:13px 14px;
+  margin:10px 0 14px;
+  box-shadow:0 8px 18px rgba(8,27,68,.045);
+}
+.sample-answer .sample-answer-title,
+.student-guide-example .sample-answer-title{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:var(--navy);
+  font-size:12px;
+  font-weight:900;
+  margin-bottom:6px;
+}
+.sample-answer p,
+.student-guide-example p{
+  color:#34415C;
+  font-size:12.3px;
+  line-height:1.55;
+  margin:0;
+}
+.sample-answer code,
+.student-guide-example code{
+  font-family:var(--font);
+  color:var(--navy);
+  font-weight:800;
+  background:transparent;
+  white-space:normal;
+}
+
+/* 7) Define tabs: only 3 parts, same size. */
+.subtabs.three,
+.subtabs.define-three{
+  display:grid!important;
+  grid-template-columns:repeat(3,1fr)!important;
+  gap:8px!important;
+  overflow:visible!important;
+  padding-bottom:0!important;
+}
+.subtabs.three .subtab,
+.subtabs.define-three .subtab{
+  width:100%!important;
+  min-width:0!important;
+  text-align:center!important;
+  padding:12px 6px!important;
+}
+.template-steps.three{grid-template-columns:repeat(3,1fr)!important;}
+
+/* 8) Action rows: balanced buttons with larger icons. */
+.action-row .btn{min-height:50px!important;}
+.record-controls .btn{min-height:50px!important;font-size:12.5px!important;}
+.transcript-actions{grid-template-columns:1fr 1fr!important;gap:10px!important;}
+.transcript-actions .btn{min-height:48px!important;font-size:12.2px!important;padding:0 12px!important;}
+
+/* 9) Extra bottom spacing so buttons do not feel cramped above nav. */
+.phase-page,.page{padding-bottom:calc(var(--nav-h) + 44px)!important;}
+
+@media(max-width:385px){
+  .bottom-nav{height:74px!important;}
+  .nav-item img,.nav-icon-img,.nav-item svg{width:27px!important;height:27px!important;}
+  .acc-icon{width:46px!important;height:46px!important;}
+  .acc-icon img,.acc-icon svg{width:29px!important;height:29px!important;}
+  .acc-body{padding-left:74px!important;}
+  .transcript-actions{grid-template-columns:1fr!important;}
+}
