@@ -62,3 +62,36 @@ html{scroll-behavior:smooth} body{font-family:var(--font);background:#E8F0F7;col
 .template-steps.three{grid-template-columns:repeat(3,1fr)}
 #t05 .flowline{grid-template-columns:repeat(3,1fr)}
 @media(max-width:385px){.template-steps.three{grid-template-columns:repeat(3,1fr)}#t05 .flowline{grid-template-columns:1fr}}
+
+
+/* =========================================================
+   V2 FIX — Header image sizing + consistent bottom nav
+   Prevent hosted PNG icons from expanding at natural size.
+   ========================================================= */
+.header{min-height:var(--header-h);overflow:visible;}
+.brand{max-width:150px;}
+.brand-logo{width:40px!important;height:40px!important;min-width:40px!important;overflow:hidden;}
+.brand-logo img,.brand-logo svg{width:40px!important;height:40px!important;max-width:40px!important;max-height:40px!important;object-fit:contain!important;display:block!important;}
+.brand-text{font-size:13px!important;line-height:1.05!important;}
+.header-actions{gap:8px;flex-shrink:0;}
+.pill{height:36px!important;min-width:auto!important;padding:0 10px!important;gap:5px!important;flex-shrink:0;overflow:hidden;}
+.pill img,.pill-icon{width:16px!important;height:16px!important;max-width:16px!important;max-height:16px!important;object-fit:contain!important;display:block!important;flex-shrink:0!important;}
+.icon-btn{width:40px!important;height:40px!important;min-width:40px!important;overflow:hidden;}
+.icon-btn img,.icon-btn svg{width:21px!important;height:21px!important;max-width:21px!important;max-height:21px!important;object-fit:contain!important;display:block!important;}
+.tab img,.tab-icon{width:16px!important;height:16px!important;max-width:16px!important;max-height:16px!important;object-fit:contain!important;display:inline-block!important;vertical-align:-3px;margin-right:5px;}
+.btn img,.btn-icon{width:18px!important;height:18px!important;max-width:18px!important;max-height:18px!important;object-fit:contain!important;display:block!important;flex-shrink:0!important;}
+.acc-icon img{width:24px!important;height:24px!important;max-width:24px!important;max-height:24px!important;object-fit:contain!important;}
+.bottom-nav{height:72px!important;}
+.nav-item{gap:4px!important;font-size:10px!important;}
+.nav-item img,.nav-icon-img,.nav-item svg{width:24px!important;height:24px!important;max-width:24px!important;max-height:24px!important;object-fit:contain!important;display:block!important;flex-shrink:0!important;}
+.nav-item.active .nav-label{color:var(--teal);font-weight:900;}
+.hero-card img{width:100%!important;height:auto!important;max-height:196px!important;object-fit:contain!important;}
+.phase-page{padding-bottom:calc(var(--nav-h) + 34px)!important;}
+@media(max-width:385px){
+  .brand{max-width:135px;}
+  .brand-logo{width:36px!important;height:36px!important;min-width:36px!important;}
+  .brand-logo img,.brand-logo svg{width:36px!important;height:36px!important;max-width:36px!important;max-height:36px!important;}
+  .pill{padding:0 8px!important;font-size:11px!important;}
+  .pill img,.pill-icon{width:15px!important;height:15px!important;}
+  .icon-btn{width:38px!important;height:38px!important;min-width:38px!important;}
+}
