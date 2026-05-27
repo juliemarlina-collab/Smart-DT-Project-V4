@@ -419,3 +419,39 @@ html{scroll-behavior:smooth} body{font-family:var(--font);background:#E8F0F7;col
 .action-row .btn img,
 .icon-btn img,
 .pill img { background:transparent !important; border:0 !important; box-shadow:none !important; }
+
+
+/* =========================================================
+   Smart DT V13 Fix — no 404 header/tab icons + bigger nav
+   ========================================================= */
+:root{ --nav-h:88px; }
+.page{padding-bottom:calc(var(--nav-h) + 36px)!important;}
+.header .pill-icon,
+.header .icon-btn img,
+.tab .tab-icon{display:none!important;}
+.pill.lang-pill{min-width:70px!important;gap:6px!important;}
+.pill-symbol{font-size:16px;line-height:1;display:inline-flex;align-items:center;justify-content:center;}
+.icon-btn.menu-lines{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
+.icon-btn.menu-lines span{width:18px;height:2.5px;border-radius:99px;background:var(--navy);display:block;}
+.tab{gap:0!important;font-size:12.3px!important;}
+.tab[data-tab="quickInfo"]::before{content:"ⓘ";font-size:12px;margin-right:6px;font-weight:900;}
+.tab[data-tab="quizPanel"]::before{content:"?";width:16px;height:16px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-right:6px;font-size:11px;font-weight:900;background:rgba(8,27,68,.10);color:inherit;}
+.tab[data-tab="templatesPanel"]::before{content:"▣";font-size:13px;margin-right:6px;font-weight:900;}
+.tab.active[data-tab="quizPanel"]::before{background:rgba(255,255,255,.20);color:#fff;}
+.bottom-nav{height:88px!important;padding:6px 0 8px!important;}
+.nav-item{gap:4px!important;font-size:11px!important;font-weight:900!important;line-height:1!important;}
+.nav-item img,.nav-icon-img,.nav-item svg,
+.bottom-nav .nav-icon img,
+.bottom-nav .nav-item>img.nav-icon-img{
+  width:38px!important;height:38px!important;max-width:38px!important;max-height:38px!important;object-fit:contain!important;display:block!important;flex-shrink:0!important;
+}
+.bottom-nav .nav-label{font-size:11px!important;font-weight:900!important;margin-top:1px!important;}
+.acc-icon{width:48px!important;height:48px!important;border-radius:17px!important;}
+.acc-icon img,.acc-icon svg{width:32px!important;height:32px!important;max-width:32px!important;max-height:32px!important;object-fit:contain!important;}
+.fab{bottom:104px!important;width:60px!important;height:60px!important;}
+.smart-toast{bottom:calc(var(--nav-h) + 12px)!important;}
+@media(max-width:385px){
+  .bottom-nav{height:86px!important;}
+  .nav-item img,.nav-icon-img,.nav-item svg,.bottom-nav .nav-item>img.nav-icon-img{width:36px!important;height:36px!important;max-width:36px!important;max-height:36px!important;}
+  .bottom-nav .nav-label{font-size:10.3px!important;}
+}
