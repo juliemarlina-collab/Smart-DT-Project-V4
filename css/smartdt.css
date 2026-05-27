@@ -245,3 +245,213 @@ html{scroll-behavior:smooth} body{font-family:var(--font);background:#E8F0F7;col
   .acc-body{padding-left:74px!important;}
   .transcript-actions{grid-template-columns:1fr!important;}
 }
+
+
+/* === Smart DT Cross-Check Fix v4: PNG icon sizing + Phase 03 readiness === */
+:root{ --nav-h:80px; }
+
+/* PNG icons must be sized larger because hosted PNGs often include canvas padding. */
+.bottom-nav{height:80px!important;}
+.bottom-nav .nav-icon,.bottom-nav .nav-icon-img{
+  width:30px!important;
+  height:30px!important;
+  max-width:30px!important;
+  max-height:30px!important;
+  object-fit:contain!important;
+  display:block!important;
+}
+.nav-item{gap:4px!important;padding-top:5px!important;}
+.nav-label{font-size:10.5px!important;font-weight:900!important;line-height:1.05!important;}
+
+/* Header PNG controls */
+.brand-logo,.brand-logo img{width:42px!important;height:42px!important;max-width:42px!important;max-height:42px!important;object-fit:contain!important;}
+.pill-icon,.pill img{width:18px!important;height:18px!important;object-fit:contain!important;}
+.icon-btn img{width:23px!important;height:23px!important;object-fit:contain!important;}
+
+/* Main tabs: keep icons visible but not distracting */
+.tab{display:flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;}
+.tab-icon{width:18px!important;height:18px!important;max-width:18px!important;max-height:18px!important;object-fit:contain!important;}
+
+/* Dashboard accordion icons */
+.acc-icon{width:50px!important;height:50px!important;border-radius:17px!important;}
+.acc-icon img,.acc-icon svg{width:32px!important;height:32px!important;max-width:32px!important;max-height:32px!important;object-fit:contain!important;}
+
+/* Button/action PNG icons */
+.btn img,.btn-icon-png,button img.btn-icon-png{
+  width:22px!important;
+  height:22px!important;
+  max-width:22px!important;
+  max-height:22px!important;
+  object-fit:contain!important;
+  display:inline-block!important;
+  flex-shrink:0!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+.btn-icon-svg{width:22px!important;height:22px!important;flex-shrink:0!important;}
+
+/* Template sub-tabs: phase-specific grid, equal-sized buttons */
+.subtabs.three,.subtabs.define-three{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:8px!important;}
+.subtabs.five,.subtabs.ideation-five{display:grid!important;grid-template-columns:repeat(5,1fr)!important;gap:6px!important;overflow:visible!important;}
+.subtabs.three .subtab,.subtabs.define-three .subtab,.subtabs.five .subtab,.subtabs.ideation-five .subtab{
+  min-width:0!important;width:100%!important;white-space:normal!important;text-align:center!important;line-height:1.15!important;padding:11px 5px!important;
+}
+.template-steps.three{grid-template-columns:repeat(3,1fr)!important;}
+.template-steps.five{grid-template-columns:repeat(5,1fr)!important;}
+
+/* Consistent font sizes in all phase templates */
+.template-head h2{font-size:21px!important;line-height:1.18!important;}
+.template-card .section-sub,.template-guide-card p,.sample-lead,.sample-tip,.bullet{font-size:12.5px!important;line-height:1.55!important;}
+.field label,.form-label{font-size:12px!important;font-weight:900!important;line-height:1.3!important;color:var(--navy)!important;}
+.input,.select,.textarea{font-size:13px!important;line-height:1.55!important;}
+.activity-title{font-size:14px!important;line-height:1.25!important;}
+
+/* Make long forms breathe above bottom nav */
+.page,.phase-page{padding-bottom:calc(var(--nav-h) + 56px)!important;}
+.template-panel{padding-bottom:24px;}
+
+@media(max-width:385px){
+  .bottom-nav{height:78px!important;}
+  .bottom-nav .nav-icon,.bottom-nav .nav-icon-img{width:29px!important;height:29px!important;}
+  .subtabs.five,.subtabs.ideation-five{gap:5px!important;}
+  .subtabs.five .subtab,.subtabs.ideation-five .subtab{font-size:10.4px!important;padding:10px 3px!important;}
+}
+
+
+/* === Smart DT V7: hosted 1920x1080 heroes + Phase 04 Prototype === */
+.hero-card img.hero-img-wide,
+.hero-card > img[src^="https://iili.io/Cdzt"],
+.hero-card > img[src^="https://iili.io/CdzD"]{
+  width:100%!important;
+  aspect-ratio:16/9!important;
+  height:auto!important;
+  max-height:210px!important;
+  object-fit:contain!important;
+  background:#fff!important;
+  display:block!important;
+}
+.subtabs.four,.subtabs.prototype-four{
+  display:grid!important;
+  grid-template-columns:repeat(4,1fr)!important;
+  gap:7px!important;
+  overflow:visible!important;
+}
+.subtabs.four .subtab,.subtabs.prototype-four .subtab{
+  min-width:0!important;width:100%!important;white-space:normal!important;text-align:center!important;line-height:1.15!important;padding:11px 4px!important;font-size:11px!important;
+}
+.template-steps.four{grid-template-columns:repeat(4,1fr)!important;}
+.prototype-version-grid{display:grid;gap:12px;}
+.prototype-version-card{background:#F8FBFE;border:1px solid var(--line);border-radius:18px;padding:13px;}
+.prototype-version-card h4{font-size:13px;font-weight:900;color:var(--navy);margin-bottom:8px;}
+.evidence-upload-box{border:1.5px dashed #BFD2E3;background:#FAFCFF;border-radius:18px;padding:16px;text-align:center;color:var(--muted);font-size:12px;line-height:1.45;}
+.evidence-upload-box input{margin-top:10px;width:100%;}
+@media(max-width:385px){
+  .subtabs.four,.subtabs.prototype-four{gap:5px!important;}
+  .subtabs.four .subtab,.subtabs.prototype-four .subtab{font-size:10px!important;padding:10px 2px!important;}
+}
+
+
+/* === Smart DT V8: Phase 05 Test + Gate 3 + Portfolio Completion === */
+.flowline{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.flowline div{background:#F8FBFE;border:1px solid var(--line);border-radius:16px;padding:12px 8px;min-height:78px;}
+.flowline b{display:block;font-size:11.5px;color:var(--navy);font-weight:900;margin-bottom:5px;}
+.flowline span{display:block;font-size:10.5px;line-height:1.35;color:var(--muted);font-weight:600;}
+.rating-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.gate-final{background:linear-gradient(180deg,#FFFFFF 0%,#F8FBFE 100%);border-color:#CFE2F1;}
+@media(max-width:385px){
+  .flowline{grid-template-columns:repeat(2,1fr)!important;}
+  .rating-grid{grid-template-columns:repeat(2,1fr)!important;}
+}
+
+
+/* === Smart DT V9 Profile + Progress Stabilisation === */
+.brand-logo img,.pill-icon,.nav-icon-img,.stat-card-v9 img,.menu-ico img,.phase-card-v9 img,.gate-ico img,.badge-card-v9 img{display:block;object-fit:contain}.brand-logo img{width:42px!important;height:42px!important}.pill-icon{width:22px!important;height:22px!important}.nav-item img,.nav-icon-img{width:30px!important;height:30px!important}.bottom-nav .nav-icon-img{width:30px!important;height:30px!important}.nav-item{gap:2px}.nav-label{font-size:10.5px!important;font-weight:800!important}.page.profile-page,.page.progress-page{padding-bottom:calc(var(--nav-h) + 34px)}.profile-hero-card img{max-height:168px}.profile-top-v9{display:flex;align-items:center;gap:14px}.profile-avatar-v9{width:78px;height:78px;border-radius:50%;background:linear-gradient(135deg,var(--teal),#0EA5A1);display:grid;place-items:center;color:#fff;font-size:24px;font-weight:900;position:relative;flex-shrink:0;border:4px solid #fff;box-shadow:var(--shadow-sm)}.camera-dot{position:absolute;right:-2px;bottom:2px;width:28px;height:28px;border-radius:50%;border:3px solid #fff;background:var(--orange);color:#fff;font-size:18px;font-weight:900;display:grid;place-items:center}.profile-name-block{min-width:0}.profile-name{font-size:20px;line-height:1.2;color:var(--navy);font-weight:900;margin-bottom:5px}.profile-role-pill{display:inline-flex;padding:5px 10px;background:rgba(20,184,166,.1);color:var(--teal);border-radius:999px;font-size:11px;font-weight:900;margin-bottom:8px}.mini-btn{min-height:36px!important;padding:0 14px!important;font-size:11.5px!important}.profile-fields-v9{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}.profile-field{background:#F7FBFF;border:1px solid var(--line);border-radius:16px;padding:12px}.profile-field span{display:block;font-size:10.5px;font-weight:900;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin-bottom:5px}.profile-field strong{display:block;font-size:13px;color:var(--navy);font-weight:900;line-height:1.25;word-break:break-word}.stats-grid-v9{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:14px}.stat-card-v9{background:#fff;border:1px solid var(--line);border-radius:18px;padding:10px 5px;text-align:center;box-shadow:var(--shadow-sm)}.stat-card-v9 img{width:32px!important;height:32px!important;margin:0 auto 6px}.stat-card-v9 strong{display:block;font-size:16px;font-weight:900;color:var(--navy);line-height:1}.stat-card-v9 span{display:block;font-size:9.2px;color:var(--muted);font-weight:700;line-height:1.2;margin-top:4px}.menu-list-v9{display:grid;gap:10px}.menu-row-v9{width:100%;background:#fff;border:1px solid var(--line);border-radius:20px;padding:13px 14px;text-decoration:none;display:flex;align-items:center;gap:12px;box-shadow:var(--shadow-sm);color:var(--navy);text-align:left}.menu-row-v9 span:nth-child(2){flex:1;min-width:0}.menu-row-v9 strong{display:block;font-size:14px;font-weight:900;color:var(--navy);line-height:1.25}.menu-row-v9 small{display:block;font-size:11.5px;color:var(--muted);line-height:1.35;margin-top:2px}.menu-row-v9 b{color:var(--teal);font-size:22px}.menu-ico{width:46px;height:46px;border-radius:16px;display:grid;place-items:center;flex-shrink:0}.menu-ico img{width:30px!important;height:30px!important}.menu-ico.teal{background:#E9FAF7}.menu-ico.orange{background:#FFF1EB}.menu-ico.yellow{background:#FFF8DF}.menu-ico.grey{background:#EEF2F6}.menu-ico.red{background:#FFF0F0}.overall-head-v9{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.overall-head-v9 h2{font-size:14px;font-weight:700;color:var(--muted);margin-top:3px}.overall-pct-v9{text-align:right}.overall-pct-v9 strong{display:block;color:var(--teal);font-size:34px;line-height:1;font-weight:900}.overall-pct-v9 span{font-size:12px;color:var(--muted);font-weight:700}.section-row-v9{display:flex;align-items:center;justify-content:space-between;gap:12px}.btn-text{font-size:12px;font-weight:900;color:var(--teal);text-decoration:none}.phase-list-v9,.gate-list-v9{display:grid;gap:10px}.phase-card-v9{background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow-sm);padding:13px 14px;display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--navy)}.phase-num-v9{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;flex-shrink:0;background:#E8EEF4;color:#7A879A;font-size:14px;font-weight:900}.phase-card-v9.done .phase-num-v9{background:var(--teal);color:#fff}.phase-card-v9.current{border-color:rgba(20,184,166,.45);box-shadow:0 0 0 4px rgba(20,184,166,.08), var(--shadow-sm)}.phase-body-v9{flex:1;min-width:0}.phase-body-v9 strong{display:block;font-size:14px;line-height:1.2;color:var(--navy);font-weight:900;margin-bottom:5px}.phase-tags-v9{display:flex;flex-wrap:wrap;gap:5px}.tag-v9{font-size:9.5px;font-weight:900;border-radius:999px;padding:3px 7px}.tag-v9.pass,.tag-v9.done{background:#DCFCE7;color:#166534}.tag-v9.pending{background:#FEF3C7;color:#92400E}.tag-v9.locked{background:#EEF2F6;color:#7A879A}.phase-arrow-v9{font-size:22px;color:#9AA6B8}.gate-row-v9{background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow-sm);padding:13px 14px;display:flex;align-items:center;gap:12px}.gate-ico{width:44px;height:44px;border-radius:15px;display:grid;place-items:center;background:#EEF2F6;flex-shrink:0}.gate-ico img{width:28px!important;height:28px!important}.gate-ico.approved{background:#E9FAF7}.gate-info-v9{flex:1;min-width:0}.gate-info-v9 strong{font-size:13px;color:var(--navy);font-weight:900}.gate-info-v9 small{display:block;font-size:11px;color:var(--muted);line-height:1.35;margin-top:2px}.gate-pill-v9{font-size:10px;font-weight:900;border-radius:999px;padding:4px 9px;white-space:nowrap}.gate-pill-v9.pending{background:#FEF3C7;color:#92400E}.gate-pill-v9.approved{background:#DCFCE7;color:#166534}.badge-grid-v9{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px}.badge-card-v9{background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow-sm);padding:14px 10px;text-align:center;min-height:154px;display:flex;flex-direction:column;align-items:center;justify-content:center}.badge-card-v9.locked{opacity:.52;filter:grayscale(1)}.badge-card-v9 img{width:72px!important;height:72px!important;margin-bottom:9px}.badge-card-v9 strong{font-size:13px;font-weight:900;color:var(--navy);line-height:1.2}.badge-card-v9 small{font-size:10.5px;color:var(--muted);font-weight:700;margin-top:3px;line-height:1.3}.profile-field input{width:100%;border:0;background:transparent;font-size:13px;font-weight:900;color:var(--navy);outline:none}.edit-mode .profile-field{background:#fff}.edit-actions{display:flex;gap:8px;margin-top:12px}.edit-actions .btn{flex:1}
+@media(max-width:380px){.stats-grid-v9{grid-template-columns:repeat(3,1fr)}.profile-fields-v9{grid-template-columns:1fr}.phase-card-v9{padding:12px}.intro-title{font-size:22px}}
+
+
+/* === Smart DT V10: M14 Quiz + Template Engine Stabilisation === */
+.tab.locked{opacity:.72;filter:grayscale(.25);position:relative}.tab.locked:not(.active){background:#F4F7FA;color:#8A95A6}.lock-note{font-size:11px}.smart-quiz .quiz-progress{display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:900;color:var(--muted);margin-bottom:8px}.quiz-bar{height:7px;border-radius:999px;background:#E8EEF4;overflow:hidden;margin-bottom:14px}.quiz-bar span{display:block;height:100%;background:var(--teal);border-radius:999px;transition:width .25s ease}.smart-quiz .options-list{display:grid;gap:9px}.smart-quiz .option{margin-bottom:0}.quiz-nav .btn[disabled]{opacity:.45;cursor:not-allowed}.quiz-status{font-size:11px;color:var(--muted);font-weight:800;text-align:center}.quiz-result{background:#fff;border:1px solid var(--line);border-radius:24px;padding:22px;text-align:center;box-shadow:var(--shadow);margin-bottom:16px}.quiz-result.pass{border-color:rgba(20,184,166,.35)}.quiz-result.retry{border-color:rgba(255,106,61,.35)}.result-badge{width:58px;height:58px;border-radius:50%;margin:0 auto 12px;display:grid;place-items:center;font-size:28px;font-weight:900;color:#fff;background:var(--teal);box-shadow:0 14px 25px rgba(20,184,166,.22)}.quiz-result.retry .result-badge{background:var(--orange);box-shadow:0 14px 25px rgba(255,106,61,.22)}.quiz-result h2{font-size:21px;font-weight:900;color:var(--navy);margin-bottom:8px}.quiz-result p{font-size:13px;color:var(--text);line-height:1.55;margin-bottom:14px}.result-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.template-panel.template-saved .template-card{border-color:rgba(20,184,166,.28);box-shadow:0 0 0 4px rgba(20,184,166,.06),var(--shadow)}.status.saved{background:#DCFCE7!important;color:#166534!important}.subtab.saved::after{content:' ✓';color:var(--teal);font-weight:900}.submit-success-card{background:linear-gradient(135deg,#E9FAF7,#fff);border:1px solid rgba(20,184,166,.28);border-radius:24px;padding:20px;box-shadow:var(--shadow);text-align:center;margin-bottom:16px}.success-mark{width:54px;height:54px;margin:0 auto 10px;border-radius:50%;background:var(--teal);color:#fff;display:grid;place-items:center;font-size:28px;font-weight:900}.submit-success-card h2{font-size:19px;line-height:1.2;color:var(--navy);font-weight:900;margin-bottom:8px}.submit-success-card p{font-size:13px;color:var(--text);line-height:1.55;margin-bottom:14px}.success-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.smart-toast{position:fixed;left:50%;bottom:calc(var(--nav-h) + 14px);transform:translateX(-50%) translateY(12px);width:min(390px,calc(100% - 32px));background:var(--navy);color:#fff;border-radius:18px;padding:13px 16px;z-index:999;font-size:12.5px;font-weight:800;text-align:center;box-shadow:0 18px 34px rgba(8,27,68,.22);opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease}.smart-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}@media(max-width:380px){.result-actions,.success-actions{grid-template-columns:1fr}.smart-toast{bottom:calc(var(--nav-h) + 8px)}}
+
+
+/* === Smart DT Hosted PNG Asset Sizing (from FreeImage Asset Tracker) === */
+.brand-logo-img,
+.brand-logo img,
+.header-logo-icon { width:42px !important; height:42px !important; object-fit:contain !important; display:block !important; }
+
+.hero-img-wide,
+.hero-card > img,
+.hero-card img,
+.hero-img { max-width:100%; height:auto; object-fit:contain !important; display:block; }
+.phase-hero-card img,
+.hero-card.compact img { aspect-ratio:16/9; object-fit:contain !important; }
+
+.bottom-nav .nav-icon,
+.bottom-nav .nav-item > img.nav-icon-img { width:32px !important; height:32px !important; object-fit:contain !important; display:block !important; }
+.bottom-nav .nav-icon img,
+.nav-icon-img { width:30px !important; height:30px !important; object-fit:contain !important; display:block !important; }
+.bottom-nav .nav-label { font-size:10.5px !important; font-weight:700 !important; margin-top:1px !important; }
+
+.ui-icon-img { width:36px !important; height:36px !important; object-fit:contain !important; display:block !important; }
+.ui-icon-img-small,
+.pill-icon,
+.icon-btn img,
+.lang-btn img,
+.language-selector img { width:20px !important; height:20px !important; object-fit:contain !important; display:inline-block !important; }
+.feature-icon-img { width:46px !important; height:46px !important; object-fit:contain !important; display:block !important; }
+.action-icon-img,
+.btn-icon-png,
+.action-row .btn img,
+.btn img { width:40px !important; height:40px !important; object-fit:contain !important; display:inline-block !important; flex-shrink:0 !important; }
+.menu-icon-img,
+.menu-ico img { width:32px !important; height:32px !important; object-fit:contain !important; display:block !important; }
+.ai-coach-icon-img { width:44px !important; height:44px !important; object-fit:contain !important; display:block !important; }
+.badge-icon-img,
+.badge-card img,
+.badge-grid-v9 img { width:56px !important; height:56px !important; object-fit:contain !important; display:block !important; }
+.pillar-icon-img { width:52px !important; height:52px !important; object-fit:contain !important; display:block !important; }
+.asset-illustration-card { width:96px !important; height:96px !important; object-fit:contain !important; display:block !important; }
+.carousel-illustration-img { width:110px !important; height:110px !important; object-fit:contain !important; display:block !important; }
+.stat-icon-img { width:42px !important; height:42px !important; object-fit:contain !important; display:block !important; }
+
+/* Reduce unwanted white-box feel around PNG icons inside coloured buttons/cards */
+.btn img,
+.action-row .btn img,
+.icon-btn img,
+.pill img { background:transparent !important; border:0 !important; box-shadow:none !important; }
+
+
+/* =========================================================
+   Smart DT V13 Fix — no 404 header/tab icons + bigger nav
+   ========================================================= */
+:root{ --nav-h:88px; }
+.page{padding-bottom:calc(var(--nav-h) + 36px)!important;}
+.header .pill-icon,
+.header .icon-btn img,
+.tab .tab-icon{display:none!important;}
+.pill.lang-pill{min-width:70px!important;gap:6px!important;}
+.pill-symbol{font-size:16px;line-height:1;display:inline-flex;align-items:center;justify-content:center;}
+.icon-btn.menu-lines{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
+.icon-btn.menu-lines span{width:18px;height:2.5px;border-radius:99px;background:var(--navy);display:block;}
+.tab{gap:0!important;font-size:12.3px!important;}
+.tab[data-tab="quickInfo"]::before{content:"ⓘ";font-size:12px;margin-right:6px;font-weight:900;}
+.tab[data-tab="quizPanel"]::before{content:"?";width:16px;height:16px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-right:6px;font-size:11px;font-weight:900;background:rgba(8,27,68,.10);color:inherit;}
+.tab[data-tab="templatesPanel"]::before{content:"▣";font-size:13px;margin-right:6px;font-weight:900;}
+.tab.active[data-tab="quizPanel"]::before{background:rgba(255,255,255,.20);color:#fff;}
+.bottom-nav{height:88px!important;padding:6px 0 8px!important;}
+.nav-item{gap:4px!important;font-size:11px!important;font-weight:900!important;line-height:1!important;}
+.nav-item img,.nav-icon-img,.nav-item svg,
+.bottom-nav .nav-icon img,
+.bottom-nav .nav-item>img.nav-icon-img{
+  width:38px!important;height:38px!important;max-width:38px!important;max-height:38px!important;object-fit:contain!important;display:block!important;flex-shrink:0!important;
+}
+.bottom-nav .nav-label{font-size:11px!important;font-weight:900!important;margin-top:1px!important;}
+.acc-icon{width:48px!important;height:48px!important;border-radius:17px!important;}
+.acc-icon img,.acc-icon svg{width:32px!important;height:32px!important;max-width:32px!important;max-height:32px!important;object-fit:contain!important;}
+.fab{bottom:104px!important;width:60px!important;height:60px!important;}
+.smart-toast{bottom:calc(var(--nav-h) + 12px)!important;}
+@media(max-width:385px){
+  .bottom-nav{height:86px!important;}
+  .nav-item img,.nav-icon-img,.nav-item svg,.bottom-nav .nav-item>img.nav-icon-img{width:36px!important;height:36px!important;max-width:36px!important;max-height:36px!important;}
+  .bottom-nav .nav-label{font-size:10.3px!important;}
+}
