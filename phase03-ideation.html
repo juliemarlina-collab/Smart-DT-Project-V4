@@ -1,503 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <meta name="description" content="Smart DT Project — Phase 03: Ideation">
-  <title>Phase 03: Ideation — Smart DT Project</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-
-  <style>
-    body { background-color: var(--color-bg); overflow-x: hidden; }
-
-    .hamburger-btn {
-      width:36px; height:36px; display:flex; align-items:center;
-      justify-content:center; border-radius:var(--radius-sm);
-      background-color:var(--color-bg); border:1px solid var(--color-border);
-      cursor:pointer; flex-shrink:0;
-    }
-    .hamburger-btn svg {
-      width:20px; height:20px; stroke:var(--color-navy); fill:none;
-      stroke-width:2; stroke-linecap:round;
-    }
-    .phase-header {
-      position:relative; padding:calc(var(--header-height) + 16px) 20px 0;
-      overflow:hidden; min-height:240px;
-    }
-    .phase-content {
-      padding:16px 20px calc(var(--nav-height) + 24px);
-      position:relative; z-index:2;
-    }
-    .back-link {
-      display:inline-flex; align-items:center; gap:6px; font-size:13px;
-      font-weight:500; color:var(--color-text-mid); text-decoration:none;
-      margin-bottom:8px; position:relative; z-index:2;
-    }
-    .back-link:hover { color:var(--color-navy); }
-    .back-link svg {
-      width:16px; height:16px; stroke:currentColor; fill:none;
-      stroke-width:2; stroke-linecap:round; stroke-linejoin:round;
-    }
-    .nav-icon svg {
-      width:24px; height:24px; fill:none; stroke:currentColor;
-      stroke-width:2; stroke-linecap:round; stroke-linejoin:round;
-    }
-  </style>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1,maximum-scale=1" name="viewport"/>
+<title>Phase 03 Ideation — Smart DT Project</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="css/smartdt.css" rel="stylesheet"/>
 </head>
-
-<body data-dots="true">
-<div class="app-container">
-
-  <img src="assets/shared/pink-blob.svg"
-       class="pink-blob" alt="" aria-hidden="true"
-       onerror="this.style.display='none'">
-
-  <!-- HEADER -->
-  <header class="header" role="banner">
-    <a href="dashboard.html" class="header-logo"
-       aria-label="Smart DT Project — back to dashboard">
-      <img src="assets/brand/logo-icon.svg" class="header-logo-icon"
-           alt="Smart DT Project logo" onerror="this.style.display='none'">
-      <span class="header-logo-text">Smart DT<br>Project</span>
-    </a>
-    <div class="header-right">
-      <div class="phase-counter" aria-label="Phase 03 of 5">
-        <span class="phase-counter-current">03</span>
-        <span class="phase-counter-sep"> / </span>
-        <span class="phase-counter-total">05</span>
-      </div>
-      <button class="hamburger-btn" id="hamburger-btn"
-              aria-label="Open menu" aria-expanded="false">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <line x1="3" y1="6"  x2="21" y2="6"/>
-          <line x1="3" y1="12" x2="21" y2="12"/>
-          <line x1="3" y1="18" x2="21" y2="18"/>
-        </svg>
-      </button>
-    </div>
-  </header>
-
-  <!-- PHASE HEADER -->
-  <section class="phase-header" aria-label="Ideation phase introduction">
-    <div class="hero-wrap" aria-hidden="true">
-      <img src="assets/heroes/ideate-hero.svg" class="hero-img"
-           alt="Student holding two gears" onerror="this.style.display='none'">
-    </div>
-    <div class="page-header-text">
-      <a href="dashboard.html" class="back-link" aria-label="Back to dashboard">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <polyline points="15 18 9 12 15 6"/>
-        </svg>
-        Dashboard
-      </a>
-      <div class="phase-badge" aria-hidden="true">03</div>
-      <div class="phase-title-area">
-        <p class="phase-title-line"><span class="word-accent">Ideation</span></p>
-        <p class="phase-title-line"><span class="word-phase">Phase</span></p>
-        <p class="phase-description">Generate creative ideas and explore multiple possible solutions.</p>
-        <div class="orange-underline" aria-hidden="true"></div>
-        <p class="phase-tagline">More Ideas.<br>Stronger Solutions.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- MAIN CONTENT -->
-  <main class="phase-content" role="main">
-
-    <!-- TAB BAR -->
-    <div class="tab-bar" role="tablist" aria-label="Phase navigation">
-      <button class="tab-btn active" data-tab="info"
-              id="tab-btn-info" role="tab"
-              aria-selected="true" aria-controls="tab-info">
-        Quick Info
-      </button>
-      <button class="tab-btn" data-tab="quiz"
-              id="tab-btn-quiz" role="tab"
-              aria-selected="false" aria-controls="tab-quiz">
-        Quiz
-      </button>
-      <a class="tab-btn" id="tab-btn-templates"
-         href="phase03-templates.html"
-         aria-label="Open Phase 03 Templates"
-         style="text-decoration:none;display:flex;align-items:center;justify-content:center;gap:6px">
-        📋 Templates
-      </a>
-    </div>
-    
-
-
-    <!-- TAB 1: QUICK INFO -->
-    <div class="tab-panel" id="tab-info"
-         role="tabpanel" aria-labelledby="tab-btn-info">
-
-      <div class="phase-content-grid">
-
-        <!-- Carousel -->
-        <div>
-          <div class="carousel-wrap" id="phase-carousel"
-               aria-label="Ideation phase information slides">
-            <div class="carousel-track" id="carousel-track">
-              
-            <div class="carousel-slide"
-                 role="group" aria-roledescription="slide"
-                 aria-label="Slide 1 of 4: Explore without limits">
-              <div class="carousel-slide-illustration" aria-hidden="true">
-                <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"
-                     style="display:block;width:80px;height:80px">
-                  <rect x="24" y="44" width="32" height="24" rx="3" fill="#14B8A6" opacity=".2" stroke="#14B8A6" stroke-width="1.5"/><path d="M24 44 L40 36 L56 44" stroke="#14B8A6" stroke-width="1.5" fill="none"/><circle cx="32" cy="26" r="6" fill="#FF6A3D" opacity=".5"/><circle cx="48" cy="20" r="5" fill="#F5A623" opacity=".6"/><circle cx="40" cy="12" r="4" fill="#14B8A6" opacity=".5"/>
-                </svg>
-              </div>
-              <div class="carousel-slide-content">
-                <p class="carousel-slide-title">Explore without limits</p>
-                <p class="carousel-slide-text">Brainstorm freely — no idea is too wild at this stage.</p>
-              </div>
-            </div>
-            <div class="carousel-slide"
-                 role="group" aria-roledescription="slide"
-                 aria-label="Slide 2 of 4: Why quantity matters"
-                 aria-hidden="true">
-              <div class="carousel-slide-illustration" aria-hidden="true">
-                <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"
-                     style="display:block;width:80px;height:80px">
-                  <circle cx="40" cy="40" r="26" fill="#F5A623" opacity=".1"/><path d="M30 38a10 10 0 1 1 20 0c0 5-3 7-5 10H35c-2-3-5-5-5-10z" stroke="#F5A623" stroke-width="2" fill="none"/><line x1="35" y1="50" x2="45" y2="50" stroke="#F5A623" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-              </div>
-              <div class="carousel-slide-content">
-                <p class="carousel-slide-title">Why quantity matters</p>
-                <p class="carousel-slide-text">The more ideas you generate, the higher the chance of finding a great solution.</p>
-              </div>
-            </div>
-            <div class="carousel-slide"
-                 role="group" aria-roledescription="slide"
-                 aria-label="Slide 3 of 4: Your Ideation tools"
-                 aria-hidden="true">
-              <div class="carousel-slide-illustration" aria-hidden="true">
-                <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"
-                     style="display:block;width:80px;height:80px">
-                  <circle cx="40" cy="40" r="28" fill="#E05C7A" opacity=".08"/><text x="40" y="36" text-anchor="middle" font-size="9" fill="#E05C7A" font-family="sans-serif" font-weight="700">SCAMPER</text><line x1="20" y1="40" x2="60" y2="40" stroke="#E05C7A" stroke-width="1" opacity=".5"/>
-                </svg>
-              </div>
-              <div class="carousel-slide-content">
-                <p class="carousel-slide-title">Your Ideation tools</p>
-                <p class="carousel-slide-text">Use Brainstorming, SCAMPER, and the Idea Selection Matrix to find your best idea.</p>
-              </div>
-            </div>
-            <div class="carousel-slide"
-                 role="group" aria-roledescription="slide"
-                 aria-label="Slide 4 of 4: Your goal this phase"
-                 aria-hidden="true">
-              <div class="carousel-slide-illustration" aria-hidden="true">
-                <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"
-                     style="display:block;width:80px;height:80px">
-                  <rect x="14" y="14" width="52" height="52" rx="4" fill="#14B8A6" opacity=".08" stroke="#14B8A6" stroke-width="1.5"/><line x1="30" y1="14" x2="30" y2="66" stroke="#14B8A6" stroke-width="1" opacity=".4"/><line x1="46" y1="14" x2="46" y2="66" stroke="#14B8A6" stroke-width="1" opacity=".4"/><line x1="14" y1="30" x2="66" y2="30" stroke="#14B8A6" stroke-width="1" opacity=".4"/>
-                </svg>
-              </div>
-              <div class="carousel-slide-content">
-                <p class="carousel-slide-title">Your goal this phase</p>
-                <p class="carousel-slide-text">Generate 20+ ideas, apply SCAMPER, and select the top idea using a scoring matrix.</p>
-              </div>
-            </div>
-            </div>
-          </div>
-          <div class="dot-row" id="carousel-dots"
-               role="tablist" aria-label="Slide navigation">
-            <div class="dot active" role="tab" aria-selected="true"  aria-label="Slide 1"></div>
-            <div class="dot"        role="tab" aria-selected="false" aria-label="Slide 2"></div>
-            <div class="dot"        role="tab" aria-selected="false" aria-label="Slide 3"></div>
-            <div class="dot"        role="tab" aria-selected="false" aria-label="Slide 4"></div>
-          </div>
-        </div>
-
-        <!-- Feature rows -->
-        <div class="feature-list" aria-label="Ideation phase key skills">
-          
-        <div class="feature-row">
-          <div class="feature-icon-box teal" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF"
-                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/>
-            </svg>
-          </div>
-          <div class="feature-text">
-            <p class="feature-text-title">Brainstorm widely</p>
-            <p class="feature-text-desc">Generate as many ideas as possible.</p>
-          </div>
-        </div>
-        <div class="feature-row">
-          <div class="feature-icon-box pink-red" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF"
-                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="8" cy="12" r="4"/><circle cx="16" cy="12" r="4"/><line x1="8" y1="8" x2="16" y2="8"/>
-            </svg>
-          </div>
-          <div class="feature-text">
-            <p class="feature-text-title">Build on each other</p>
-            <p class="feature-text-desc">Combine ideas to spark better ones.</p>
-          </div>
-        </div>
-        <div class="feature-row">
-          <div class="feature-icon-box yellow" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF"
-                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-            </svg>
-          </div>
-          <div class="feature-text">
-            <p class="feature-text-title">Evaluate opportunities</p>
-            <p class="feature-text-desc">Identify the most promising ideas.</p>
-          </div>
-        </div>
-        </div>
-
-      </div><!-- /.phase-content-grid -->
-
-      <!-- CTA -->
-      <div class="cta-row">
-        <button class="btn-primary" id="cta-btn"
-                aria-label="Let's Continue with Phase 03 Ideation">
-          Let's Continue
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="2.5"
-               stroke-linecap="round" stroke-linejoin="round"
-               aria-hidden="true" style="flex-shrink:0">
-            <line x1="5" y1="12" x2="19" y2="12"/>
-            <polyline points="12 5 19 12 12 19"/>
-          </svg>
-        </button>
-        <button class="btn-arrow-circle" id="cta-arrow-btn"
-                aria-label="Let's Continue">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-               stroke-width="2.5" stroke-linecap="round"
-               stroke-linejoin="round" aria-hidden="true">
-            <line x1="5" y1="12" x2="19" y2="12"/>
-            <polyline points="12 5 19 12 12 19"/>
-          </svg>
-        </button>
-      </div>
-
-      <!-- Progress line -->
-      <div class="phase-progress-line" aria-label="Phase progress indicator">
-        
-      <div class="line-segment done" aria-label="Phase 1"></div>
-      <div class="line-segment done" aria-label="Phase 2"></div>
-      <div class="line-segment done" aria-label="Phase 3"></div>
-      <div class="line-segment" aria-label="Phase 4"></div>
-      <div class="line-segment" aria-label="Phase 5"></div>
-      </div>
-
-    </div><!-- /#tab-info -->
-
-
-    <!-- TAB 2: QUIZ -->
-    <div class="tab-panel hidden" id="tab-quiz"
-         role="tabpanel" aria-labelledby="tab-btn-quiz">
-      <!--
-        phase-engine.js renders the quiz here.
-        initQuiz(03) builds one question at a time inside this div.
-      -->
-      <div id="quiz-container"></div>
-    </div><!-- /#tab-quiz -->
-
-
-    <!-- TAB 3: TEMPLATES -->
-    <div class="tab-panel hidden" id="tab-templates"
-         role="tabpanel" aria-labelledby="tab-btn-templates">
-      <!--
-        Auto-saved every 500ms by phase-engine.js initTemplateForm().
-        namespace = "df_p03_" — all localStorage keys prefixed here.
-      -->
-      <form id="template-form" novalidate>
-        
-          <section class="template-section" aria-label="T07 Brainstorm Sheet">
-            <div class="template-section-header">
-              <span class="template-badge">T07</span>
-              <h3 class="template-section-title">Brainstorm Sheet</h3>
-            </div>
-            
-            <label class="form-label" for="t07_ideas">All Ideas — List every idea (aim for 20+, one per line)</label>
-            <textarea id="t07_ideas" name="t07_ideas" class="form-input"
-                      rows="3" placeholder=""></textarea>
-            <label class="form-label" for="t07_scamper_s">SCAMPER — Substitute: What can you replace?</label>
-            <textarea id="t07_scamper_s" name="t07_scamper_s" class="form-input"
-                      rows="3" placeholder=""></textarea>
-            <label class="form-label" for="t07_scamper_c">SCAMPER — Combine: What can you merge?</label>
-            <textarea id="t07_scamper_c" name="t07_scamper_c" class="form-input"
-                      rows="3" placeholder=""></textarea>
-            <label class="form-label" for="t07_scamper_a">SCAMPER — Adapt: What can you adjust?</label>
-            <textarea id="t07_scamper_a" name="t07_scamper_a" class="form-input"
-                      rows="3" placeholder=""></textarea>
-            <label class="form-label" for="t07_wild">Wild Card Idea — Your most creative, unexpected idea</label>
-            <textarea id="t07_wild" name="t07_wild" class="form-input"
-                      rows="3" placeholder=""></textarea>
-          </section>
-          <section class="template-section" aria-label="T08 Idea Selection Matrix">
-            <div class="template-section-header">
-              <span class="template-badge">T08</span>
-              <h3 class="template-section-title">Idea Selection Matrix</h3>
-            </div>
-            
-            <label class="form-label" for="t08_idea1">Idea 1 — Name</label>
-            <input id="t08_idea1" name="t08_idea1" type="text" class="form-input"
-                   placeholder="">
-            <label class="form-label" for="t08_score1">Idea 1 — Score (1–10)</label>
-            <input id="t08_score1" name="t08_score1" type="text" class="form-input"
-                   placeholder="">
-            <label class="form-label" for="t08_idea2">Idea 2 — Name</label>
-            <input id="t08_idea2" name="t08_idea2" type="text" class="form-input"
-                   placeholder="">
-            <label class="form-label" for="t08_score2">Idea 2 — Score (1–10)</label>
-            <input id="t08_score2" name="t08_score2" type="text" class="form-input"
-                   placeholder="">
-            <label class="form-label" for="t08_idea3">Idea 3 — Name</label>
-            <input id="t08_idea3" name="t08_idea3" type="text" class="form-input"
-                   placeholder="">
-            <label class="form-label" for="t08_score3">Idea 3 — Score (1–10)</label>
-            <input id="t08_score3" name="t08_score3" type="text" class="form-input"
-                   placeholder="">
-            <label class="form-label" for="t08_winner">Selected Idea — Which idea scored highest and why?</label>
-            <textarea id="t08_winner" name="t08_winner" class="form-input"
-                      rows="3" placeholder=""></textarea>
-            <label class="form-label" for="t08_justify">Justification — How does it solve the problem?</label>
-            <textarea id="t08_justify" name="t08_justify" class="form-input"
-                      rows="3" placeholder=""></textarea>
-          </section>
-
-        <!-- Submit phase button -->
-        <div style="margin-top:24px">
-          <button type="button" class="btn-primary"
-                  onclick="PhaseEngine.submitPhase(3, '', ['df_p03_'])"
-                  aria-label="Submit Phase 03 Ideation">
-            Submit Phase 03
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2.5"
-                 stroke-linecap="round" stroke-linejoin="round"
-                 aria-hidden="true" style="flex-shrink:0">
-              <line x1="5" y1="12" x2="19" y2="12"/>
-              <polyline points="12 5 19 12 12 19"/>
-            </svg>
-          </button>
-        </div>
-
-      </form><!-- /#template-form -->
-
-      
-      <!-- SUPERVISOR GATE — rendered by PhaseEngine.initGateCard() -->
-      <div id="gate-container"
-           role="region" aria-label="Supervisor Gate 2">
-        <!-- Gate card injected by phase-engine.js on DOMContentLoaded -->
-      </div>
-
-    </div><!-- /#tab-templates -->
-
-  </main><!-- /.phase-content -->
-
-
-  <!-- BOTTOM NAV -->
-  <nav class="bottom-nav" role="navigation" aria-label="Main navigation">
-    <a href="dashboard.html" class="nav-item"
-       data-page="dashboard.html" aria-label="Dashboard">
-      <span class="nav-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24">
-          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-          <polyline points="9 22 9 12 15 12 15 22"/>
-        </svg>
-      </span>
-      <span class="nav-label">Dashboard</span>
-    </a>
-    <a href="dashboard.html" class="nav-item"
-       data-page="learn" aria-label="Learn">
-      <span class="nav-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24">
-          <path d="M9 18h6M10 22h4"/>
-          <path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/>
-        </svg>
-      </span>
-      <span class="nav-label">Learn</span>
-    </a>
-    <a href="phase03-ideation.html" class="nav-item"
-       data-page="projects" aria-label="Projects">
-      <span class="nav-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-          <polyline points="14 2 14 8 20 8"/>
-          <line x1="16" y1="13" x2="8" y2="13"/>
-          <line x1="16" y1="17" x2="8" y2="17"/>
-        </svg>
-      </span>
-      <span class="nav-label">Projects</span>
-    </a>
-    <a href="progress.html" class="nav-item"
-       data-page="progress.html" aria-label="Progress">
-      <span class="nav-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24">
-          <polyline points="14 11 17 14 22 9"/>
-          <path d="M22 12v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/>
-        </svg>
-      </span>
-      <span class="nav-label">Progress</span>
-    </a>
-    <a href="profile.html" class="nav-item"
-       data-page="profile.html" aria-label="Profile">
-      <span class="nav-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-          <circle cx="12" cy="7" r="4"/>
-        </svg>
-      </span>
-      <span class="nav-label">Profile</span>
-    </a>
-  </nav>
-
-</div><!-- /.app-container -->
-
-
-<!-- SCRIPTS — data.js → ui.js → phase-engine.js → inline -->
-<script src="js/data.js"></script>
-<script src="js/ui.js"></script>
-<script src="js/phase-engine.js"></script>
-
-<script>
-  'use strict';
-
-  /* PhaseEngine.init() queues its own DOMContentLoaded internally.
-     Calling it here (synchronously) is correct — it registers the
-     handler before the DOM fires, so nothing is missed.            */
-  PhaseEngine.init({
-    phaseNum:  3,
-      hasGate:   true,
-      gateNum:   2,
-    namespace: 'df_p03_',
-    sheetUrl:  '',
-  });
-
-  document.addEventListener('DOMContentLoaded', function () {
-
-    /* CTA → switch to Quiz tab */
-    var cta   = document.getElementById('cta-btn');
-    var arrow = document.getElementById('cta-arrow-btn');
-    function goToQuiz() {
-      var quizTab = document.querySelector('.tab-btn[data-tab="quiz"]');
-      if (quizTab) quizTab.click();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-    if (cta)   cta.addEventListener('click', goToQuiz);
-    if (arrow) arrow.addEventListener('click', goToQuiz);
-
-    /* Hamburger */
-    var hbtn = document.getElementById('hamburger-btn');
-    if (hbtn) {
-      hbtn.addEventListener('click', function () {
-        var exp = this.getAttribute('aria-expanded') === 'true';
-        this.setAttribute('aria-expanded', String(!exp));
-      });
-    }
-
-  });
-</script>
-
+<body data-page="learn" data-phase="03">
+<div class="app">
+<header class="header">
+<a class="brand" href="dashboard.html"><span aria-hidden="true" class="brand-logo brand-logo-inline"><img alt="" decoding="async" loading="lazy" src="https://iili.io/CJUGyZb.png"/></span><span class="brand-text">Smart DT<br/>Project</span></a>
+<div class="header-actions"><span class="pill"><b style="color:var(--orange)">03</b> / 05</span><span class="pill"><img alt="" class="pill-icon" decoding="async" loading="lazy" src="https://iili.io/CJgMoLG.png"/> EN</span><button aria-label="Menu" class="icon-btn"><img alt="" decoding="async" loading="lazy" src="https://iili.io/CJgM5k7.png"/></button></div>
+</header>
+<main class="page phase-page">
+<section class="hero-card compact"><img alt="Ideation phase header" src="https://iili.io/CdztOpj.png"/></section>
+<section class="intro-card"><p class="eyebrow">Phase 03 · Ideation</p><h1 class="intro-title">Generate many ideas before choosing the <span class="teal">best solution.</span></h1><p class="intro-text">In this phase, your team uses the HMW question from Define to brainstorm widely, apply SCAMPER, evaluate ideas and justify one final concept before prototyping.</p></section>
+<div class="tabbar" role="tablist"><button class="tab active" data-tab="quickInfo"><img alt="" class="tab-icon" decoding="async" loading="lazy" src="https://iili.io/CJrUSAg.png"/> Quick Info</button><button class="tab" data-tab="quizPanel"><img alt="" class="tab-icon" decoding="async" loading="lazy" src="https://iili.io/CJgMGrQ.png"/> Quiz</button><button class="tab" data-tab="templatesPanel"><img alt="" class="tab-icon" decoding="async" loading="lazy" src="https://iili.io/CJ4wp9f.png"/> Templates</button></div>
+<section class="panel active" id="quickInfo">
+<div class="card"><h2 class="section-title" style="margin-top:0">What is Ideation?</h2><p class="section-sub">Ideation is the creative phase where your team generates many possible solutions. The goal is not to find the perfect idea immediately, but to explore widely before selecting the strongest direction.</p></div>
+<div class="card"><h2 class="section-title" style="margin-top:0">What students need to do</h2><ul class="list"><li>Use the best HMW question from T06 as the brainstorming focus.</li><li>Generate at least 20 ideas without judging them too early.</li><li>Use SCAMPER to improve, combine or transform ideas.</li><li>Score the top 5 ideas using the Idea Selection Matrix.</li><li>Justify one final idea and submit Supervisor Gate 2 before Prototyping.</li></ul></div>
+<div class="card"><h2 class="section-title" style="margin-top:0">Common mistakes to avoid</h2><ul class="list"><li>Do not stop after the first “good” idea.</li><li>Do not criticise ideas during brainstorming.</li><li>Do not choose based only on personal preference.</li><li>Do not forget to connect the idea back to the problem statement.</li></ul></div>
+<button class="btn primary full" onclick="document.querySelector('[data-tab=quizPanel]').click()">Start Quick Check Quiz</button>
+</section>
+<section class="panel" id="quizPanel"><div id="quizBox"></div></section>
+<section class="panel" id="templatesPanel">
+<h1 class="section-title phase-title"><span>Ideation</span><br/>Templates</h1>
+<p class="section-sub">Use the Ideation templates to move from HMW question → many ideas → improved ideas → scored ideas → final concept → Supervisor Gate 2.</p>
+<div class="template-steps five">
+<div class="template-step"><span class="step-num">7</span><p>Brainstorm</p></div>
+<div class="template-step"><span class="step-num">8</span><p>SCAMPER</p></div>
+<div class="template-step"><span class="step-num">9</span><p>Matrix</p></div>
+<div class="template-step"><span class="step-num">10</span><p>Justify</p></div>
+<div class="template-step"><span class="step-num">G2</span><p>Gate 2</p></div>
+</div>
+<div class="subtabs ideation-five five">
+<button class="subtab active" data-subtab="t07">T07</button>
+<button class="subtab" data-subtab="t08">T08</button>
+<button class="subtab" data-subtab="t09">T09</button>
+<button class="subtab" data-subtab="t10">T10</button>
+<button class="subtab" data-subtab="gate02">Gate 2</button>
+</div>
+<form id="ideationForm">
+<section class="template-panel active" id="t07"><div class="template-card guided-template"><div class="template-head"><div><h2>T07 Brainstorming Sheet</h2><p class="section-sub">Generate many ideas from your best HMW question. Quantity first, judgement later.</p></div><span class="status">Start Here</span></div><div class="template-guide-card"><span class="guide-tag">Activity Introduction</span><h3>What are you going to do?</h3><p>Your team will brainstorm at least 20 possible ideas. During this step, every idea is accepted first. Evaluation happens later in T09.</p><div class="guide-mini-grid"><div><b>Input</b><span>Best HMW from T06</span></div><div><b>Target</b><span>20+ ideas</span></div><div><b>Output</b><span>Top 5 ideas</span></div></div></div><div class="activity-box enhanced"><p class="activity-title"><span class="badge">A7</span>Brainstorm Rules</p><p class="bullet">No judging during idea generation.</p><p class="bullet">Build on each other's ideas using “Yes, and…”.</p><p class="bullet">Write fast and aim for quantity.</p><p class="bullet">Wild ideas are allowed because they may spark better ideas.</p></div><div class="switch"><button class="active" data-mode="sample" type="button">View Sample</button><button data-mode="fill" type="button">Fill Template</button></div><div class="sample rich-sample"><span class="sample-kicker">Sample Brainstorm</span><h3>HMW: Help students decide where to buy lunch before peak-hour rush</h3><div class="sample-tip"><b>Ideas:</b> crowd-level display, pre-order lunch slot, canteen queue camera, quick lunch menu board, student lunch planner, Telegram lunch alert.</div></div><div class="fill"><div class="sample-answer"><div class="sample-answer-title">✍️ Sample answer guide</div><p><code>HMW:</code> How might we help students decide where to buy lunch before peak-hour rush?<br><code>Idea:</code> Show live crowd level for each food stall before students leave class.</p></div><div class="field"><label>HMW Question from T06</label><textarea class="textarea" name="t07_hmw" placeholder="Copy your best HMW question here..."></textarea></div><div class="field"><label>Brainstorm Ideas</label><textarea class="textarea" name="t07_ideas" placeholder="1. Idea...
+2. Idea...
+3. Idea...
+Continue until at least 20 ideas..."></textarea></div><div class="field"><label>Top 5 Ideas After Team Voting</label><textarea class="textarea" name="t07_top5" placeholder="1. ...
+2. ...
+3. ...
+4. ...
+5. ..."></textarea></div><button class="btn teal full" data-save type="button"><img alt="" class="btn-icon-png" src="https://iili.io/CJU0gTb.png"/>Save T07 Brainstorming</button></div></div></section>
+<section class="template-panel" id="t08"><div class="template-card guided-template"><div class="template-head"><div><h2>T08 SCAMPER Prompt Sheet</h2><p class="section-sub">Use SCAMPER to stretch and improve your ideas before choosing.</p></div><span class="status">Not Started</span></div><div class="template-guide-card"><span class="guide-tag">Activity Introduction</span><h3>What are you going to do?</h3><p>You will examine your top ideas through seven SCAMPER lenses: Substitute, Combine, Adapt, Modify, Put to another use, Eliminate and Reverse.</p><div class="guide-mini-grid"><div><b>Input</b><span>Top ideas from T07</span></div><div><b>Tool</b><span>SCAMPER 7 lenses</span></div><div><b>Output</b><span>Improved ideas</span></div></div></div><div class="switch"><button class="active" data-mode="sample" type="button">View Sample</button><button data-mode="fill" type="button">Fill Template</button></div><div class="sample rich-sample"><span class="sample-kicker">Sample SCAMPER</span><h3>Improve the crowd-level display idea</h3><div class="sample-tip"><b>Combine:</b> combine live crowd level with pre-order lunch slots.<br><b>Eliminate:</b> remove complex login for users who only want to check queue level.</div></div><div class="fill"><div class="sample-answer"><div class="sample-answer-title">✍️ Sample answer guide</div><p><code>Substitute:</code> Replace manual queue checking with student-reported crowd status.<br><code>Combine:</code> Combine crowd status with menu availability.</p></div><div class="field"><label>Idea to Improve</label><textarea class="textarea" name="t08_idea" placeholder="Choose one idea from T07..."></textarea></div><div class="field"><label>SCAMPER Notes</label><textarea class="textarea" name="t08_scamper" placeholder="S - Substitute...
+C - Combine...
+A - Adapt...
+M - Modify...
+P - Put to another use...
+E - Eliminate...
+R - Reverse..."></textarea></div><div class="field"><label>Best Improved Idea</label><textarea class="textarea" name="t08_best" placeholder="Write the strongest improved idea here..."></textarea></div><button class="btn teal full" data-save type="button"><img alt="" class="btn-icon-png" src="https://iili.io/CJU0gTb.png"/>Save T08 SCAMPER</button></div></div></section>
+<section class="template-panel" id="t09"><div class="template-card guided-template"><div class="template-head"><div><h2>T09 Idea Selection Matrix</h2><p class="section-sub">Score top ideas using fair criteria before deciding.</p></div><span class="status">Not Started</span></div><div class="template-guide-card"><span class="guide-tag">Activity Introduction</span><h3>What are you going to do?</h3><p>You will score your top 5 ideas using feasibility, impact, novelty and cost. This helps the team choose based on evidence rather than preference.</p><div class="guide-mini-grid"><div><b>Input</b><span>Top 5 ideas</span></div><div><b>Criteria</b><span>1–5 score</span></div><div><b>Output</b><span>Best idea</span></div></div></div><div class="switch"><button class="active" data-mode="sample" type="button">View Sample</button><button data-mode="fill" type="button">Fill Template</button></div><div class="sample rich-sample"><span class="sample-kicker">Sample Matrix Logic</span><h3>Live crowd display</h3><div class="sample-tip"><b>Feasibility:</b> 4 · <b>Impact:</b> 5 · <b>Novelty:</b> 3 · <b>Cost:</b> 4. Total = 16/20.</div></div><div class="fill"><div class="sample-answer"><div class="sample-answer-title">✍️ Sample answer guide</div><p>Score each idea from 1 to 5. High score means stronger fit. Cost can be scored as 5 = low cost/easy to build.</p></div><div class="field"><label>Idea Matrix</label><textarea class="textarea" name="t09_matrix" placeholder="Idea 1: ... | Feasibility: ... | Impact: ... | Novelty: ... | Cost: ... | Total: ...
+Idea 2: ..."></textarea></div><div class="field"><label>Highest Scoring Idea</label><textarea class="textarea" name="t09_winner" placeholder="Which idea scored highest and why?"></textarea></div><button class="btn teal full" data-save type="button"><img alt="" class="btn-icon-png" src="https://iili.io/CJU0gTb.png"/>Save T09 Matrix</button></div></div></section>
+<section class="template-panel" id="t10"><div class="template-card guided-template"><div class="template-head"><div><h2>T10 Final Idea Justification</h2><p class="section-sub">Explain why your chosen idea deserves to move into Prototype.</p></div><span class="status">Not Started</span></div><div class="template-guide-card"><span class="guide-tag">Activity Introduction</span><h3>What are you going to do?</h3><p>You will write a clear concept summary, connect it to the user need, list resources and prepare for supervisor review.</p><div class="guide-mini-grid"><div><b>Input</b><span>Winning idea</span></div><div><b>Link</b><span>Problem + needs</span></div><div><b>Output</b><span>Final concept</span></div></div></div><div class="switch"><button class="active" data-mode="sample" type="button">View Sample</button><button data-mode="fill" type="button">Fill Template</button></div><div class="sample rich-sample"><span class="sample-kicker">Sample Justification</span><h3>Smart Lunch Crowd Checker</h3><div class="sample-tip">This idea helps students decide where to buy lunch before leaving class by showing crowd level and menu availability, reducing wasted walking time.</div></div><div class="fill"><div class="sample-answer"><div class="sample-answer-title">✍️ Sample answer guide</div><p><code>Idea name:</code> Smart Lunch Crowd Checker<br><code>Why chosen:</code> It directly supports the user need and is feasible for a simple prototype.</p></div><div class="field"><label>Idea Name</label><input class="input" name="t10_name" placeholder="e.g. Smart Lunch Crowd Checker"/></div><div class="field"><label>Idea Description</label><textarea class="textarea" name="t10_desc" placeholder="Describe the idea clearly..."></textarea></div><div class="field"><label>Link to Problem Statement and User Needs</label><textarea class="textarea" name="t10_link" placeholder="Explain how this idea solves the defined problem..."></textarea></div><div class="field"><label>Resources Needed / Timeline / Challenges</label><textarea class="textarea" name="t10_resources" placeholder="Resources: ...
+Timeline: ...
+Challenges: ..."></textarea></div><button class="btn teal full" data-save type="button"><img alt="" class="btn-icon-png" src="https://iili.io/CJU0gTb.png"/>Save T10 Justification</button></div></div></section>
+<section class="template-panel" id="gate02"><div class="template-card guided-template"><div class="template-head"><div><h2>Supervisor Gate 2</h2><p class="section-sub">Submit your selected idea for review before Prototyping.</p></div><span class="status">Gate Check</span></div><div class="template-guide-card"><span class="guide-tag">Why this gate matters</span><h3>What will your supervisor check?</h3><p>Your supervisor checks whether your final idea is feasible, connected to the defined problem and supported by the selection matrix.</p><div class="guide-mini-grid"><div><b>Checks</b><span>T07–T10 quality</span></div><div><b>Blocks</b><span>Phase 04 Prototype</span></div><div><b>Outcome</b><span>Approved / revise</span></div></div></div><div class="activity-box enhanced"><p class="activity-title"><span class="badge">G2</span>Pre-Submission Checklist</p><p class="bullet">T07 Brainstorming — 20+ ideas generated.</p><p class="bullet">T08 SCAMPER — all 7 lenses attempted.</p><p class="bullet">T09 Matrix — top 5 ideas scored.</p><p class="bullet">T10 Justification — chosen idea documented.</p><p class="bullet">Team agrees on the final idea.</p></div><div class="fill active"><div class="sample-answer"><div class="sample-answer-title">✍️ Sample submission note guide</div><p>Our team has completed T07–T10. We would like feedback on whether our selected idea is feasible and clearly connected to the Define problem before Prototyping.</p></div><div class="field"><label>Supervisor Name</label><input class="input" name="gate02_supervisor" placeholder="e.g. Dr. Faridah"/></div><div class="field"><label>Submission Notes to Supervisor</label><textarea class="textarea" name="gate02_notes" placeholder="Briefly explain what your team completed and what you want your supervisor to check..."></textarea></div><div class="action-row"><button class="btn ghost" data-save type="button"><img alt="" class="btn-icon-png" src="https://iili.io/CJU0gTb.png"/>Save</button><button class="btn ghost" data-print type="button"><img alt="" class="btn-icon-png" src="https://iili.io/CJU0hQ4.png"/>Print</button><button class="btn primary" data-submit-phase type="button"><img alt="" class="btn-icon-png" src="https://iili.io/CJgMhp1.png"/>Submit Gate 2</button></div></div></div></section>
+</form>
+</section>
+</main>
+<nav aria-label="Main navigation" class="bottom-nav">
+<a class="nav-item" data-nav="dashboard" href="dashboard.html"><img alt="" class="nav-icon-img" decoding="async" loading="lazy" src="https://iili.io/CJgF5nR.png"/><span class="nav-label">Dashboard</span></a>
+<a class="nav-item active" data-nav="learn" href="phase01-empathy.html"><img alt="" class="nav-icon-img" decoding="async" loading="lazy" src="https://iili.io/CJgFAZv.png"/><span class="nav-label">Learn</span></a>
+<a class="nav-item" data-nav="projects" href="dashboard.html"><img alt="" class="nav-icon-img" decoding="async" loading="lazy" src="https://iili.io/CJgFY6N.png"/><span class="nav-label">Projects</span></a>
+<a class="nav-item" data-nav="progress" href="progress.html"><img alt="" class="nav-icon-img" decoding="async" loading="lazy" src="https://iili.io/CJgF7Gp.png"/><span class="nav-label">Progress</span></a>
+<a class="nav-item" data-nav="profile" href="profile.html"><img alt="" class="nav-icon-img" decoding="async" loading="lazy" src="https://iili.io/CJgFlat.png"/><span class="nav-label">Profile</span></a>
+</nav>
+</div>
+<script src="js/smartdt-assets.js"></script><script src="js/smartdt.js"></script>
 </body>
 </html>
