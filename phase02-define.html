@@ -38,44 +38,286 @@
 <div class="subtabs define-three three">
 <button class="subtab active" data-subtab="t05">T05 Problem</button>
 <button class="subtab" data-subtab="t06">T06 HMW</button>
-<button class="subtab" data-subtab="gate01">Gate 1</button>
+<button class="subtab" data-subtab="gate1">Gate 1</button>
 </div>
 <form id="defineForm">
 <section class="template-panel active" id="t05">
-<div class="template-card guided-template">
-<div class="template-head"><div><h2>T05 Problem Statement</h2><p class="section-sub">Use your Empathy evidence to create one clear, human-centred problem statement.</p></div><span class="status">Start Here</span></div>
-<div class="template-guide-card"><span class="guide-tag">Activity Introduction</span><h3>What are you going to do?</h3><p>You will study the evidence collected in Phase 01, choose the strongest pattern, and turn it into a Point of View statement. This should define the problem only — not the solution.</p><div class="guide-mini-grid"><div><b>Input</b><span>Empathy maps + persona</span></div><div><b>Formula</b><span>User + need + insight</span></div><div><b>Output</b><span>One POV statement</span></div></div></div>
-<div class="activity-box enhanced"><p class="activity-title"><span class="badge">A5</span>Problem Framing Flow</p><p class="bullet"><b>1. Review evidence:</b> look at quotes, observations, pains and gains from Phase 01.</p><p class="bullet"><b>2. Find the pattern:</b> choose a repeated issue, not a one-off complaint.</p><p class="bullet"><b>3. Write the need:</b> use a verb-led need such as <i>to know</i>, <i>to access</i>, <i>to decide</i>.</p><p class="bullet"><b>4. Add the insight:</b> explain why this need matters based on research.</p></div>
-<div class="sample infographic-sample"><h3>POV Formula</h3><div class="flowline"><div><span>1</span><b>User</b><small>Who has the problem?</small></div><div><span>2</span><b>Need</b><small>What do they need to do?</small></div><div><span>3</span><b>Insight</b><small>Why does it matter?</small></div></div></div>
-<div class="switch"><button class="active" data-mode="sample" type="button">View Sample</button><button data-mode="fill" type="button">Fill Template</button></div>
-<div class="sample rich-sample"><span class="sample-kicker">Sample POV Statement</span><h3>Canteen peak-hour problem</h3><div class="needs-preview"><div><b>User</b><p>A Diploma student at POLIPD who buys lunch during peak hour.</p></div><div><b>Need</b><p>Needs to know the canteen crowd level before leaving class.</p></div><div><b>Insight</b><p>Because walking to a full canteen wastes their limited lunch break and makes them late for class.</p></div></div><div class="sample-tip"><b>Complete POV:</b> A Diploma student at POLIPD who buys lunch during peak hour needs to know the canteen crowd level before leaving class because walking to a full canteen wastes their limited lunch break and makes them late for class.</div></div>
-<div class="fill"><div class="sample-answer"><div class="sample-answer-title">✍️ Sample answer guide</div><p><code>User:</code> A Diploma student at POLIPD who buys lunch during peak hour. <br><code>Need:</code> needs to know the canteen crowd level before leaving class. <br><code>Insight:</code> because walking to a full canteen wastes their limited lunch break.</p></div><div class="field"><label>User Description</label><input class="input" name="t05_user" placeholder="e.g. A Diploma student at POLIPD who buys lunch during peak hour"/></div><div class="field"><label>Need <small>(use a verb-led need)</small></label><input class="input" name="t05_need" placeholder="e.g. needs to know the canteen crowd level before leaving class"/></div><div class="field"><label>Insight <small>(why it matters, based on evidence)</small></label><textarea class="textarea" name="t05_insight" placeholder="e.g. because walking to a full canteen wastes their limited lunch break and makes them late for class."></textarea></div><div class="field"><label>Full POV Statement</label><textarea class="textarea" name="t05_pov" placeholder="[User] needs [need] because [insight]."></textarea></div><div class="mini-row"><div class="field"><label>In Scope</label><textarea class="textarea" name="t05_in_scope" placeholder="What your project WILL address..."></textarea></div><div class="field"><label>Out of Scope</label><textarea class="textarea" name="t05_out_scope" placeholder="What your project will NOT address..."></textarea></div></div><div class="field"><label>Why this problem matters</label><textarea class="textarea" name="t05_why" placeholder="What happens if this problem is not solved?"></textarea></div><div class="activity-box"><p class="activity-title"><span class="badge">✓</span>Problem Statement Check</p><p class="bullet">It focuses on the user, not the team or technology.</p><p class="bullet">It does not include a solution.</p><p class="bullet">It is based on evidence from Phase 01.</p><p class="bullet">It is clear enough to guide ideation.</p></div><button class="btn teal full" data-save="" type="button"><svg class="btn-icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>Save T05 Problem Statement</button></div>
-</div>
+  <div class="template-card guided-template" data-template-card>
+    <div class="template-head">
+      <div>
+        <h2>T05 Problem Statement</h2>
+        <p class="section-sub">Turn your Empathy evidence into ONE clear, user-centred Point of View problem statement.</p>
+      </div>
+      <span class="status">Start Here</span>
+    </div>
+
+    <div class="template-guide-card">
+      <span class="guide-tag">Template Intro</span>
+      <h3>What is this template for?</h3>
+      <p>This template helps your team move from many Empathy findings into one focused problem. You are not proposing a solution yet. You are deciding what real user need your project should address.</p>
+      <div class="guide-mini-grid">
+        <div><b>Input</b><span>Empathy evidence</span></div>
+        <div><b>Formula</b><span>User + need + insight</span></div>
+        <div><b>Output</b><span>One POV statement</span></div>
+      </div>
+    </div>
+
+    <div class="activity-box enhanced">
+      <p class="activity-title"><span class="badge">A5</span>What students need to do</p>
+      <p class="bullet"><b>1. Review evidence:</b> look at quotes, observations, pains and gains from Phase 01.</p>
+      <p class="bullet"><b>2. Find a repeated pattern:</b> choose an issue that appears across users, not only one complaint.</p>
+      <p class="bullet"><b>3. Write the user need:</b> use a verb-led need such as <i>to know</i>, <i>to access</i>, <i>to decide</i> or <i>to reduce</i>.</p>
+      <p class="bullet"><b>4. Add the insight:</b> explain why the need matters based on real evidence.</p>
+      <p class="bullet"><b>5. Check your statement:</b> it must define the problem only. Do not include the solution yet.</p>
+    </div>
+
+    <div class="sample infographic-sample">
+      <h3>POV Formula</h3>
+      <div class="flowline">
+        <div><span>1</span><b>User</b><small>Who has the problem?</small></div>
+        <div><span>2</span><b>Need</b><small>What do they need to do?</small></div>
+        <div><span>3</span><b>Insight</b><small>Why does it matter?</small></div>
+      </div>
+    </div>
+
+    <div class="switch template-mode-switch">
+      <button class="active" data-mode="sample" type="button">View Sample</button>
+      <button data-mode="fill" type="button">Fill Template</button>
+    </div>
+
+    <div class="mode-panel sample-panel" data-panel="sample">
+      <div class="sample rich-sample">
+        <span class="sample-kicker">Sample POV Statement</span>
+        <h3>Canteen peak-hour problem</h3>
+        <div class="needs-preview">
+          <div><b>User</b><p>A Diploma student at POLIPD who buys lunch during peak hour.</p></div>
+          <div><b>Need</b><p>Needs to know the canteen crowd level before leaving class.</p></div>
+          <div><b>Insight</b><p>Because walking to a full canteen wastes their limited lunch break and makes them late for class.</p></div>
+        </div>
+        <div class="sample-tip"><b>Complete POV:</b> A Diploma student at POLIPD who buys lunch during peak hour needs to know the canteen crowd level before leaving class because walking to a full canteen wastes their limited lunch break and makes them late for class.</div>
+        <div class="sample-tip"><b>Why this works:</b> It focuses on the user, states a need, and explains the insight without suggesting an app, QR code or final product.</div>
+      </div>
+    </div>
+
+    <div class="mode-panel fill-panel" data-panel="fill" hidden>
+      <div class="sample-answer">
+        <div class="sample-answer-title">✍️ Fill guide</div>
+        <p>Use your own Phase 01 evidence. Your answer should be short, clear and based on user research.</p>
+      </div>
+
+      <div class="field">
+        <label>User Description</label>
+        <p class="field-help">Who is facing the problem? Be specific about the user group.</p>
+        <input class="input" name="df_p02_t05_user" placeholder="Example: Diploma student at POLIPD who buys lunch during peak hour"/>
+      </div>
+      <div class="field">
+        <label>Need <small>(verb-led)</small></label>
+        <p class="field-help">What does the user need to do, know, access, reduce or improve?</p>
+        <input class="input" name="df_p02_t05_need" placeholder="Example: needs to know the canteen crowd level before leaving class"/>
+      </div>
+      <div class="field">
+        <label>Insight <small>(based on evidence)</small></label>
+        <p class="field-help">Why does this need matter? Use repeated findings from interviews or observation.</p>
+        <textarea class="textarea" name="df_p02_t05_insight" placeholder="Example: because walking to a full canteen wastes their limited lunch break and makes them late for class."></textarea>
+      </div>
+      <div class="field">
+        <label>Full POV Statement</label>
+        <p class="field-help">Combine user, need and insight into one complete sentence.</p>
+        <textarea class="textarea" name="df_p02_t05_pov" placeholder="[User] needs [need] because [insight]."></textarea>
+      </div>
+      <div class="mini-row">
+        <div class="field">
+          <label>In Scope</label>
+          <p class="field-help">What your project will focus on.</p>
+          <textarea class="textarea" name="df_p02_t05_in_scope" placeholder="Example: helping students decide when and where to buy lunch"></textarea>
+        </div>
+        <div class="field">
+          <label>Out of Scope</label>
+          <p class="field-help">What your project will not address.</p>
+          <textarea class="textarea" name="df_p02_t05_out_scope" placeholder="Example: changing the canteen menu or hiring more staff"></textarea>
+        </div>
+      </div>
+      <div class="field">
+        <label>Why this problem matters</label>
+        <p class="field-help">Explain the impact if this problem is not solved.</p>
+        <textarea class="textarea" name="df_p02_t05_why" placeholder="Example: students may skip lunch, feel rushed, or arrive late to afternoon classes."></textarea>
+      </div>
+
+      <div class="activity-box">
+        <p class="activity-title"><span class="badge">✓</span>Problem Statement Check</p>
+        <p class="bullet">It focuses on the user, not the team or technology.</p>
+        <p class="bullet">It does not include a solution.</p>
+        <p class="bullet">It is based on evidence from Phase 01.</p>
+        <p class="bullet">It is clear enough to guide Ideation.</p>
+      </div>
+
+      <div class="template-actions">
+        <button class="btn teal full" data-save="" type="button"><svg class="btn-icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>Save T05 Problem Statement</button>
+        <button class="btn ghost full" data-next-subtab="t06" type="button">Continue to T06 HMW</button>
+      </div>
+    </div>
+  </div>
 </section>
+
 <section class="template-panel" id="t06">
-<div class="template-card guided-template">
-<div class="template-head"><div><h2>T06 How Might We Questions</h2><p class="section-sub">Reframe your problem statement into opportunity questions for Ideation.</p></div><span class="status">Not Started</span></div>
-<div class="template-guide-card"><span class="guide-tag">Activity Introduction</span><h3>What are you going to do?</h3><p>You will create five open-ended HMW questions from your T05 problem statement. HMW questions should invite many possible ideas, not force one fixed solution.</p><div class="guide-mini-grid"><div><b>Input</b><span>T05 POV statement</span></div><div><b>Minimum</b><span>5 HMW questions</span></div><div><b>Output</b><span>Best HMW selected</span></div></div></div>
-<div class="activity-box enhanced"><p class="activity-title"><span class="badge">A6</span>How to write a good HMW</p><p class="bullet"><b>Start with:</b> “How might we…”</p><p class="bullet"><b>Keep it open:</b> allow many solution possibilities.</p><p class="bullet"><b>Stay user-centred:</b> focus on the user's need and context.</p><p class="bullet"><b>Avoid solution words:</b> do not mention app, QR code, chatbot or device too early.</p></div>
-<div class="switch"><button class="active" data-mode="sample" type="button">View Sample</button><button data-mode="fill" type="button">Fill Template</button></div>
-<div class="sample rich-sample"><span class="sample-kicker">Sample HMW Transformation</span><h3>From POV to HMW</h3><div class="sample-columns"><div><b>Weak HMW</b><p>How might we create an app for the canteen?</p></div><div><b>Better HMW</b><p>How might we help students decide where to buy lunch before the peak-hour rush?</p></div></div><div class="sample-tip"><b>Why better?</b> It focuses on the user need and allows many possible ideas, not only an app.</div></div>
-<div class="fill"><div class="sample-answer"><div class="sample-answer-title">✍️ Sample answer guide</div><p><code>Better HMW:</code> How might we help students decide where to buy lunch before the peak-hour rush? <br><code>Avoid:</code> How might we create an app? This is too solution-focused.</p></div><div class="field"><label>Reference Problem Statement from T05</label><textarea class="textarea" name="t06_reference" placeholder="Copy your final POV statement here..."></textarea></div><div class="field"><label>HMW Question 1</label><textarea class="textarea" name="t06_hmw1" placeholder="How might we..."></textarea></div><div class="field"><label>HMW Question 2</label><textarea class="textarea" name="t06_hmw2" placeholder="How might we..."></textarea></div><div class="field"><label>HMW Question 3</label><textarea class="textarea" name="t06_hmw3" placeholder="How might we..."></textarea></div><div class="field"><label>HMW Question 4</label><textarea class="textarea" name="t06_hmw4" placeholder="How might we..."></textarea></div><div class="field"><label>HMW Question 5</label><textarea class="textarea" name="t06_hmw5" placeholder="How might we..."></textarea></div><div class="field"><label>Best HMW Selected</label><textarea class="textarea" name="t06_best_hmw" placeholder="Choose the strongest HMW question for Ideation..."></textarea></div><div class="field"><label>Justification</label><textarea class="textarea" name="t06_justification" placeholder="Why did your team choose this HMW?"></textarea></div><button class="btn teal full" data-save="" type="button"><svg class="btn-icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>Save T06 HMW</button></div>
-</div>
+  <div class="template-card guided-template" data-template-card>
+    <div class="template-head">
+      <div>
+        <h2>T06 How Might We Questions</h2>
+        <p class="section-sub">Reframe your T05 problem statement into opportunity questions for Ideation.</p>
+      </div>
+      <span class="status">Not Started</span>
+    </div>
+
+    <div class="template-guide-card">
+      <span class="guide-tag">Template Intro</span>
+      <h3>What is this template for?</h3>
+      <p>HMW questions help your team move from problem framing into idea generation. A good HMW is open enough to create many ideas, but focused enough to stay connected to your user need.</p>
+      <div class="guide-mini-grid">
+        <div><b>Input</b><span>T05 POV statement</span></div>
+        <div><b>Minimum</b><span>5 HMW questions</span></div>
+        <div><b>Output</b><span>Best HMW selected</span></div>
+      </div>
+    </div>
+
+    <div class="activity-box enhanced">
+      <p class="activity-title"><span class="badge">A6</span>What students need to do</p>
+      <p class="bullet"><b>1. Copy your POV:</b> bring your final problem statement from T05.</p>
+      <p class="bullet"><b>2. Write five HMW questions:</b> start each one with “How might we…”</p>
+      <p class="bullet"><b>3. Keep it open:</b> avoid mentioning one fixed solution such as app, QR code or chatbot too early.</p>
+      <p class="bullet"><b>4. Choose the best HMW:</b> pick the question that can generate the strongest ideas in Phase 03.</p>
+    </div>
+
+    <div class="switch template-mode-switch">
+      <button class="active" data-mode="sample" type="button">View Sample</button>
+      <button data-mode="fill" type="button">Fill Template</button>
+    </div>
+
+    <div class="mode-panel sample-panel" data-panel="sample">
+      <div class="sample rich-sample">
+        <span class="sample-kicker">Sample HMW Transformation</span>
+        <h3>From POV to HMW</h3>
+        <div class="sample-tip"><b>POV:</b> A Diploma student at POLIPD who buys lunch during peak hour needs to know the canteen crowd level before leaving class because walking to a full canteen wastes their limited lunch break.</div>
+        <div class="sample-columns">
+          <div><b>Weak HMW</b><p>How might we create an app for the canteen?</p></div>
+          <div><b>Better HMW</b><p>How might we help students decide where to buy lunch before the peak-hour rush?</p></div>
+        </div>
+        <div class="sample-tip"><b>Why better?</b> It focuses on the user need and leaves room for many possible solutions.</div>
+      </div>
+    </div>
+
+    <div class="mode-panel fill-panel" data-panel="fill" hidden>
+      <div class="sample-answer">
+        <div class="sample-answer-title">✍️ Fill guide</div>
+        <p>Write broad opportunity questions. A good HMW should help your team brainstorm many possible ideas in Phase 03.</p>
+      </div>
+      <div class="field">
+        <label>Reference Problem Statement from T05</label>
+        <p class="field-help">Copy your final POV statement here so your HMW stays connected to evidence.</p>
+        <textarea class="textarea" name="df_p02_t06_reference" placeholder="Copy your final POV statement here..."></textarea>
+      </div>
+      <div class="field"><label>HMW Question 1</label><textarea class="textarea" name="df_p02_t06_hmw1" placeholder="How might we..."></textarea></div>
+      <div class="field"><label>HMW Question 2</label><textarea class="textarea" name="df_p02_t06_hmw2" placeholder="How might we..."></textarea></div>
+      <div class="field"><label>HMW Question 3</label><textarea class="textarea" name="df_p02_t06_hmw3" placeholder="How might we..."></textarea></div>
+      <div class="field"><label>HMW Question 4</label><textarea class="textarea" name="df_p02_t06_hmw4" placeholder="How might we..."></textarea></div>
+      <div class="field"><label>HMW Question 5</label><textarea class="textarea" name="df_p02_t06_hmw5" placeholder="How might we..."></textarea></div>
+      <div class="field">
+        <label>Best HMW Selected</label>
+        <p class="field-help">Choose the strongest question to bring into Ideation.</p>
+        <textarea class="textarea" name="df_p02_t06_best_hmw" placeholder="Example: How might we help students decide where to buy lunch before the peak-hour rush?"></textarea>
+      </div>
+      <div class="field">
+        <label>Justification</label>
+        <p class="field-help">Explain why this HMW is the best starting point for brainstorming.</p>
+        <textarea class="textarea" name="df_p02_t06_justification" placeholder="Example: It is focused on the student need, but still allows different solution ideas."></textarea>
+      </div>
+      <div class="template-actions">
+        <button class="btn teal full" data-save="" type="button"><svg class="btn-icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>Save T06 HMW</button>
+        <button class="btn ghost full" data-next-subtab="gate1" type="button">Continue to Gate 1</button>
+      </div>
+    </div>
+  </div>
 </section>
-<section class="template-panel" id="gate01">
-<div class="template-card guided-template">
-<div class="template-head"><div><h2>Supervisor Gate 1</h2><p class="section-sub">Submit your Define work for supervisor review before Ideation.</p></div><span class="status">Gate Check</span></div>
-<div class="template-guide-card"><span class="guide-tag">Why this gate matters</span><h3>What will your supervisor check?</h3><p>Your supervisor checks whether your problem statement is user-centred, research-backed and does not already contain a solution. This prevents your team from brainstorming around the wrong problem.</p><div class="guide-mini-grid"><div><b>Checks</b><span>T05 + T06 quality</span></div><div><b>Blocks</b><span>Phase 03 Ideation</span></div><div><b>Outcome</b><span>Approved / revise</span></div></div></div>
-<div class="activity-box enhanced"><p class="activity-title"><span class="badge">G1</span>Pre-Submission Checklist</p><p class="bullet">T05 Problem Statement completed with POV.</p><p class="bullet">T06 HMW — 5 questions generated and best one selected.</p><p class="bullet">Problem statement reviewed by all team members.</p><p class="bullet">Problem statement does NOT include a solution.</p><p class="bullet">Team is ready to begin Ideation.</p></div>
-<div class="fill active"><div class="sample-answer"><div class="sample-answer-title">✍️ Sample submission note guide</div><p>Our team has completed T05 and T06. We would like feedback on whether our problem statement is user-centred, evidence-based and clear enough before Ideation.</p></div><div class="field"><label>Supervisor Name</label><input class="input" name="gate01_supervisor" placeholder="e.g. Dr. Faridah"/></div><div class="field"><label>Submission Notes to Supervisor</label><textarea class="textarea" name="gate01_notes" placeholder="Briefly explain what your team has completed and what you want the supervisor to check..."></textarea></div><div class="action-row"><button class="btn ghost" data-save="" type="button"><svg class="btn-icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>Save</button><button class="btn ghost" data-print="" type="button"><svg class="btn-icon-svg" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8" rx="1"/></svg>Print</button><button class="btn primary" data-submit-phase="" type="button"><svg class="btn-icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>Submit Gate 1</button></div></div>
-</div>
+
+<section class="template-panel" id="gate1">
+  <div class="template-card guided-template" data-template-card>
+    <div class="template-head">
+      <div>
+        <h2>Supervisor Gate 1</h2>
+        <p class="section-sub">Submit your Define work for supervisor review before moving into Ideation.</p>
+      </div>
+      <span class="status">Gate Check</span>
+    </div>
+
+    <div class="template-guide-card">
+      <span class="guide-tag">Final Checkpoint</span>
+      <h3>What will your supervisor check?</h3>
+      <p>Your supervisor checks whether your problem statement is user-centred, research-backed and does not already contain a solution. This prevents your team from brainstorming around the wrong problem.</p>
+      <div class="guide-mini-grid">
+        <div><b>Checks</b><span>T05 + T06 quality</span></div>
+        <div><b>Blocks</b><span>Phase 03 Ideation</span></div>
+        <div><b>Outcome</b><span>Approved / revise</span></div>
+      </div>
+    </div>
+
+    <div class="activity-box enhanced">
+      <p class="activity-title"><span class="badge">G1</span>Pre-Submission Checklist</p>
+      <p class="bullet">T05 Problem Statement completed with a clear POV.</p>
+      <p class="bullet">T06 HMW completed with 5 questions and one best HMW selected.</p>
+      <p class="bullet">Problem statement reviewed by all team members.</p>
+      <p class="bullet">Problem statement does NOT include a solution.</p>
+      <p class="bullet">Team is ready to begin Ideation after supervisor approval.</p>
+    </div>
+
+    <div class="switch template-mode-switch">
+      <button class="active" data-mode="sample" type="button">View Sample</button>
+      <button data-mode="fill" type="button">Fill Template</button>
+    </div>
+
+    <div class="mode-panel sample-panel" data-panel="sample">
+      <div class="sample rich-sample">
+        <span class="sample-kicker">Sample Gate 1 Submission Note</span>
+        <h3>Ready for supervisor review</h3>
+        <div class="sample-tip">Our team has completed T05 and T06. We would like feedback on whether our problem statement is user-centred, evidence-based and clear enough before Ideation.</div>
+        <div class="sample-tip"><b>Supervisor should check:</b> Is the problem clear? Is it based on Empathy evidence? Does it avoid jumping into the solution?</div>
+      </div>
+    </div>
+
+    <div class="mode-panel fill-panel" data-panel="fill" hidden>
+      <div class="sample-answer">
+        <div class="sample-answer-title">✍️ Fill guide</div>
+        <p>Write a short note to your supervisor. Mention what you completed and what feedback you need before Ideation.</p>
+      </div>
+      <div class="field">
+        <label>Supervisor Name</label>
+        <p class="field-help">Write the supervisor who will review your Define phase.</p>
+        <input class="input" name="df_p02_gate1_supervisor" placeholder="Example: Pn. Julie Marlina"/>
+      </div>
+      <div class="field">
+        <label>Submission Notes to Supervisor</label>
+        <p class="field-help">Briefly explain what your team has completed and what you want the supervisor to check.</p>
+        <textarea class="textarea" name="df_p02_gate1_notes" placeholder="Example: We have completed T05 and T06. Please check whether our problem statement is clear, user-centred and ready for Ideation."></textarea>
+      </div>
+      <div class="activity-box">
+        <p class="activity-title"><span class="badge">✓</span>Confirm before submit</p>
+        <p class="bullet">My team has checked the POV statement.</p>
+        <p class="bullet">My team has selected the best HMW question.</p>
+        <p class="bullet">We understand that Ideation should start after this problem is clear.</p>
+      </div>
+      <div class="action-row">
+        <button class="btn ghost" data-save="" type="button"><svg class="btn-icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>Save Gate Note</button>
+        <button class="btn ghost" data-print="" type="button"><svg class="btn-icon-svg" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8" rx="1"/></svg>Print</button>
+        <button class="btn primary" data-submit-phase="" type="button"><svg class="btn-icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>Submit Gate 1</button>
+      </div>
+    </div>
+  </div>
 </section>
 </form>
 </section>
 </main>
 <nav aria-label="Main navigation" class="bottom-nav">
 <a class="nav-item" data-nav="dashboard" href="dashboard.html"><img alt="" class="nav-icon-img" decoding="async" loading="lazy" src="https://iili.io/Cd3ksWu.png"/><span class="nav-label">Dashboard</span></a>
-<a class="nav-item active" data-nav="learn" href="phase01-empathy.html"><img alt="" class="nav-icon-img" decoding="async" loading="lazy" src="https://iili.io/Cd3wdpn.png"/><span class="nav-label">Learn</span></a>
+<a class="nav-item active" data-nav="learn" href="phase02-define.html"><img alt="" class="nav-icon-img" decoding="async" loading="lazy" src="https://iili.io/Cd3wdpn.png"/><span class="nav-label">Learn</span></a>
 <a class="nav-item" data-nav="projects" href="projects.html"><img alt="" class="nav-icon-img" decoding="async" loading="lazy" src="https://iili.io/Cd3kixe.png"/><span class="nav-label">Projects</span></a>
 <a class="nav-item" data-nav="progress" href="progress.html"><img alt="" class="nav-icon-img" decoding="async" loading="lazy" src="https://iili.io/Cd3k4O7.png"/><span class="nav-label">Progress</span></a>
 <a class="nav-item" data-nav="profile" href="profile.html"><img alt="" class="nav-icon-img" decoding="async" loading="lazy" src="https://iili.io/Cd3k6b9.png"/><span class="nav-label">Profile</span></a>
