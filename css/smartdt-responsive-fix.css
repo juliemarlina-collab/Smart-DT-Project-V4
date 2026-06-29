@@ -1,11 +1,15 @@
 /* css/smartdt-responsive-fix.css */
-/* Smart DT Easy One-File Fix */
-/* This replaces the previous responsive fix and adds bigger hero display for mobile, tablet and PC. */
+/* Smart DT Unified Responsive + Hero Contain Fix */
+/* Purpose: keep all pages consistent and prevent hero images from becoming too large or cropped. */
+
+/* ------------------------------------------------------------
+   1. Standardized App Display Wrapper
+   ------------------------------------------------------------ */
 
 :root {
   --smart-phone: 430px;
   --smart-tablet: 900px;
-  --smart-desktop: 1180px;
+  --smart-desktop: 1200px;
   --smart-bg: #f4f8fc;
   --smart-card: #ffffff;
   --smart-line: #e2e8f0;
@@ -29,11 +33,12 @@ body {
   background: #eaf2f8;
 }
 
-.app {
+.app,
+.app-wrapper {
   width: 100%;
   max-width: var(--smart-phone);
-  min-height: 100vh;
   margin: 0 auto;
+  min-height: 100vh;
   background: #f7fafc;
   position: relative;
   box-shadow: 0 18px 60px rgba(8, 27, 68, 0.08);
@@ -46,31 +51,63 @@ body {
   padding-bottom: 98px !important;
 }
 
-/* Bigger hero image fix */
+/* ------------------------------------------------------------
+   2. Unified Hero Section Resizing
+   ------------------------------------------------------------ */
+
+/* New optional hero structure */
+.hero-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0 2rem 0;
+}
+
+/* Existing hero structure in your app */
 .hero-card,
 .hero-card.compact {
   width: 100% !important;
   max-width: 100% !important;
   margin: 14px auto 18px !important;
+  padding: 0 !important;
   border-radius: 28px !important;
   overflow: hidden !important;
   background: #ffffff !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
 }
 
+/* New optional image class + existing app image class */
+.hero-image,
 .hero-card img,
 .hero-card.compact img,
 .hero-img-wide {
   width: 100% !important;
+  max-width: 450px !important;
   height: auto !important;
-  min-height: 190px !important;
-  max-height: 250px !important;
-  object-fit: cover !important;
-  object-position: center !important;
+  max-height: 220px !important;
+  object-fit: contain !important;
+  object-position: center center !important;
   display: block !important;
+  transform: none !important;
   border-radius: inherit !important;
 }
 
-/* Dashboard layout */
+/* Progress page can use a slightly wider hero image because it has more horizontal space */
+.progress-page .hero-image,
+.progress-page .hero-card img,
+.progress-page .hero-card.compact img,
+.progress-page .hero-img-wide {
+  max-width: 560px !important;
+  max-height: 240px !important;
+}
+
+/* ------------------------------------------------------------
+   3. Dashboard / Card Layout
+   ------------------------------------------------------------ */
+
 .dashboard-container {
   width: 100%;
   max-width: 1200px;
@@ -105,7 +142,10 @@ body {
   line-height: 1.5;
 }
 
-/* Hide supervisor gate display */
+/* ------------------------------------------------------------
+   4. Hide old Supervisor Gate sections
+   ------------------------------------------------------------ */
+
 #gateList,
 .gate-list-v9,
 .gate-lock-screen,
@@ -115,8 +155,10 @@ body {
   display: none !important;
 }
 
-/* Cards and badges */
-.hero-card,
+/* ------------------------------------------------------------
+   5. General Cards and Badges
+   ------------------------------------------------------------ */
+
 .intro-card,
 .card,
 .template-card,
@@ -140,7 +182,10 @@ body {
   max-width: 100%;
 }
 
-/* Bottom Navigation */
+/* ------------------------------------------------------------
+   6. Bottom Navigation
+   ------------------------------------------------------------ */
+
 .bottom-nav {
   position: fixed !important;
   bottom: 0;
@@ -193,6 +238,7 @@ body {
   font-weight: 700;
 }
 
+/* Scrollable tabs for smaller screens */
 .tabbar,
 .template-steps,
 .subtabs {
@@ -200,9 +246,13 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
-/* Tablet view */
+/* ------------------------------------------------------------
+   7. Tablet View
+   ------------------------------------------------------------ */
+
 @media (min-width: 600px) and (max-width: 1023px) {
-  .app {
+  .app,
+  .app-wrapper {
     max-width: var(--smart-tablet) !important;
   }
 
@@ -223,16 +273,20 @@ body {
     margin-bottom: 24px !important;
   }
 
+  .hero-image,
   .hero-card img,
   .hero-card.compact img,
   .hero-img-wide {
-    min-height: 300px !important;
-    max-height: 390px !important;
+    max-width: 620px !important;
+    max-height: 280px !important;
   }
 
-  .progress-page .hero-card,
-  .progress-page .hero-card.compact {
-    max-width: 860px !important;
+  .progress-page .hero-image,
+  .progress-page .hero-card img,
+  .progress-page .hero-card.compact img,
+  .progress-page .hero-img-wide {
+    max-width: 720px !important;
+    max-height: 300px !important;
   }
 
   .dashboard-grid {
@@ -245,9 +299,13 @@ body {
   }
 }
 
-/* Desktop / PC view */
+/* ------------------------------------------------------------
+   8. Desktop / PC View
+   ------------------------------------------------------------ */
+
 @media (min-width: 1024px) {
-  .app {
+  .app,
+  .app-wrapper {
     max-width: var(--smart-desktop) !important;
   }
 
@@ -267,23 +325,20 @@ body {
     margin-bottom: 28px !important;
   }
 
+  .hero-image,
   .hero-card img,
   .hero-card.compact img,
   .hero-img-wide {
-    min-height: 360px !important;
-    max-height: 480px !important;
+    max-width: 760px !important;
+    max-height: 300px !important;
   }
 
-  .progress-page .hero-card,
-  .progress-page .hero-card.compact {
-    max-width: 1040px !important;
-  }
-
+  .progress-page .hero-image,
   .progress-page .hero-card img,
   .progress-page .hero-card.compact img,
   .progress-page .hero-img-wide {
-    min-height: 390px !important;
-    max-height: 520px !important;
+    max-width: 860px !important;
+    max-height: 320px !important;
   }
 
   .intro-card,
@@ -305,19 +360,13 @@ body {
   }
 }
 
-/* Ultra-wide safety */
+/* ------------------------------------------------------------
+   9. Ultra-Wide Safety
+   ------------------------------------------------------------ */
+
 @media (min-width: 1400px) {
-  .app {
-    max-width: 1260px !important;
-  }
-
-  .hero-card,
-  .hero-card.compact {
-    max-width: 1080px !important;
-  }
-
-  .progress-page .hero-card,
-  .progress-page .hero-card.compact {
-    max-width: 1120px !important;
+  .app,
+  .app-wrapper {
+    max-width: 1200px !important;
   }
 }
