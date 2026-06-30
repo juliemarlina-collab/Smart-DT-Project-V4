@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>T04 — Empathy Map for Beginners | CAMP21 Smart DT</title>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>*{box-sizing:border-box;margin:0;padding:0}:root{--navy:#082B66;--teal:#16B8AA;--orange:#FF6236;--amber:#E8920C;--sky:#2F77D0;--bg:#EEF5FA;--card:#fff;--line:#DDE8F0;--muted:#68778F;--text:#061A3A;--shadow:0 16px 36px rgba(8,43,102,.09);--font:'Poppins',system-ui,-apple-system,Segoe UI,sans-serif}body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex;justify-content:center;padding:24px 12px;-webkit-font-smoothing:antialiased}.poster{width:1180px;max-width:100%;background:var(--card);border-radius:28px;overflow:hidden;box-shadow:var(--shadow);border:1px solid rgba(8,43,102,.06)}.head{position:relative;background:linear-gradient(135deg,#082B66,#0A3678 72%);color:#fff;padding:20px 30px 24px;overflow:hidden}.hcircle{position:absolute;right:-40px;top:-46px;width:150px;height:150px;border-radius:50%;background:rgba(22,184,170,.28)}.backlink{position:relative;z-index:2;display:inline-flex;align-items:center;gap:6px;text-decoration:none;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.34);color:#fff;font-weight:700;font-size:13px;padding:8px 14px;border-radius:999px;margin-bottom:16px}.backlink:hover{background:rgba(255,255,255,.24)}.hrow{position:relative;z-index:2;display:flex;align-items:center;gap:20px}.badge{flex:0 0 auto;width:84px;height:70px;border-radius:18px;background:var(--teal);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:26px;color:#fff;box-shadow:inset 0 0 0 3px rgba(255,255,255,.25),0 6px 16px rgba(0,0,0,.2)}.htext h1{font-weight:900;font-size:38px;line-height:1.04;letter-spacing:-.03em}.htext .sub{margin-top:7px;font-weight:700;font-size:14px;color:#CFE0F2}.htext .sub b{color:#34E3D3}.htext .sub .pr{color:#9FD0F2}.grid{padding:22px 24px 12px;display:grid;grid-template-columns:1fr 1fr;gap:14px}.full{grid-column:1/-1}.panel{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:16px 18px;box-shadow:0 10px 24px rgba(8,43,102,.04)}.ptitle{display:flex;align-items:center;gap:9px;font-weight:900;font-size:14.5px;letter-spacing:.2px;color:var(--navy);text-transform:uppercase;margin-bottom:12px}.num{width:26px;height:26px;border-radius:50%;background:var(--orange);color:#fff;font-weight:900;font-size:13px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}.lead{font-size:14px;line-height:1.55;color:var(--muted)}.lead b{color:var(--navy)}.acro{margin-top:9px;font-weight:800;color:var(--teal);font-size:13px}.lenses{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.lens,.pcard{border-radius:16px;padding:12px 11px;border:1px solid}.lens .ic,.pcard .ic{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;color:#fff;margin-bottom:8px}.lens h4,.pcard h4{font-size:13.5px;font-weight:900;margin-bottom:4px}.lens p,.pcard p{font-size:11.5px;line-height:1.4;color:var(--muted)}.steps{display:flex;align-items:stretch;gap:6px}.step{flex:1;background:#F4F8FC;border:1px solid var(--line);border-radius:14px;padding:11px 9px;text-align:center}.step .sn{width:26px;height:26px;border-radius:50%;background:var(--navy);color:#fff;font-weight:900;font-size:13px;display:flex;align-items:center;justify-content:center;margin:0 auto 7px}.step h5{font-size:12px;font-weight:900;color:var(--navy);margin-bottom:3px;line-height:1.15}.step p{font-size:10.8px;line-height:1.32;color:var(--muted)}.chev{display:flex;align-items:center;color:var(--teal);font-weight:900;font-size:17px}.vs{display:grid;grid-template-columns:1fr 1fr;gap:12px}.col h5{font-size:13px;font-weight:900;margin-bottom:8px;display:flex;align-items:center;gap:6px}.col.ok h5{color:#0E8C82}.col.no h5{color:#C0392B}.row{font-size:12px;padding:7px 10px;border-radius:10px;margin-bottom:6px;line-height:1.35;color:var(--text)}.col.ok .row{background:#E9FAF7;border-left:3px solid var(--teal)}.col.no .row{background:#FFF1F1;border-left:3px solid #E5484D}.rule{margin-top:8px;font-size:12px;font-style:italic;color:var(--orange);font-weight:700}.tips{display:grid;grid-template-columns:1fr 1fr;gap:8px}.tip{display:flex;align-items:flex-start;gap:9px;font-size:12.3px;line-height:1.35;color:var(--text)}.tip .tn{flex:0 0 auto;width:22px;height:22px;border-radius:50%;background:var(--orange);color:#fff;font-weight:900;font-size:11px;display:flex;align-items:center;justify-content:center}.case{display:grid;grid-template-columns:112px 1fr;gap:15px;align-items:center}.avatar{width:112px;height:112px;border-radius:50%;background:radial-gradient(circle at 50% 32%,#BdF0EA,#16B8AA);display:flex;align-items:center;justify-content:center;font-size:50px;border:3px solid var(--teal)}.casenotes{display:grid;gap:8px}.cn{font-size:11.3px;line-height:1.38;border:1px solid var(--line);border-radius:12px;padding:9px 10px;background:#F7FAFC;color:var(--text)}.cn .ci{font-size:18px;margin-bottom:4px;display:block}.cn b{font-weight:900}.insight{margin-top:10px;background:#FFF7ED;border:1.5px solid #FFD8C8;border-radius:14px;padding:11px 14px;font-size:13px;color:var(--text);display:flex;gap:9px;align-items:center}.insight b{color:var(--orange)}.qbubbles{display:grid;grid-template-columns:1fr 1fr;gap:10px}.qb{border-radius:14px;padding:11px 13px;font-size:13px;font-weight:700;color:var(--text);border:1px solid}.qb .qm{color:var(--orange);font-weight:900;margin-right:4px}.flow{display:flex;flex-direction:column;gap:7px}.chip{font-size:12px;padding:8px 12px;border-radius:12px;line-height:1.35;border:1px solid var(--line)}.chip b{font-weight:900;margin-right:5px}.whatis{display:grid;grid-template-columns:1fr 196px;gap:16px;align-items:center}.quad{position:relative;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:6px;width:196px;height:150px}.q{border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:11px;font-weight:900;gap:3px}.q .qi{font-size:18px}.qcenter{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:42px;height:42px;border-radius:50%;background:#fff;border:2px solid var(--navy);display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 2px 6px rgba(8,43,102,.2)}.reminder{text-align:center;padding:6px 0 12px}.reminder span{display:inline-block;background:#E9FAF7;border:1.5px solid #BDEFE6;color:var(--navy);font-weight:900;font-size:14px;padding:9px 20px;border-radius:999px}.foot{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 26px;border-top:1px solid var(--line)}.foot .l{color:var(--muted);font-size:13px;font-weight:600}.foot .r{font-weight:900;color:var(--navy);font-size:13px}.foot .r b{color:var(--orange)}.backbtn{display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;margin:0 24px 22px;height:54px;border-radius:999px;background:var(--navy);color:#fff;font-weight:900;font-size:15px}.backbtn:hover{background:#0A3678}@media print{@page{size:A4 landscape;margin:0}body{background:#fff;padding:0}.poster{box-shadow:none;border-radius:0;width:100%;border:0}.backlink,.backbtn{display:none!important}}@media(max-width:720px){.grid{grid-template-columns:1fr}.lenses,.cards{grid-template-columns:1fr 1fr}.steps{flex-wrap:wrap}.chev{display:none}.step{flex:1 1 44%}.whatis{grid-template-columns:1fr}.htext h1{font-size:30px}}.C-s{background:#EAF1FB;border-color:#D4E3F7}.C-s .ic{background:#082B66}.C-s h4{color:#082B66}.C-d{background:#E9FAF7;border-color:#BDEFE6}.C-d .ic{background:#16B8AA}.C-d h4{color:#0E8C82}.C-t{background:#FFF6E0;border-color:#F2DDA6}.C-t .ic{background:#E8920C}.C-t h4{color:#B9700A}.C-f{background:#FFF1EC;border-color:#FFD9CC}.C-f .ic{background:#FF6236}.C-f h4{color:#D8431F}.qs{background:#EAF1FB;color:#082B66}.qt{background:#FFF6E0;color:#B9700A}.qd{background:#E9FAF7;color:#0E8C82}.qf{background:#FFF1EC;color:#D8431F}.casenotes{grid-template-columns:repeat(2,1fr)}.cn.s{background:#EAF1FB;border-color:#D4E3F7}.cn.s b{color:#082B66}.cn.d{background:#E9FAF7;border-color:#BDEFE6}.cn.d b{color:#0E8C82}.cn.t{background:#FFF6E0;border-color:#F2DDA6}.cn.t b{color:#B9700A}.cn.f{background:#FFF1EC;border-color:#FFD9CC}.cn.f b{color:#D8431F}.case .insight{grid-column:1/-1}.case{align-items:start}</style>
+</head>
+<body>
+<div class="poster">
+
+  <header class="head"><div class="hcircle"></div><a class="backlink" href="../../phase01-empathy.html?v=16">← Back to Empathy Phase</a><div class="hrow"><div class="badge">T04</div><div class="htext"><h1>Empathy Map<br>for Beginners</h1><div class="sub"><b>Empathise</b> &nbsp;|&nbsp; Day 1 &nbsp;|&nbsp; <span class="pr">CAMP21 Smart DT Project</span></div></div></div></header>
+
+  <div class="grid">
+
+    <section class="panel">
+      <div class="ptitle"><span class="num">1</span> What is an empathy map?</div>
+      <div class="whatis">
+        <p class="lead">An empathy map helps your team organise interview findings to understand what
+        users <b>say, do, think and feel</b> — turning scattered notes into a clear picture of one person.</p>
+        <div class="quad">
+          <div class="q qs"><span class="qi">💬</span>SAY</div>
+          <div class="q qt"><span class="qi">💭</span>THINK</div>
+          <div class="q qd"><span class="qi">🏃</span>DO</div>
+          <div class="q qf"><span class="qi">❤️</span>FEEL</div>
+          <div class="qcenter">🙂</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="ptitle"><span class="num">2</span> The 4 main areas</div>
+      <div class="cards">
+        <div class="pcard C-s"><div class="ic">💬</div><h4>Say</h4><p>Exact quotes, key phrases or important words from the interview.</p></div>
+        <div class="pcard C-d"><div class="ic">🏃</div><h4>Do</h4><p>Actions, behaviours, habits or body language you observed.</p></div>
+        <div class="pcard C-t"><div class="ic">💭</div><h4>Think</h4><p>Possible beliefs, worries or hidden concerns — inferred.</p></div>
+        <div class="pcard C-f"><div class="ic">❤️</div><h4>Feel</h4><p>Emotions: frustration, excitement, fear, hope or confusion.</p></div>
+      </div>
+    </section>
+
+    <section class="panel full">
+      <div class="ptitle"><span class="num">3</span> How to use it</div>
+      <div class="steps">
+        <div class="step"><div class="sn">1</div><h5>Listen</h5><p>Review the interview or your observations.</p></div>
+        <div class="chev">›</div>
+        <div class="step"><div class="sn">2</div><h5>Sort</h5><p>Split notes into Say, Do, Think and Feel.</p></div>
+        <div class="chev">›</div>
+        <div class="step"><div class="sn">3</div><h5>Find patterns</h5><p>Look for pains, needs and surprises.</p></div>
+        <div class="chev">›</div>
+        <div class="step"><div class="sn">4</div><h5>Use it</h5><p>Build a persona and define the problem.</p></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="ptitle"><span class="num">4</span> Beginner tips</div>
+      <div class="tips">
+        <div class="tip"><span class="tn">1</span> Use exact quotes for SAY.</div>
+        <div class="tip"><span class="tn">2</span> Use real observations for DO.</div>
+        <div class="tip"><span class="tn">3</span> Use careful inference for THINK &amp; FEEL.</div>
+        <div class="tip"><span class="tn">4</span> Focus on patterns, not random details.</div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="ptitle"><span class="num">5</span> Case study — Batik Workshop Visitor</div>
+      <div class="case">
+        <div class="avatar">🧕🏽</div>
+        <div class="casenotes">
+          <div class="cn s"><b>Say:</b>"I want to try, but I'm scared I'll spoil the cloth."</div>
+          <div class="cn d"><b>Do:</b>Watches closely, takes photos, asks a friend, hesitates.</div>
+          <div class="cn t"><b>Think:</b>"I need simple steps and reassurance before I begin."</div>
+          <div class="cn f"><b>Feel:</b>Curious, excited, nervous, slightly overwhelmed.</div>
+        </div>
+        <div class="insight">💡 <span><b>Insight:</b> Beginners need step-by-step guidance, reassurance, and a safe space to try.</span></div>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="reminder">“ Map the person, not just the problem. ”</div>
+
+  <footer class="foot"><div class="l">One Master Design Language · Fourteen Templates · Infinite Possibilities.</div><div class="r">CAMP21 Digital Hub 2026 · <b>T04</b></div></footer><a class="backbtn" href="../../phase01-empathy.html?v=16">← Back to Empathy Phase</a>
+
+</div>
+</body>
+</html>
